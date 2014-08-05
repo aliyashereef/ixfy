@@ -32,33 +32,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationController.navigationBar
+                                setBackgroundImage:[UIImage new]
+                                     forBarMetrics:UIBarMetricsDefault];
+    
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
-//    self.registerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIImage *closeImage = [UIImage imageNamed:@"ic_close"];
     closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeButton setImage:closeImage forState:UIControlStateNormal];
     closeButton.frame = CGRectMake(0.0,0.0,closeImage.size.width,closeImage.size.height);
-    [closeButton addTarget:self
-                    action:@selector(closeButtonClicked)
-          forControlEvents:UIControlEventTouchUpInside];
-    
-    leftButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
     
     UIImage *acceptImage = [UIImage imageNamed:@"ic_accept"];
     acceptButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [acceptButton setImage:acceptImage forState:UIControlStateNormal];
     acceptButton.frame = CGRectMake(0.0,0.0,acceptImage.size.width,acceptImage.size.height);
+    
+    [closeButton addTarget:self
+                    action:@selector(closeButtonClicked)
+          forControlEvents:UIControlEventTouchUpInside];
+    
     [acceptButton addTarget:self
                      action:@selector(acceptButtonClicked)
            forControlEvents:UIControlEventTouchUpInside];
     
+    leftButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    
     rightButton = [[UIBarButtonItem alloc] initWithCustomView:acceptButton];
+    
     self.navigationItem.leftBarButtonItem = leftButton;
     self.navigationItem.rightBarButtonItem = rightButton;
 }
