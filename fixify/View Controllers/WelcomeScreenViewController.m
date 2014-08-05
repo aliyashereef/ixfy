@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     [self setUpView];
 }
 
@@ -81,7 +82,7 @@
 }
 
 - (void)setUpView{
-    self.view.backgroundColor = [UIColor clearColor];
+    //self.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.hidden= YES;
 }
 /*
