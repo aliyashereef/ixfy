@@ -80,17 +80,9 @@
     }
 }
 
-- (void)signInButtonAction{
-    [self performSegueWithIdentifier:@"SignIn" sender:nil];
-}
-
 - (void)setUpView{
     self.view.backgroundColor = [UIColor clearColor];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.hidden= YES;
 }
 /*
 #pragma mark - Navigation

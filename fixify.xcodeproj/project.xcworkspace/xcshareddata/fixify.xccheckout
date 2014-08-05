@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>35B19A8B-CFD6-4999-8CB9-2014F7A48930</string>
+	<key>IDESourceControlProjectName</key>
+	<string>fixify</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</key>
+		<string>ssh://codebase.qburst.com/markerstudio-internal/fixify.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>fixify.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://codebase.qburst.com/markerstudio-internal/fixify.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>fixify</string>
+		</dict>
+	</array>
+</dict>
+</plist>
