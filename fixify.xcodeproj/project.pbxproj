@@ -20,10 +20,20 @@
 		224545A0198A6D78009A52FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22454582198A6D77009A52FE /* UIKit.framework */; };
 		224545A8198A6D78009A52FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 224545A6198A6D78009A52FE /* InfoPlist.strings */; };
 		224545AA198A6D78009A52FE /* fixifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224545A9198A6D78009A52FE /* fixifyTests.m */; };
-		229A6A55198B5CF0009B1930 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229A6A54198B5CF0009B1930 /* WelcomeScreenViewController.m */; };
-		229A6A58198B5D49009B1930 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229A6A57198B5D49009B1930 /* SignInViewController.m */; };
-		229A6A5B198B5D74009B1930 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229A6A5A198B5D74009B1930 /* RegisterViewController.m */; };
-		22EBDACD198F5C5A00323851 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDACC198F5C5A00323851 /* AppTourCell.m */; };
+		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
+		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
+		22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */; };
+		22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF151990F1690077D9E9 /* RegisterViewController.m */; };
+		22CFAF181990F3E20077D9E9 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF171990F3E20077D9E9 /* Parse.framework */; };
+		22CFAF1A1990F3FB0077D9E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF191990F3FB0077D9E9 /* AudioToolbox.framework */; };
+		22CFAF1C1990F4020077D9E9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF1B1990F4020077D9E9 /* CFNetwork.framework */; };
+		22CFAF1E1990F4120077D9E9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF1D1990F4120077D9E9 /* CoreLocation.framework */; };
+		22CFAF201990F42E0077D9E9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF1F1990F42E0077D9E9 /* libz.dylib */; };
+		22CFAF221990F43A0077D9E9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF211990F43A0077D9E9 /* MobileCoreServices.framework */; };
+		22CFAF241990F4430077D9E9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF231990F4430077D9E9 /* QuartzCore.framework */; };
+		22CFAF261990F4500077D9E9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF251990F4500077D9E9 /* Security.framework */; };
+		22CFAF281990F45D0077D9E9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF271990F45D0077D9E9 /* StoreKit.framework */; };
+		22CFAF2A1990F4660077D9E9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,14 +64,25 @@
 		224545A5198A6D78009A52FE /* fixifyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "fixifyTests-Info.plist"; sourceTree = "<group>"; };
 		224545A7198A6D78009A52FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		224545A9198A6D78009A52FE /* fixifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fixifyTests.m; sourceTree = "<group>"; };
-		229A6A53198B5CF0009B1930 /* WelcomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeScreenViewController.h; sourceTree = "<group>"; };
-		229A6A54198B5CF0009B1930 /* WelcomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeScreenViewController.m; sourceTree = "<group>"; };
-		229A6A56198B5D49009B1930 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
-		229A6A57198B5D49009B1930 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		229A6A59198B5D74009B1930 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		229A6A5A198B5D74009B1930 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		22EBDACB198F5C5A00323851 /* AppTourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTourCell.h; sourceTree = "<group>"; };
-		22EBDACC198F5C5A00323851 /* AppTourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTourCell.m; sourceTree = "<group>"; };
+		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
+		22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppTourCell.m; path = "View Controllers/AppTourCell.m"; sourceTree = "<group>"; };
+		22CFAF0E1990F1370077D9E9 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = "View Controllers/SignInViewController.h"; sourceTree = "<group>"; };
+		22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInViewController.m; path = "View Controllers/SignInViewController.m"; sourceTree = "<group>"; };
+		22CFAF111990F14C0077D9E9 /* WelcomeScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WelcomeScreenViewController.h; path = "View Controllers/WelcomeScreenViewController.h"; sourceTree = "<group>"; };
+		22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeScreenViewController.m; path = "View Controllers/WelcomeScreenViewController.m"; sourceTree = "<group>"; };
+		22CFAF141990F1600077D9E9 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RegisterViewController.h; path = "View Controllers/RegisterViewController.h"; sourceTree = "<group>"; };
+		22CFAF151990F1690077D9E9 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterViewController.m; path = "View Controllers/RegisterViewController.m"; sourceTree = "<group>"; };
+		22CFAF171990F3E20077D9E9 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = fixify/Resources/Parse.framework; sourceTree = "<group>"; };
+		22CFAF191990F3FB0077D9E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		22CFAF1B1990F4020077D9E9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		22CFAF1D1990F4120077D9E9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		22CFAF1F1990F42E0077D9E9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		22CFAF211990F43A0077D9E9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		22CFAF231990F4430077D9E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		22CFAF251990F4500077D9E9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		22CFAF271990F45D0077D9E9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		22CFAF2B1990F6680077D9E9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +90,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CFAF2A1990F4660077D9E9 /* SystemConfiguration.framework in Frameworks */,
+				22CFAF281990F45D0077D9E9 /* StoreKit.framework in Frameworks */,
+				22CFAF261990F4500077D9E9 /* Security.framework in Frameworks */,
+				22CFAF241990F4430077D9E9 /* QuartzCore.framework in Frameworks */,
+				22CFAF221990F43A0077D9E9 /* MobileCoreServices.framework in Frameworks */,
+				22CFAF201990F42E0077D9E9 /* libz.dylib in Frameworks */,
 				22454581198A6D77009A52FE /* CoreGraphics.framework in Frameworks */,
+				22CFAF1E1990F4120077D9E9 /* CoreLocation.framework in Frameworks */,
+				22CFAF1C1990F4020077D9E9 /* CFNetwork.framework in Frameworks */,
+				22CFAF1A1990F3FB0077D9E9 /* AudioToolbox.framework in Frameworks */,
+				22CFAF181990F3E20077D9E9 /* Parse.framework in Frameworks */,
 				22454583198A6D77009A52FE /* UIKit.framework in Frameworks */,
 				2245457F198A6D77009A52FE /* Foundation.framework in Frameworks */,
 			);
@@ -110,6 +141,16 @@
 		2245457D198A6D77009A52FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */,
+				22CFAF271990F45D0077D9E9 /* StoreKit.framework */,
+				22CFAF251990F4500077D9E9 /* Security.framework */,
+				22CFAF231990F4430077D9E9 /* QuartzCore.framework */,
+				22CFAF211990F43A0077D9E9 /* MobileCoreServices.framework */,
+				22CFAF1F1990F42E0077D9E9 /* libz.dylib */,
+				22CFAF1D1990F4120077D9E9 /* CoreLocation.framework */,
+				22CFAF1B1990F4020077D9E9 /* CFNetwork.framework */,
+				22CFAF191990F3FB0077D9E9 /* AudioToolbox.framework */,
+				22CFAF171990F3E20077D9E9 /* Parse.framework */,
 				2245457E198A6D77009A52FE /* Foundation.framework */,
 				22454580198A6D77009A52FE /* CoreGraphics.framework */,
 				22454582198A6D77009A52FE /* UIKit.framework */,
@@ -123,6 +164,7 @@
 			children = (
 				2245458D198A6D77009A52FE /* AppDelegate.h */,
 				2245458E198A6D77009A52FE /* AppDelegate.m */,
+				22CFAF2B1990F6680077D9E9 /* Constants.h */,
 				22454590198A6D77009A52FE /* Main.storyboard */,
 				229A6A5C198B5EFE009B1930 /* Resources */,
 				229A6A52198B5C8B009B1930 /* Login */,
@@ -165,12 +207,12 @@
 		229A6A52198B5C8B009B1930 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				229A6A53198B5CF0009B1930 /* WelcomeScreenViewController.h */,
-				229A6A54198B5CF0009B1930 /* WelcomeScreenViewController.m */,
-				229A6A56198B5D49009B1930 /* SignInViewController.h */,
-				229A6A57198B5D49009B1930 /* SignInViewController.m */,
-				229A6A59198B5D74009B1930 /* RegisterViewController.h */,
-				229A6A5A198B5D74009B1930 /* RegisterViewController.m */,
+				22CFAF111990F14C0077D9E9 /* WelcomeScreenViewController.h */,
+				22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */,
+				22CFAF0E1990F1370077D9E9 /* SignInViewController.h */,
+				22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */,
+				22CFAF141990F1600077D9E9 /* RegisterViewController.h */,
+				22CFAF151990F1690077D9E9 /* RegisterViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -193,8 +235,8 @@
 		22EBDACE198F5C7E00323851 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				22EBDACB198F5C5A00323851 /* AppTourCell.h */,
-				22EBDACC198F5C5A00323851 /* AppTourCell.m */,
+				22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */,
+				22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -296,12 +338,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				229A6A58198B5D49009B1930 /* SignInViewController.m in Sources */,
-				229A6A5B198B5D74009B1930 /* RegisterViewController.m in Sources */,
+				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
-				22EBDACD198F5C5A00323851 /* AppTourCell.m in Sources */,
+				22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */,
+				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,
-				229A6A55198B5CF0009B1930 /* WelcomeScreenViewController.m in Sources */,
+				22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +468,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fixify",
+					"$(PROJECT_DIR)/fixify/Resources",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fixify/fixify-Prefix.pch";
 				INFOPLIST_FILE = "fixify/fixify-Info.plist";
@@ -439,6 +486,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fixify",
+					"$(PROJECT_DIR)/fixify/Resources",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fixify/fixify-Prefix.pch";
 				INFOPLIST_FILE = "fixify/fixify-Info.plist";
