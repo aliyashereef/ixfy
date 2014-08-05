@@ -32,7 +32,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.registerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+//    self.registerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIImage *closeImage = [UIImage imageNamed:@"ic_close"];
@@ -81,6 +86,6 @@
 
 - (void)closeButtonClicked
 {
-    
+    [self dismissViewControllerAnimated:YES completion:Nil];
 }
 @end
