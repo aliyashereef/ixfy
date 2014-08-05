@@ -9,6 +9,12 @@
 #import "RegisterViewController.h"
 
 @interface RegisterViewController ()
+{
+    UIButton *closeButton;
+    UIButton *acceptButton;
+    UIBarButtonItem *leftButton;
+    UIBarButtonItem *rightButton;
+}
 
 @end
 
@@ -26,8 +32,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.registerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.view.backgroundColor = [UIColor clearColor];
-    // Do any additional setup after loading the view.
+    
+    UIImage *closeImage = [UIImage imageNamed:@"ic_close"];
+    closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeButton setImage:closeImage forState:UIControlStateNormal];
+    closeButton.frame = CGRectMake(0.0,0.0,closeImage.size.width,closeImage.size.height);
+    [closeButton addTarget:self
+                    action:@selector(closeButtonClicked)
+          forControlEvents:UIControlEventTouchUpInside];
+    
+    leftButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    
+    UIImage *acceptImage = [UIImage imageNamed:@"ic_accept"];
+    acceptButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [acceptButton setImage:acceptImage forState:UIControlStateNormal];
+    acceptButton.frame = CGRectMake(0.0,0.0,acceptImage.size.width,acceptImage.size.height);
+    [acceptButton addTarget:self
+                     action:@selector(acceptButtonClicked)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    rightButton = [[UIBarButtonItem alloc] initWithCustomView:acceptButton];
+    self.navigationItem.leftBarButtonItem = leftButton;
+    self.navigationItem.rightBarButtonItem = rightButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,15 +64,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)changeAvatarButton:(id)sender {
 }
-*/
 
+- (IBAction)doneButton:(id)sender {
+}
+
+- (IBAction)tradesmanSwitch:(id)sender {
+}
+
+- (void)acceptButtonClicked
+{
+    
+}
+
+- (void)closeButtonClicked
+{
+    
+}
 @end
