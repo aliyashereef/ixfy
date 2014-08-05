@@ -74,7 +74,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (IBAction)changeAvatarButton:(id)sender {
 }
 
