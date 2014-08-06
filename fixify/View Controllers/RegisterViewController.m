@@ -141,14 +141,18 @@
                 [self dismissViewControllerAnimated:YES completion:Nil];
                 [progressHud hide:YES];
             } else {
+                [self invalidEntry];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
+                                                               message:@"UserName Already Exists" delegate:self
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:Nil, nil];
+                [self.view setUserInteractionEnabled:YES];
+                [progressHud hide:YES];
+                [alert show];
                 self.emailIdView.layer.borderWidth = 2.0f;
                 self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
                 self.emailErrorImage.hidden = NO;
-                self.passwordView.layer.borderWidth = 2.0f;
-                self.passwordView.layer.borderColor = [[UIColor redColor] CGColor];
-                self.passwordErrorImage.hidden = NO;
-                [self.view setUserInteractionEnabled:YES];
-                [progressHud hide:YES];
+                [self.registerView setUserInteractionEnabled:YES];
             }
         }];
     }
