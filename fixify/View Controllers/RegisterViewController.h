@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController <UIImagePickerControllerDelegate,UITextFieldDelegate>
+@interface RegisterViewController : UIViewController <UIImagePickerControllerDelegate,UITextFieldDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *registerScrollView;
 
@@ -27,14 +27,20 @@
 @property (weak, nonatomic) IBOutlet UIView *emailIdView;
 
 @property (weak, nonatomic) IBOutlet UIView *mobileNumberView;
+@property (weak, nonatomic) IBOutlet UIImageView *mobileNumberErrorImage;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordErrorImage;
+@property (weak, nonatomic) IBOutlet UIImageView *fullNameErrorImage;
 
 @property (weak, nonatomic) IBOutlet UITextField *fullName;
+
+@property (weak, nonatomic) IBOutlet UIImageView *emailErrorImage;
 
 @property (weak, nonatomic) IBOutlet UITextField *mobileNumber;
 
 @property (weak, nonatomic) IBOutlet UITextField *password;
 
 @property (weak, nonatomic) IBOutlet UITextField *emailId;
+
 @property (weak, nonatomic) IBOutlet UISwitch *tradesmanSwitch;
 
 - (IBAction)doneButton:(id)sender;

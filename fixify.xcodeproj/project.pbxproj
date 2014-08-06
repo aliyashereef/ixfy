@@ -14,12 +14,12 @@
 		2245458B198A6D77009A52FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2245458A198A6D77009A52FE /* main.m */; };
 		2245458F198A6D77009A52FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2245458E198A6D77009A52FE /* AppDelegate.m */; };
 		22454592198A6D77009A52FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22454590198A6D77009A52FE /* Main.storyboard */; };
-		22454597198A6D77009A52FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22454596198A6D77009A52FE /* Images.xcassets */; };
 		2245459E198A6D78009A52FE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2245459D198A6D78009A52FE /* XCTest.framework */; };
 		2245459F198A6D78009A52FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2245457E198A6D77009A52FE /* Foundation.framework */; };
 		224545A0198A6D78009A52FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22454582198A6D77009A52FE /* UIKit.framework */; };
 		224545A8198A6D78009A52FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 224545A6198A6D78009A52FE /* InfoPlist.strings */; };
 		224545AA198A6D78009A52FE /* fixifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224545A9198A6D78009A52FE /* fixifyTests.m */; };
+		2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AEBB199258760028F92E /* MBProgressHUD.m */; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
 		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
 		22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */; };
@@ -34,6 +34,7 @@
 		22CFAF261990F4500077D9E9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF251990F4500077D9E9 /* Security.framework */; };
 		22CFAF281990F45D0077D9E9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF271990F45D0077D9E9 /* StoreKit.framework */; };
 		22CFAF2A1990F4660077D9E9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */; };
+		22E3772F1992327600478404 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E3772E1992327600478404 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,12 +59,13 @@
 		2245458D198A6D77009A52FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2245458E198A6D77009A52FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		22454591198A6D77009A52FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		22454596198A6D77009A52FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2245459C198A6D78009A52FE /* fixifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fixifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2245459D198A6D78009A52FE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		224545A5198A6D78009A52FE /* fixifyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "fixifyTests-Info.plist"; sourceTree = "<group>"; };
 		224545A7198A6D78009A52FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		224545A9198A6D78009A52FE /* fixifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fixifyTests.m; sourceTree = "<group>"; };
+		2249AEBB199258760028F92E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		2249AEBD1992587F0028F92E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
 		22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppTourCell.m; path = "View Controllers/AppTourCell.m"; sourceTree = "<group>"; };
 		22CFAF0E1990F1370077D9E9 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = "View Controllers/SignInViewController.h"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		22CFAF271990F45D0077D9E9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		22CFAF2B1990F6680077D9E9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		22E3772E1992327600478404 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,10 +169,12 @@
 				2245458E198A6D77009A52FE /* AppDelegate.m */,
 				22CFAF2B1990F6680077D9E9 /* Constants.h */,
 				22454590198A6D77009A52FE /* Main.storyboard */,
+				2249AEBD1992587F0028F92E /* MBProgressHUD.h */,
+				2249AEBB199258760028F92E /* MBProgressHUD.m */,
 				229A6A5C198B5EFE009B1930 /* Resources */,
 				229A6A52198B5C8B009B1930 /* Login */,
 				22EBDACE198F5C7E00323851 /* Views */,
-				22454596198A6D77009A52FE /* Images.xcassets */,
+				22E3772E1992327600478404 /* Images.xcassets */,
 				22454585198A6D77009A52FE /* Supporting Files */,
 			);
 			path = fixify;
@@ -317,7 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22454597198A6D77009A52FE /* Images.xcassets in Resources */,
+				22E3772F1992327600478404 /* Images.xcassets in Resources */,
 				22454589198A6D77009A52FE /* InfoPlist.strings in Resources */,
 				22454592198A6D77009A52FE /* Main.storyboard in Resources */,
 			);
@@ -340,6 +345,7 @@
 			files = (
 				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
+				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
 				22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */,
 				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,
