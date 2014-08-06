@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController <UIImagePickerControllerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *registerScrollView;
 
@@ -35,9 +35,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *password;
 
 @property (weak, nonatomic) IBOutlet UITextField *emailId;
+@property (weak, nonatomic) IBOutlet UISwitch *tradesmanSwitch;
 
 - (IBAction)doneButton:(id)sender;
 
-- (IBAction)tradesmanSwitch:(id)sender;
 
 @end

@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     [self.navigationController.navigationBar
                                 setBackgroundImage:[UIImage new]
@@ -40,6 +41,7 @@
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
+    
     UIImage *closeImage = [UIImage imageNamed:@"ic_close"];
     closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeButton setImage:closeImage forState:UIControlStateNormal];
@@ -72,14 +74,50 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.fullName) {
+        [self.password becomeFirstResponder];
+    }
+    else if (textField == self.password)
+    {
+        [self.emailId becomeFirstResponder];
+    }
+    else if (textField == self.emailId)
+    {
+        self.registerScrollView.contentOffset = CGPointMake(0,100);
+        [self.mobileNumber becomeFirstResponder];
+    }
+    else
+    {
+        [self doneButton:self];
+    }
+    return YES;
+}
+
 - (IBAction)changeAvatarButton:(id)sender {
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentModalViewController:imagePickerController animated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [picker dismissModalViewControllerAnimated:YES];
+    self.defaultAvatar.image = image;
 }
 
 - (IBAction)doneButton:(id)sender {
+    if (self.tradesmanSwitch.isOn) {
+        
+    }
 }
 
-- (IBAction)tradesmanSwitch:(id)sender {
-}
 
 - (void)acceptButtonClicked
 {
