@@ -64,7 +64,7 @@
                                                                  target:self
                                                                  action:@selector(closeButtonAction)];
     closeButton.tintColor= [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem=closeButton;
+    self.navigationItem.leftBarButtonItem = closeButton;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

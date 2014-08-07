@@ -59,7 +59,7 @@
 	AppTourCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (cell==nil)
     {
-        cell=[[AppTourCell alloc]init];
+        cell=[[AppTourCell alloc] init];
     }
     cell.logo.image =[UIImage imageNamed:@"logo_signIn"];
     cell.description.text = @"Book and manage urgent home repairs, using local trade professionals.";
