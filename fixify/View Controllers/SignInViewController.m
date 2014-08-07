@@ -33,6 +33,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self hideErrorImage:YES];
+}
 /*
 #pragma mark - Navigation
 
@@ -44,6 +48,50 @@
 }
 */
 #pragma mark - Private Functions 
+
+- (BOOL)validAllFields {
+    BOOL isValid = YES;
+    if([Utilities cleanString:self.emailField.text].length == 0) {
+        isValid = NO;
+        _emailErrorImage.hidden = NO;
+        [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
+        [self.emailField becomeFirstResponder];
+    } else {
+        if([Utilities isValidEmail:self.emailField.text]) {
+            _emailErrorImage.hidden = YES;
+            [Utilities setBorderColor:[UIColor clearColor] forView:_emailView];
+        } else {
+            isValid = NO;
+            _emailErrorImage.hidden = NO;
+            [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
+            [self.emailField becomeFirstResponder];
+        }
+    }
+    if([Utilities cleanString:self.passwordField.text].length == 0) {
+        isValid = NO;
+        passwordErrori.hidden = NO;
+        [PNGUtilities setBorderColor:[UIColor redColor] forView:_passwordView];
+    } else {
+        passwordErrorLabel.hidden = YES;
+        [PNGUtilities setBorderColor:[UIColor clearColor] forView:_passwordView];
+    }
+    return isValid;
+}
+
+//  Validating email fields.
+- (BOOL)validateEmail:(NSString *)email {
+    BOOL isValid = YES;
+    if([PNGUtilities cleanString:email].length == kZeroValue) {
+        isValid = NO;
+        [PNGUtilities showAlertWithTitle:NSLocalizedString(@"FAILED", @"") message:NSLocalizedString(@"ENTER_EMAIL_TO_RESET", @"")];
+    } else {
+        if(![PNGUtilities isValidEmail:email]) {
+            isValid = NO;
+            [PNGUtilities showAlertWithTitle:NSLocalizedString(@"FAILED", @"") message:NSLocalizedString(@"INVALID_EMAIL", @"")];
+        }
+    }
+    return isValid;
+}
 
 - (void)closeButtonAction{
     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
@@ -72,39 +120,66 @@
         [_passwordField becomeFirstResponder];
     } else if (textField == _passwordField) {
         [_passwordField resignFirstResponder];
+    }else{
         [self signInButtonAction:nil];
     }
         return NO;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self hideErrorImage:YES];
+    [Utilities setBorderColor:[UIColor clearColor] forView:_emailView];
+    [Utilities setBorderColor:[UIColor clearColor] forView:_passwordView];
+}
 - (IBAction)signInButtonAction:(id)sender {
-    [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error)
-     {
-         if (!error) {
-             if (user){
-                 NSLog(@"sign in");
-            }
-         }
-         else
-         {
-             //Some error  has ocurred in login process
-             NSString *errorString = [[error userInfo] objectForKey:@"error"];
-             if ([errorString isEqualToString:@"invalid login credentials"]) {
-                 _passwordView.layer.borderColor = [UIColor redColor].CGColor;
-                 _emailView.layer.borderColor = [UIColor redColor].CGColor;
-                 _passwordView.layer.borderWidth = 1.0f;
-                 _emailView.layer.borderWidth = 1.0f;
-                 //_errorImage.image = [UIImage imageNamed:@""
-             }
-             UIAlertView *errorAlertView = [[UIAlertView alloc]
-                                            initWithTitle:@"Error"
-                                            message:errorString
-                                            delegate:nil
-                                            cancelButtonTitle:@"Ok"
-                                            otherButtonTitles:nil, nil];
-             [errorAlertView show];
-         }
-     }];
+    if (![_emailField.text isEqual:@""]&&[_passwordField.text isEqual:@""]) {
+        [self login];
+            }else{
+        [self hideErrorImage:NO];
+        [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
+        [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
+    }
+}
+- (void)hideErrorImage:(BOOL)hide {
+    _passwordErrorImage.hidden = hide;
+    _emailErrorImage.hidden = hide;
 }
 
+- (IBAction)resetPassword:(id)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] init];
+    alertView.title =@"FORGOT PASSWORD";
+    alertView.message = @"Enter email to reset";
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView addButtonWithTitle:@"Cancel"];
+    [alertView addButtonWithTitle:@"Done"];
+    alertView.delegate = self;
+    alertView.tag = 0;
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    textField.text = _emailField.text;
+    [alertView show];
+}
+- (void)login{
+    [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error){
+        if (!error) {
+            NSLog(@"sign in");
+        }else{
+            //Some error  has ocurred in login process
+            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+            if ([errorString isEqualToString:@"invalid login credentials"]) {
+                [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
+                [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
+                [self hideErrorImage:NO];
+            }else{
+                UIAlertView *errorAlertView = [[UIAlertView alloc]
+                                               initWithTitle:@"Error"
+                                               message:errorString
+                                               delegate:nil
+                                               cancelButtonTitle:@"Ok"
+                                               otherButtonTitles:nil, nil];
+                [errorAlertView show];
+            }
+        }
+    }];
+
+}
 @end

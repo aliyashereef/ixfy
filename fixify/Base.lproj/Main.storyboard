@@ -38,7 +38,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="LOGIN WITH FACEBOOK">
                                         <attributes>
-                                            <font key="NSFont" metaFont="toolTip"/>
+                                            <font key="NSFont" metaFont="smallSystem"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
@@ -244,15 +244,7 @@
                                                     <constraint firstAttribute="width" constant="296" id="i3G-Mq-a7T"/>
                                                 </constraints>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-ID-ARc">
-                                                <rect key="frame" x="255" y="215" width="40" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83C-N3-fQr">
-                                                <rect key="frame" x="255" y="143" width="40" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJb-50-S3I">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJb-50-S3I">
                                                 <rect key="frame" x="32" y="205" width="276" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
@@ -261,12 +253,12 @@
                                                 </constraints>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="GYg-hL-tvf" id="U2P-Zs-XOQ"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hxq-MZ-yb6">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hxq-MZ-yb6">
                                                 <rect key="frame" x="32" y="133" width="276" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
@@ -319,6 +311,9 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="resetPassword:" destination="GYg-hL-tvf" eventType="touchUpInside" id="IJt-Xu-NWV"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZP-c8-Og2">
                                                 <rect key="frame" x="12" y="24" width="296" height="60"/>
@@ -334,6 +329,14 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="error_field" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-ID-ARc">
+                                                <rect key="frame" x="275" y="223" width="22" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="error_field" translatesAutoresizingMaskIntoConstraints="NO" id="83C-N3-fQr">
+                                                <rect key="frame" x="275" y="150" width="22" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -392,9 +395,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="YxF-ze-a9L"/>
                     <connections>
+                        <outlet property="emailErrorImage" destination="83C-N3-fQr" id="Lz1-Nh-PFt"/>
                         <outlet property="emailField" destination="hxq-MZ-yb6" id="QFt-MQ-EfL"/>
                         <outlet property="emailView" destination="5VK-xx-MdM" id="jbe-qM-EX9"/>
-                        <outlet property="errorImage" destination="83C-N3-fQr" id="xSS-Dp-kzC"/>
+                        <outlet property="passwordErrorImage" destination="Mxg-ID-ARc" id="ey8-GN-KcQ"/>
                         <outlet property="passwordField" destination="gJb-50-S3I" id="YEk-jk-Gt9"/>
                         <outlet property="passwordView" destination="zC1-W5-kXH" id="U9q-5J-wPf"/>
                     </connections>
