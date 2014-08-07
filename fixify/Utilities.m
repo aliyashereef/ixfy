@@ -42,8 +42,8 @@
     [alertView show];
 }
 
-// Set border colou for a view
-- (void)setBorderColor:(UIColor *)color forView:(UIView *)view {
+// Set border colour for a view
++ (void)setBorderColor:(UIColor *)color forView:(UIView *)view {
     view.layer.borderColor = [color CGColor];
     view.layer.borderWidth = 1.0f;
 }

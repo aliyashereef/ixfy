@@ -8,6 +8,7 @@
 
 #import "SignInViewController.h"
 #import <Parse/Parse.h>
+#import "MBProgressHUD.h"
 
 @interface SignInViewController ()
 
@@ -69,11 +70,11 @@
     }
     if([Utilities cleanString:self.passwordField.text].length == 0) {
         isValid = NO;
-        passwordErrori.hidden = NO;
-        [PNGUtilities setBorderColor:[UIColor redColor] forView:_passwordView];
+        _passwordErrorImage.hidden = NO;
+        [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
     } else {
-        passwordErrorLabel.hidden = YES;
-        [PNGUtilities setBorderColor:[UIColor clearColor] forView:_passwordView];
+        _passwordErrorImage.hidden = YES;
+        [Utilities setBorderColor:[UIColor clearColor] forView:_passwordView];
     }
     return isValid;
 }
@@ -81,13 +82,11 @@
 //  Validating email fields.
 - (BOOL)validateEmail:(NSString *)email {
     BOOL isValid = YES;
-    if([PNGUtilities cleanString:email].length == kZeroValue) {
+    if([Utilities cleanString:email].length == 0) {
         isValid = NO;
-        [PNGUtilities showAlertWithTitle:NSLocalizedString(@"FAILED", @"") message:NSLocalizedString(@"ENTER_EMAIL_TO_RESET", @"")];
     } else {
-        if(![PNGUtilities isValidEmail:email]) {
+        if(![Utilities isValidEmail:email]) {
             isValid = NO;
-            [PNGUtilities showAlertWithTitle:NSLocalizedString(@"FAILED", @"") message:NSLocalizedString(@"INVALID_EMAIL", @"")];
         }
     }
     return isValid;
@@ -120,24 +119,14 @@
         [_passwordField becomeFirstResponder];
     } else if (textField == _passwordField) {
         [_passwordField resignFirstResponder];
-    }else{
         [self signInButtonAction:nil];
     }
         return NO;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [self hideErrorImage:YES];
-    [Utilities setBorderColor:[UIColor clearColor] forView:_emailView];
-    [Utilities setBorderColor:[UIColor clearColor] forView:_passwordView];
-}
 - (IBAction)signInButtonAction:(id)sender {
-    if (![_emailField.text isEqual:@""]&&[_passwordField.text isEqual:@""]) {
+    if ([self validAllFields]) {
         [self login];
-            }else{
-        [self hideErrorImage:NO];
-        [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
-        [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
     }
 }
 - (void)hideErrorImage:(BOOL)hide {
@@ -158,6 +147,26 @@
     textField.text = _emailField.text;
     [alertView show];
 }
+
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 1 && alertView.tag == 0) {
+        UITextField *alertTextField = [alertView textFieldAtIndex:0];
+        if([self validateEmail:alertTextField.text]) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [PFUser requestPasswordResetForEmailInBackground:alertTextField.text block:^(BOOL succeeded, NSError *error){
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (!error) {
+                    [Utilities showAlertWithTitle:@"Success" message:@"Please check your mail to reset the password"];
+                }else{
+                    NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                    [Utilities showAlertWithTitle:@"Failed" message:errorString];
+                }
+            }];
+        }
+    }
+}
+
 - (void)login{
     [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error){
         if (!error) {
@@ -170,13 +179,7 @@
                 [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
                 [self hideErrorImage:NO];
             }else{
-                UIAlertView *errorAlertView = [[UIAlertView alloc]
-                                               initWithTitle:@"Error"
-                                               message:errorString
-                                               delegate:nil
-                                               cancelButtonTitle:@"Ok"
-                                               otherButtonTitles:nil, nil];
-                [errorAlertView show];
+                [Utilities showAlertWithTitle:@"Error" message:errorString];
             }
         }
     }];
