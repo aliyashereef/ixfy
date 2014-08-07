@@ -598,17 +598,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wg-o3-Bj5">
-                                                <rect key="frame" x="62" y="390" width="196" height="12"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="196" id="5kC-iu-wvF"/>
-                                                    <constraint firstAttribute="height" constant="12" id="VAV-R3-NGC"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="error_field" translatesAutoresizingMaskIntoConstraints="NO" id="feI-ZD-i1c">
                                                 <rect key="frame" x="275" y="198" width="22" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
@@ -625,6 +614,18 @@
                                                 <rect key="frame" x="275" y="77" width="22" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzy-jS-vVE">
+                                                <rect key="frame" x="62" y="395" width="196" height="12"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <state key="normal" title="Terms and Conditions">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="XiT-GU-gkP" kind="push" id="bYx-gH-JDE"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration">
@@ -642,16 +643,16 @@
                                             <constraint firstItem="8o9-i1-fPs" firstAttribute="leading" secondItem="Wgl-wx-eUa" secondAttribute="trailing" constant="6" id="7y5-P2-8fy"/>
                                             <constraint firstAttribute="trailing" secondItem="8o9-i1-fPs" secondAttribute="trailing" constant="11" id="AGB-QB-1pn"/>
                                             <constraint firstAttribute="trailing" secondItem="C3W-l3-6fQ" secondAttribute="trailing" constant="62" id="Cfk-BQ-Nr2"/>
+                                            <constraint firstAttribute="trailing" secondItem="hzy-jS-vVE" secondAttribute="trailing" constant="62" id="CgJ-AE-Nwa"/>
                                             <constraint firstItem="feI-ZD-i1c" firstAttribute="leading" secondItem="4fJ-A7-6rq" secondAttribute="trailing" constant="12" id="Dg1-5m-Wye"/>
                                             <constraint firstAttribute="width" secondItem="OPo-p0-kNh" secondAttribute="height" multiplier="40:63" id="E5R-oZ-rOT"/>
                                             <constraint firstItem="mGL-Yt-3E2" firstAttribute="top" secondItem="8o9-i1-fPs" secondAttribute="bottom" constant="6" id="EdK-V3-zyt"/>
-                                            <constraint firstItem="1Wg-o3-Bj5" firstAttribute="top" secondItem="C3W-l3-6fQ" secondAttribute="bottom" constant="3" id="FAA-J3-zz8"/>
                                             <constraint firstItem="C3W-l3-6fQ" firstAttribute="top" secondItem="Bmj-Y7-85M" secondAttribute="bottom" constant="6" id="GIp-lV-xXm"/>
                                             <constraint firstItem="Bmj-Y7-85M" firstAttribute="top" secondItem="8Qs-nx-i0t" secondAttribute="bottom" constant="20" id="GUn-V0-mZu"/>
                                             <constraint firstItem="8Qs-nx-i0t" firstAttribute="top" secondItem="4fJ-A7-6rq" secondAttribute="bottom" constant="24" id="MM1-8k-6vn"/>
                                             <constraint firstItem="8Qs-nx-i0t" firstAttribute="leading" secondItem="eIQ-ki-y0c" secondAttribute="trailing" constant="46" id="Ngh-hi-WL9"/>
                                             <constraint firstItem="ior-FB-H7L" firstAttribute="top" secondItem="mGL-Yt-3E2" secondAttribute="bottom" constant="6" id="OAw-o0-uiV"/>
-                                            <constraint firstAttribute="trailing" secondItem="1Wg-o3-Bj5" secondAttribute="trailing" constant="62" id="OLZ-mC-1Ba"/>
+                                            <constraint firstItem="hzy-jS-vVE" firstAttribute="top" secondItem="C3W-l3-6fQ" secondAttribute="bottom" constant="8" id="TDi-ac-Qwi"/>
                                             <constraint firstItem="mGL-Yt-3E2" firstAttribute="top" secondItem="Wgl-wx-eUa" secondAttribute="bottom" constant="6" id="TrR-1g-P1J"/>
                                             <constraint firstItem="eIQ-ki-y0c" firstAttribute="top" secondItem="ior-FB-H7L" secondAttribute="bottom" constant="24" id="VGg-Hv-hTO"/>
                                             <constraint firstItem="RxV-8o-gQF" firstAttribute="leading" secondItem="OPo-p0-kNh" secondAttribute="leading" constant="12" id="VRv-JB-jXF"/>
@@ -672,12 +673,12 @@
                                             <constraint firstItem="iJw-tU-tAF" firstAttribute="leading" secondItem="Wgl-wx-eUa" secondAttribute="trailing" constant="160" id="jh9-lb-YFo"/>
                                             <constraint firstItem="4oo-Is-f4v" firstAttribute="leading" secondItem="OPo-p0-kNh" secondAttribute="leading" constant="22" id="jk3-Td-bYi"/>
                                             <constraint firstAttribute="trailing" secondItem="vPd-dT-tBN" secondAttribute="trailing" constant="23" id="k0M-we-zMo"/>
-                                            <constraint firstItem="1Wg-o3-Bj5" firstAttribute="leading" secondItem="OPo-p0-kNh" secondAttribute="leading" constant="62" id="l6k-Ou-Bep"/>
                                             <constraint firstItem="vPd-dT-tBN" firstAttribute="leading" secondItem="4oo-Is-f4v" secondAttribute="trailing" constant="12" id="mKt-63-fRe"/>
                                             <constraint firstAttribute="trailing" secondItem="mGL-Yt-3E2" secondAttribute="trailing" constant="11" id="mlg-F4-BdB"/>
                                             <constraint firstAttribute="trailing" secondItem="4oo-Is-f4v" secondAttribute="trailing" constant="57" id="n3D-o7-0zt"/>
                                             <constraint firstItem="8SQ-gx-cjZ" firstAttribute="leading" secondItem="OPo-p0-kNh" secondAttribute="leading" constant="121" id="nBJ-c5-CLb"/>
                                             <constraint firstItem="4fJ-A7-6rq" firstAttribute="top" secondItem="4oo-Is-f4v" secondAttribute="bottom" constant="6" id="o3i-f3-8UB"/>
+                                            <constraint firstItem="hzy-jS-vVE" firstAttribute="leading" secondItem="OPo-p0-kNh" secondAttribute="leading" constant="62" id="oRN-hE-pSX"/>
                                             <constraint firstAttribute="trailing" secondItem="5um-JB-i1V" secondAttribute="trailing" constant="11" id="r8D-42-dCG"/>
                                             <constraint firstAttribute="trailing" secondItem="ior-FB-H7L" secondAttribute="trailing" constant="11" id="sTQ-aV-ImB"/>
                                             <constraint firstItem="C3W-l3-6fQ" firstAttribute="leading" secondItem="OPo-p0-kNh" secondAttribute="leading" constant="62" id="t1U-xY-CTs"/>
@@ -691,6 +692,7 @@
                                             <constraint firstItem="eIQ-ki-y0c" firstAttribute="leading" secondItem="RxV-8o-gQF" secondAttribute="trailing" constant="6" id="yBa-9J-Inn"/>
                                             <constraint firstItem="iJw-tU-tAF" firstAttribute="top" secondItem="OPo-p0-kNh" secondAttribute="top" constant="16" id="ypu-Xr-64G"/>
                                             <constraint firstItem="9vv-Ty-ZxP" firstAttribute="leading" secondItem="Wgl-wx-eUa" secondAttribute="trailing" constant="160" id="z96-iU-tSm"/>
+                                            <constraint firstAttribute="bottom" secondItem="hzy-jS-vVE" secondAttribute="bottom" constant="97" id="zfE-yX-9Mo"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -715,8 +717,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="hrF-Dn-cvg"/>
                     <connections>
-                        <outlet property="AvatarView" destination="Wgl-wx-eUa" id="ooJ-kI-v0N"/>
-                        <outlet property="RegisterView" destination="OPo-p0-kNh" id="isu-qT-gmI"/>
                         <outlet property="avatarView" destination="Wgl-wx-eUa" id="WOa-oo-pig"/>
                         <outlet property="defaultAvatar" destination="2pE-Gd-3Q9" id="APu-kn-s5O"/>
                         <outlet property="emailErrorImage" destination="vPd-dT-tBN" id="7Fx-p9-Ge5"/>
@@ -732,18 +732,17 @@
                         <outlet property="passwordErrorImage" destination="9vv-Ty-ZxP" id="G0x-0d-sxp"/>
                         <outlet property="passwordView" destination="8o9-i1-fPs" id="32N-K8-Yig"/>
                         <outlet property="registerScrollView" destination="ifX-AG-FCP" id="6TD-gB-ap1"/>
-                        <outlet property="registerView" destination="OPo-p0-kNh" id="VIy-JD-4ok"/>
                         <outlet property="tradesmanSwitch" destination="8Qs-nx-i0t" id="SN0-fP-CAA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWj-EQ-29M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="416"/>
+            <point key="canvasLocation" x="500" y="416"/>
         </scene>
-        <!--View Controller-->
+        <!--Terms And Conditions View Controller-->
         <scene sceneID="QA3-M2-4UZ">
             <objects>
-                <viewController id="XiT-GU-gkP" sceneMemberID="viewController">
+                <viewController id="XiT-GU-gkP" customClass="TermsAndConditionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qmy-Lb-Kae"/>
                         <viewControllerLayoutGuide type="bottom" id="Aff-Q5-lD3"/>
@@ -756,21 +755,54 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="dJF-Lp-PZb"/>
-                                    <barButtonItem title="Item" id="6VY-hI-Wd4"/>
+                                    <barButtonItem systemItem="rewind" id="dJF-Lp-PZb">
+                                        <connections>
+                                            <action selector="webViewBackButton:" destination="XiT-GU-gkP" id="aGO-yR-pNh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="fastForward" id="6VY-hI-Wd4">
+                                        <connections>
+                                            <action selector="webViewNextButton:" destination="XiT-GU-gkP" id="T0A-AT-bWR"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xpO-cf-ZGO"/>
-                                    <barButtonItem title="Item" id="ZrT-PX-fHD"/>
-                                    <barButtonItem title="Item" id="a3R-KE-Aum"/>
+                                    <barButtonItem systemItem="stop" id="ZrT-PX-fHD">
+                                        <connections>
+                                            <action selector="webViewCancelButton:" destination="XiT-GU-gkP" id="aio-vA-ST4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="refresh" id="a3R-KE-Aum">
+                                        <connections>
+                                            <action selector="webViewRefreshButton:" destination="XiT-GU-gkP" id="NJ7-cG-dwN"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-V8-evy">
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XiT-GU-gkP" id="Y3Q-w6-eF2"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="pDn-Kd-yXB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="4lf-1M-jKU">
+                            <connections>
+                                <action selector="shareButton:" destination="XiT-GU-gkP" id="4Uv-as-63G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="termsAndConditionsWebView" destination="cQG-V8-evy" id="bhH-9n-Q2s"/>
+                        <outlet property="webViewBackButton" destination="dJF-Lp-PZb" id="zH0-AZ-em3"/>
+                        <outlet property="webViewCancelButton" destination="ZrT-PX-fHD" id="Kam-K2-dQr"/>
+                        <outlet property="webViewNextButton" destination="6VY-hI-Wd4" id="UyY-68-BX3"/>
+                        <outlet property="webViewRefreshButton" destination="a3R-KE-Aum" id="LGJ-YG-TH3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUr-TW-Ye2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
