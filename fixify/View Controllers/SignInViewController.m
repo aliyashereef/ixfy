@@ -7,6 +7,7 @@
 //
 
 #import "SignInViewController.h"
+#import <Parse/Parse.h>
 
 @interface SignInViewController ()
 
@@ -49,6 +50,7 @@
 }
 
 - (void)setUpView{
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.navigationItem.title= @"Sign In";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:15.0]};
@@ -64,4 +66,45 @@
     closeButton.tintColor= [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = closeButton;
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == _emailField) {
+        [_passwordField becomeFirstResponder];
+    } else if (textField == _passwordField) {
+        [_passwordField resignFirstResponder];
+        [self signInButtonAction:nil];
+    }
+        return NO;
+}
+
+- (IBAction)signInButtonAction:(id)sender {
+    [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error)
+     {
+         if (!error) {
+             if (user){
+                 NSLog(@"sign in");
+            }
+         }
+         else
+         {
+             //Some error  has ocurred in login process
+             NSString *errorString = [[error userInfo] objectForKey:@"error"];
+             if ([errorString isEqualToString:@"invalid login credentials"]) {
+                 _passwordView.layer.borderColor = [UIColor redColor].CGColor;
+                 _emailView.layer.borderColor = [UIColor redColor].CGColor;
+                 _passwordView.layer.borderWidth = 1.0f;
+                 _emailView.layer.borderWidth = 1.0f;
+                 //_errorImage.image = [UIImage imageNamed:@""
+             }
+             UIAlertView *errorAlertView = [[UIAlertView alloc]
+                                            initWithTitle:@"Error"
+                                            message:errorString
+                                            delegate:nil
+                                            cancelButtonTitle:@"Ok"
+                                            otherButtonTitles:nil, nil];
+             [errorAlertView show];
+         }
+     }];
+}
+
 @end
