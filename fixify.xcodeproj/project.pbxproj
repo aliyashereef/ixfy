@@ -22,6 +22,7 @@
 		2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AEBB199258760028F92E /* MBProgressHUD.m */; };
 		2296061A199348F4003062CA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22960619199348F4003062CA /* Utilities.m */; };
 		2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296061B19936112003062CA /* FacebookSDK.framework */; };
+		22B8B9B819935DE000D7E020 /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8B9B719935DE000D7E020 /* TermsAndConditionsViewController.m */; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
 		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
 		22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */; };
@@ -227,6 +228,8 @@
 				22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */,
 				22CFAF141990F1600077D9E9 /* RegisterViewController.h */,
 				22CFAF151990F1690077D9E9 /* RegisterViewController.m */,
+				22B8B9B619935DE000D7E020 /* TermsAndConditionsViewController.h */,
+				22B8B9B719935DE000D7E020 /* TermsAndConditionsViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
 				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
 				22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */,
+				22B8B9B819935DE000D7E020 /* TermsAndConditionsViewController.m in Sources */,
 				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,
 				22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */,
