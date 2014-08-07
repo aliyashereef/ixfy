@@ -136,14 +136,14 @@
         progressHud.mode = MBProgressHUDModeIndeterminate;
         progressHud.labelText = @"Saving";
         [progressHud show:YES];
+        [self invalidEntry];
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 [self dismissViewControllerAnimated:YES completion:Nil];
                 [progressHud hide:YES];
             } else {
-                [self invalidEntry];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
-                                                               message:@"UserName Already Exists" delegate:self
+                                                               message:@"EmailID Already Exists" delegate:self
                                                      cancelButtonTitle:@"OK"
                                                      otherButtonTitles:Nil, nil];
                 [self.view setUserInteractionEnabled:YES];
@@ -223,7 +223,7 @@
 }
 
 -(BOOL) stringIsValidMobileNumber:(NSString *)checkString{
-    NSString *phoneRegex = @"^((\\+)|(00))[0-9]{6,14}$";
+    NSString *phoneRegex = @"^[0-9]{6,14}$";
     NSPredicate *mobileNumberTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     return [mobileNumberTest evaluateWithObject:checkString];
 }
