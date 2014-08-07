@@ -21,6 +21,7 @@
 		224545AA198A6D78009A52FE /* fixifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224545A9198A6D78009A52FE /* fixifyTests.m */; };
 		2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AEBB199258760028F92E /* MBProgressHUD.m */; };
 		2296061A199348F4003062CA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22960619199348F4003062CA /* Utilities.m */; };
+		2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296061B19936112003062CA /* FacebookSDK.framework */; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
 		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
 		22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */; };
@@ -69,6 +70,7 @@
 		2249AEBD1992587F0028F92E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		22960618199348F4003062CA /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		22960619199348F4003062CA /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		2296061B19936112003062CA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = fixify/Resources/FacebookSDK.framework; sourceTree = "<group>"; };
 		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
 		22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppTourCell.m; path = "View Controllers/AppTourCell.m"; sourceTree = "<group>"; };
 		22CFAF0E1990F1370077D9E9 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = "View Controllers/SignInViewController.h"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				22CFAF181990F3E20077D9E9 /* Parse.framework in Frameworks */,
 				22454583198A6D77009A52FE /* UIKit.framework in Frameworks */,
 				2245457F198A6D77009A52FE /* Foundation.framework in Frameworks */,
+				2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +150,7 @@
 		2245457D198A6D77009A52FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2296061B19936112003062CA /* FacebookSDK.framework */,
 				22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */,
 				22CFAF271990F45D0077D9E9 /* StoreKit.framework */,
 				22CFAF251990F4500077D9E9 /* Security.framework */,

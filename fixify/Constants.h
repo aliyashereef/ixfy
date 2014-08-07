@@ -14,4 +14,6 @@
 #define ParseApplicationID @"J8Tgeys63fSsOo87OQxzOsklJrqf6CyyqJEiSS12"
 #define ParseClientKey @"6FuE9TxfGolNvrwxCmq9gAKdZW4MNljdWr8YERym"
 
+//Facebook
+#define FACEBOOK_APP_ID @"627081887405413"
 #endif

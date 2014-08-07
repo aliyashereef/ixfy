@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *emailErrorImage;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordErrorImage;
 - (IBAction)resetPassword:(id)sender;
+- (IBAction)logInWithFacebook:(id)sender;
 
 
 
