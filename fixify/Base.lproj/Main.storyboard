@@ -38,7 +38,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="LOGIN WITH FACEBOOK">
                                         <attributes>
-                                            <font key="NSFont" metaFont="smallSystem"/>
+                                            <font key="NSFont" metaFont="toolTip"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
@@ -739,6 +739,7 @@
                         <outlet property="passwordErrorImage" destination="9vv-Ty-ZxP" id="G0x-0d-sxp"/>
                         <outlet property="passwordView" destination="8o9-i1-fPs" id="32N-K8-Yig"/>
                         <outlet property="registerScrollView" destination="ifX-AG-FCP" id="6TD-gB-ap1"/>
+                        <outlet property="registerView" destination="OPo-p0-kNh" id="yQK-g4-5IH"/>
                         <outlet property="tradesmanSwitch" destination="8Qs-nx-i0t" id="SN0-fP-CAA"/>
                     </connections>
                 </viewController>

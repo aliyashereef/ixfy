@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
+#import "parseUtilities.h"
 
 @interface RegisterViewController ()
 {
@@ -116,46 +117,34 @@
 - (IBAction)doneButton:(id)sender{
     if( ![self.fullName.text isEqualToString:@""] && ![self.password.text isEqualToString:@""] && ![self.emailId.text isEqualToString:@""] && ![self.mobileNumber.text isEqualToString:@""] && [self stringIsValidEmail:self.emailId.text] && [self stringIsValidMobileNumber:self.mobileNumber.text])
     {
-        PFUser *user = [PFUser user];
-        user.username = self.emailId.text;
-        user.password = self.password.text;
-        user[@"FullName"]     = self.fullName.text;
-        user[@"MobileNumber"] = self.mobileNumber.text;
-        NSData *imageData = UIImagePNGRepresentation(self.defaultAvatar.image);
-        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-        user[@"Image"] = imageFile;
-        
+        BOOL tradesman = NO;
         if (self.tradesmanSwitch.isOn) {
-            user[@"Tradesman"] = @"YES";
+            tradesman  = YES;
         }
-        else{
-            user[@"Tradesman"] = @"NO";
-        }
-        
         [self.registerView setUserInteractionEnabled:NO];
-        progressHud = [MBProgressHUD showHUDAddedTo:self.registerView animated:YES];
+        progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHud.mode = MBProgressHUDModeIndeterminate;
         progressHud.labelText = @"Saving";
         [progressHud show:YES];
         [self invalidEntry];
-        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                [self dismissViewControllerAnimated:YES completion:Nil];
-                [progressHud hide:YES];
-            } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
-                                                               message:@"EmailID Already Exists" delegate:self
-                                                     cancelButtonTitle:@"OK"
-                                                     otherButtonTitles:Nil, nil];
-                [self.view setUserInteractionEnabled:YES];
-                [progressHud hide:YES];
-                [alert show];
-                self.emailIdView.layer.borderWidth = 2.0f;
-                self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
-                self.emailErrorImage.hidden = NO;
-                [self.registerView setUserInteractionEnabled:YES];
-            }
-        }];
+        parseUtilities *parse = [[parseUtilities alloc] init];
+        [parse signUpWithUserName:self.emailId.text password:self.password.text avatar:self.defaultAvatar.image fullname:self.fullName.text mobilenumber:self.mobileNumber.text tradesman:&tradesman requestSucceeded:^(PFUser *user)
+         {
+             [self dismissViewControllerAnimated:YES completion:Nil];
+             [progressHud hide:YES];
+         }requestFailed:^(NSError *error){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
+                       message:@"EmailID Already Exists"
+                      delegate:self
+             cancelButtonTitle:@"OK"
+             otherButtonTitles:Nil, nil];
+            [progressHud hide:YES];
+            [alert show];
+            self.emailIdView.layer.borderWidth = 2.0f;
+            self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
+            self.emailErrorImage.hidden = NO;
+            [self.registerView setUserInteractionEnabled:YES];
+         }];
     }
     else{
         [self invalidEntry];
