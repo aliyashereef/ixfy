@@ -27,6 +27,7 @@
     result = [nameTest evaluateWithObject:string];
     return result;
 }
+
 //  Removes blank space and new line characters from the begining and end of a string;
 + (NSString *)cleanString:(NSString *)string {
     return[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

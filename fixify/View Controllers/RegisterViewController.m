@@ -25,7 +25,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -55,6 +54,8 @@
     leftButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
 
     self.navigationItem.leftBarButtonItem = leftButton;
+    self.defaultAvatar.layer.cornerRadius = self.defaultAvatar.frame.size.width / 2;
+    self.defaultAvatar.clipsToBounds = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
