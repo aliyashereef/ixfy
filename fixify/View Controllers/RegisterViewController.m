@@ -121,6 +121,22 @@
         if (self.tradesmanSwitch.isOn) {
             tradesman  = YES;
         }
+        PFUser *user = [PFUser user];
+        user.username = self.emailId.text;
+        user.password = self.password.text;
+        user[@"FullName"]     = self.fullName.text;
+        user[@"MobileNumber"] = self.mobileNumber.text;
+        NSData *imageData = UIImagePNGRepresentation(self.defaultAvatar.image);
+        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+        user[@"Image"] = imageFile;
+        
+        if (tradesman) {
+            user[@"Tradesman"] = @"YES";
+        }
+        else{
+            user[@"Tradesman"] = @"NO";
+        }
+
         [self.registerView setUserInteractionEnabled:NO];
         progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHud.mode = MBProgressHUDModeIndeterminate;
@@ -128,7 +144,8 @@
         [progressHud show:YES];
         [self invalidEntry];
         parseUtilities *parse = [[parseUtilities alloc] init];
-        [parse signUpWithUserName:self.emailId.text password:self.password.text avatar:self.defaultAvatar.image fullname:self.fullName.text mobilenumber:self.mobileNumber.text tradesman:&tradesman requestSucceeded:^(PFUser *user)
+        [parse signUpWithUser:user
+             requestSucceeded:^(PFUser *user)
          {
              [self dismissViewControllerAnimated:YES completion:Nil];
              [progressHud hide:YES];

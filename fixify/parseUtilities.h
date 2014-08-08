@@ -17,13 +17,8 @@ typedef void (^Failure)(NSError *error);
 @property (nonatomic, strong) Success successCallback;
 @property (nonatomic, strong) Failure failureCallback;
 
-- (void) signUpWithUserName:(NSString *)userName
-                   password:(NSString *)password
-                     avatar:(UIImage *)avatar
-                   fullname:(NSString *)fullName
-               mobilenumber:(NSString *)mobileNumber
-                  tradesman:(BOOL *)tradesman
-           requestSucceeded:(void (^)(PFUser *user))success
-              requestFailed:(void (^)(NSError *error))failure;
+- (void) signUpWithUser:(PFUser *)user
+       requestSucceeded:(void (^)(PFUser *user))success
+          requestFailed:(void (^)(NSError *error))failure;
 
 @end
