@@ -172,14 +172,13 @@
     [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (!user) {
-            if (!error) {
-                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            if (!error){
             } else {
-                NSLog(@"Uh oh. An error occurred: %@", error);
+                NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                [Utilities showAlertWithTitle:@"ERROR" message:errorString];
             }
         } else if (user.isNew) {
-            NSLog(@"User with facebook signed up and logged in!");
-            [self.window.navigationController presentViewController:RegisterViewController animated:YES completion:Nil];
+            [self performSegueWithIdentifier:@"FACEBOOK_LOGIN" sender:nil];
         } else {
             NSLog(@"User with facebook logged in!");
             //[self.navigationController pushViewController:nextviewcontroller animated:YES];
