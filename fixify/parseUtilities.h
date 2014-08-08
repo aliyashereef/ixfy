@@ -20,5 +20,8 @@ typedef void (^Failure)(NSError *error);
 - (void) signUpWithUser:(PFUser *)user
        requestSucceeded:(void (^)(PFUser *user))success
           requestFailed:(void (^)(NSError *error))failure;
+- (void) logInWithUser:(PFUser *)loginUser
+      requestSucceeded:(void (^)(PFUser *user))success
+         requestFailed:(void (^)(NSError *error))failure;
 
 @end

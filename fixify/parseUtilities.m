@@ -12,19 +12,34 @@
 @implementation parseUtilities
 
 - (void) signUpWithUser:(PFUser *)user
-           requestSucceeded:(void (^)(PFUser *user))success
-              requestFailed:(void (^)(NSError *error))failure
+       requestSucceeded:(void (^)(PFUser *user))success
+          requestFailed:(void (^)(NSError *error))failure
 {
     self.successCallback = success;
     self.failureCallback = failure;
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-               if (!error) {
-                   self.successCallback(user);
+        if (!error) {
+            self.successCallback(user);
         } else {
             self.failureCallback(error);
         }
     }];
 }
 
-
+- (void) logInWithUser:(PFUser *)loginUser
+      requestSucceeded:(void (^)(PFUser *user))success
+         requestFailed:(void (^)(NSError *error))failure
+{
+    self.successCallback = success;
+    self.failureCallback = failure;
+    
+    [PFUser logInWithUsernameInBackground:loginUser.username password:loginUser.password
+        block:^(PFUser *user, NSError *error){
+            if (!error) {
+                self.successCallback(user);
+            }else{
+                self.failureCallback(error);
+            }
+    }];
+}
 @end
