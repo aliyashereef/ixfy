@@ -110,6 +110,10 @@
 
 //Perform the parse API login.
 - (void)login{
+    PFUser *user = [PFUser user];
+    user.username = self.emailField.text;
+    user.password = self.passwordField.text;
+
     [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error){
         if (!error) {
             NSLog(@"sign in");

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController <UIImagePickerControllerDelegate,UITextFieldDelegate,UINavigationControllerDelegate>
+@interface RegisterViewController : UIViewController <UIImagePickerControllerDelegate,UITextFieldDelegate,UINavigationControllerDelegate,NSURLConnectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *registerScrollView;
 
@@ -45,5 +45,6 @@
 
 - (IBAction)doneButton:(id)sender;
 
+@property (strong,nonatomic) NSMutableData *imageData;
 
 @end
