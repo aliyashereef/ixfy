@@ -330,6 +330,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="logInWithFacebook:" destination="GYg-hL-tvf" eventType="touchUpInside" id="BVe-qA-rRf"/>
+                                                    <segue destination="Jb2-ig-fFd" kind="push" identifier="FACEBOOK_LOGIN" id="uo4-xb-cgc"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="error_field" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-ID-ARc">
@@ -821,6 +822,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3is-J2-WHC" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="qpb-iZ-Ikg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GIV-8m-qka">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -868,4 +870,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="uo4-xb-cgc"/>
+    </inferredMetricsTieBreakers>
 </document>
