@@ -15,12 +15,12 @@
     [Parse setApplicationId:ParseApplicationID
                   clientKey:ParseClientKey];
     [PFFacebookUtils initializeFacebook];
-    // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"email",@"public_profile"]
+        [FBSession openActiveSessionWithReadPermissions:@[@"email", @"basic_info"]
                                            allowLoginUI:NO
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error){
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
                                           // also for intermediate states and NOT just when the session open
@@ -47,10 +47,8 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    [FBAppCall handleDidBecomeActive];
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -62,9 +60,10 @@
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
 }
 
 #pragma mark - Facebook Methods

@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "RegisterViewController.h"
 
 @interface SignInViewController ()
 
@@ -39,16 +40,7 @@
     [super viewWillAppear:animated];
     [self hideErrorImage:YES];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark - Private Functions 
 
 - (BOOL)validAllFields {
@@ -174,31 +166,26 @@
 #pragma mark - Facebook methods
 
 - (IBAction)logInWithFacebook:(id)sender {
-    // If the session state is any of the two "open" states when the button is clicked
-    if (FBSession.activeSession.state == FBSessionStateOpen
-        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-        
-        // Close the session and remove the access token from the cache
-        // The session state handler (in the app delegate) will be called automatically
-        [FBSession.activeSession closeAndClearTokenInformation];
-        
-        // If the session state is not any of the two "open" states when the button is clicked
-    } else {
-        // Open a session showing the user the login UI
-        // You must ALWAYS ask for public_profile permissions when opening a session
-        [FBSession openActiveSessionWithReadPermissions:@[@"email",@"public_profile"]
-                                           allowLoginUI:YES
-                                      completionHandler:
-         ^(FBSession *session, FBSessionState state, NSError *error) {
-             
-             // Retrieve the app delegate
-             AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-             // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
-             [appDelegate sessionStateChanged:session state:state error:error];
-         }];
-    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSArray *permissions = @[@"email"];
+    // Login PFUser using Facebook
+    [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if (!user) {
+            if (!error) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            } else {
+                NSLog(@"Uh oh. An error occurred: %@", error);
+            }
+        } else if (user.isNew) {
+            NSLog(@"User with facebook signed up and logged in!");
+            [self.window.navigationController presentViewController:RegisterViewController animated:YES completion:Nil];
+        } else {
+            NSLog(@"User with facebook logged in!");
+            //[self.navigationController pushViewController:nextviewcontroller animated:YES];
+        }
+    }];
 }
-
 #pragma mark - Alert View Methods
 
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
