@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [self getFacebookData];
     progressHud = [[MBProgressHUD alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
@@ -121,6 +122,11 @@
         if (self.tradesmanSwitch.isOn) {
             tradesman  = YES;
         }
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:kLoggedInWithFacebook]) {
+            
+            
+        }else{
+        
         PFUser *user = [PFUser user];
         user.username = self.emailId.text;
         user.password = self.password.text;
@@ -161,7 +167,7 @@
             self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
             self.emailErrorImage.hidden = NO;
             [self.registerView setUserInteractionEnabled:YES];
-         }];
+         }];}
     }
     else{
         [self invalidEntry];
@@ -237,13 +243,11 @@
 
 - (void)getFacebookData{
     FBRequest *request = [FBRequest requestForMe];
-    
-    // Send request to Facebook
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+    [request startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
         if (!error) {
             // result is a dictionary with the user's Facebook data
-            NSDictionary *userData = (NSDictionary *)result;
-            
+            NSDictionary *userData = (NSDictionary *)user;
+            NSLog(@"%@",userData);
             NSString *facebookID = userData[@"id"];
             NSString *name = userData[@"name"];
           
@@ -254,7 +258,7 @@
                                                                   timeoutInterval:2.0f];
             NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
             
-            self.emailId.text = userData[@"email"];
+            self.emailId.text = user[@"email"];
             self.fullName.text = name;
 
             

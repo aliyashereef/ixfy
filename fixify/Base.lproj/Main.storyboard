@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lwn-2G-C4J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lwn-2G-C4J">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -330,7 +330,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="logInWithFacebook:" destination="GYg-hL-tvf" eventType="touchUpInside" id="BVe-qA-rRf"/>
-                                                    <segue destination="Jb2-ig-fFd" kind="push" identifier="FACEBOOK_LOGIN" id="uo4-xb-cgc"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="error_field" translatesAutoresizingMaskIntoConstraints="NO" id="Mxg-ID-ARc">
@@ -405,6 +404,7 @@
                         <outlet property="passwordErrorImage" destination="Mxg-ID-ARc" id="ey8-GN-KcQ"/>
                         <outlet property="passwordField" destination="gJb-50-S3I" id="YEk-jk-Gt9"/>
                         <outlet property="passwordView" destination="zC1-W5-kXH" id="U9q-5J-wPf"/>
+                        <segue destination="Jb2-ig-fFd" kind="push" identifier="FACEBOOK_LOGIN" id="jAw-Vg-ioG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgJ-FD-tcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -871,6 +871,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uo4-xb-cgc"/>
+        <segue reference="jAw-Vg-ioG"/>
     </inferredMetricsTieBreakers>
 </document>

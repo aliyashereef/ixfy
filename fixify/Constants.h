@@ -16,4 +16,8 @@
 
 //Facebook
 #define FACEBOOK_APP_ID @"627081887405413"
+
+//constants
+#define kLoginStatus @"LOGIN_STATUS"
+#define kLoggedInWithFacebook @"IS_FACEBOOK_LOGIN"
 #endif

@@ -15,19 +15,7 @@
     [Parse setApplicationId:ParseApplicationID
                   clientKey:ParseClientKey];
     [PFFacebookUtils initializeFacebook];
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        
-        // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"email", @"basic_info"]
-                                           allowLoginUI:NO
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                          // Handler for session state changes
-                                          // This method will be called EACH time the session state changes,
-                                          // also for intermediate states and NOT just when the session open
-                                          [self sessionStateChanged:session state:state error:error];
-                                      }];
-    }
-    return YES;
+       return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -53,8 +41,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [self.session close];
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[PFFacebookUtils session] close];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -64,41 +51,6 @@
     return [FBAppCall handleOpenURL:url
                   sourceApplication:sourceApplication
                         withSession:[PFFacebookUtils session]];
-}
-
-#pragma mark - Facebook Methods
-
-// This method will handle ALL the session state changes in the app
-- (void)sessionStateChanged:(FBSession *)session
-                      state:(FBSessionState) state
-                      error:(NSError *)error {
-    // If the session was opened successfully
-    if (!error && state == FBSessionStateOpen){
-        return;
-    }
-    if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed){
-        // If the session is closed
-    }
-    
-    // Handle errors
-    if (error){
-        // If the error requires people using an app to make an action outside of the app in order to recover
-        if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-            
-        } else {
-            
-            // If the user cancelled login, do nothing
-            if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-                
-                // Handle session closures that happen outside of the app
-            } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
-            } else {
-                //Get more error information from the error
-            }
-        }
-        // Clear this token
-        [FBSession.activeSession closeAndClearTokenInformation];
-    }
 }
 
 @end
