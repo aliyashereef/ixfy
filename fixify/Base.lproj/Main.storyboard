@@ -427,8 +427,53 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIH-jC-8Dw">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjn-DX-4ee">
+                                                <rect key="frame" x="12" y="2" width="296" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="15"/>
+                                                <state key="normal" title="LOGIN WITH FACEBOOK">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="logInWithFacebook:" destination="GYg-hL-tvf" eventType="touchUpInside" id="U7y-ii-6xb"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIz-kh-X1N">
+                                                <rect key="frame" x="171" y="79" width="137" height="2"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="0.34999999999999998" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mlf-Cb-cdo">
+                                                <rect key="frame" x="12" y="79" width="137" height="2"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="0.25" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmd-Cw-nIJ">
+                                                <rect key="frame" x="150" y="70" width="20" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="oNW-Td-jpm"/>
+                                                    <constraint firstAttribute="height" constant="20" id="vcG-Wh-IEz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="0.34999999999999998" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="95" id="dM5-3j-bzx"/>
+                                            <constraint firstAttribute="width" constant="320" id="vxw-Jf-SDx"/>
+                                        </constraints>
+                                    </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPo-p0-kNh">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <rect key="frame" x="0.0" y="103" width="320" height="504"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wgl-wx-eUa">
@@ -705,10 +750,12 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="TIH-jC-8Dw" firstAttribute="leading" secondItem="ifX-AG-FCP" secondAttribute="leading" id="Ad0-il-SVB"/>
                                     <constraint firstItem="OPo-p0-kNh" firstAttribute="leading" secondItem="ifX-AG-FCP" secondAttribute="leading" id="B7H-g9-b0U"/>
+                                    <constraint firstItem="TIH-jC-8Dw" firstAttribute="top" secondItem="ifX-AG-FCP" secondAttribute="top" id="D3Q-Y6-l42"/>
                                     <constraint firstAttribute="trailing" secondItem="OPo-p0-kNh" secondAttribute="trailing" id="Sk5-0M-OhO"/>
-                                    <constraint firstItem="OPo-p0-kNh" firstAttribute="top" secondItem="ifX-AG-FCP" secondAttribute="top" id="VPh-ra-jQi"/>
-                                    <constraint firstAttribute="bottom" secondItem="OPo-p0-kNh" secondAttribute="bottom" id="W5S-ua-4AS"/>
+                                    <constraint firstAttribute="bottom" secondItem="OPo-p0-kNh" secondAttribute="bottom" constant="-103" id="W5S-ua-4AS"/>
+                                    <constraint firstItem="OPo-p0-kNh" firstAttribute="top" secondItem="TIH-jC-8Dw" secondAttribute="bottom" constant="8" id="nod-ao-cOH"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="Jb2-ig-fFd" id="JLy-6E-gyy"/>
