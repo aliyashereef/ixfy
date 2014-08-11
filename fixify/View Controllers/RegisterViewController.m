@@ -32,12 +32,11 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self getFacebookData];
     progressHud = [[MBProgressHUD alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.navigationItem.title= @"Registration";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:15.0]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     
     [self.navigationController.navigationBar
@@ -119,6 +118,32 @@
 
 #pragma mark - Done Button action
 
+- (IBAction)signUpWithFacebook:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSArray *permissionsArray = @[@"email"];
+    // Login PFUser using facebook
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if (!user) {
+            if (!error){
+                [Utilities showAlertWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login."];
+            } else {
+                NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                [Utilities showAlertWithTitle:@"Log In Error" message:errorString];
+            }
+        } else{
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            if (user.isNew) {
+                [self getFacebookData];
+            }else{
+                [Utilities showAlertWithTitle:@"ERROR" message:@"Already existing user"];
+            }
+        }
+    }];
+}
+
 - (IBAction)doneButton:(id)sender{
     if( ![self.fullName.text isEqualToString:@""] && ![self.password.text isEqualToString:@""] && ![self.emailId.text isEqualToString:@""] && ![self.mobileNumber.text isEqualToString:@""] && [self stringIsValidEmail:self.emailId.text] && [self stringIsValidMobileNumber:self.mobileNumber.text])
     {
@@ -126,10 +151,6 @@
         if (self.tradesmanSwitch.isOn) {
             tradesman  = YES;
         }
-        if ([[NSUserDefaults standardUserDefaults] valueForKey:kLoggedInWithFacebook]) {
-            
-            
-        }else{
         
         PFUser *user = [PFUser user];
         user.username = self.emailId.text;
@@ -172,7 +193,7 @@
             self.emailErrorImage.hidden = NO;
             [self.registerView setUserInteractionEnabled:YES];
          }];}
-    }
+    
     else{
         [self invalidEntry];
     }
@@ -261,11 +282,8 @@
                                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                                   timeoutInterval:2.0f];
             NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
-            
             self.emailId.text = user[@"email"];
             self.fullName.text = name;
-
-            
         }
     }];
 }

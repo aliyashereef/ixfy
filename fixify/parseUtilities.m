@@ -46,4 +46,9 @@
     }];
 }
 
+-(void) LogOutWithUser :(PFUser *)user
+{
+    [PFUser logOut];
+}
+
 @end

@@ -43,6 +43,8 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *tradesmanSwitch;
 
+- (IBAction)signUpWithFacebook:(id)sender;
+
 - (IBAction)doneButton:(id)sender;
 
 @property (strong,nonatomic) NSMutableData *imageData;

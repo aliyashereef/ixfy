@@ -33,6 +33,9 @@
     // Check if user is cached and linked to Facebook, if so, bypass login
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"signed in automatically");
+        PFUser *user = [PFUser currentUser];
+        parseUtilities *parse = [[parseUtilities alloc]init];
+        [parse LogOutWithUser:user];
     }
 
 }
@@ -100,7 +103,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.navigationItem.title= @"Sign In";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:15.0]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -197,15 +200,12 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
             if (user.isNew) {
-                NSLog(@"%@",user);
-                [[NSUserDefaults standardUserDefaults]setValue:[user valueForKey:@"objectId"] forKey:@"objID"] ;
-            [self performSegueWithIdentifier:@"FACEBOOK_LOGIN" sender:nil];
+                
             } else {
-            NSLog(@"User with facebook logged in!");
+                
             }
         }
     }];
-    
 }
 
 #pragma mark - Alert View Methods
