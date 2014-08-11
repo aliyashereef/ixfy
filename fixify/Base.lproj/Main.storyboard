@@ -807,9 +807,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vMO-w1-JLY">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMO-w1-JLY">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="B7F-t7-NaX"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="rewind" id="dJF-Lp-PZb">
                                         <connections>
@@ -834,7 +837,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-V8-evy">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-V8-evy">
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -844,6 +847,15 @@
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vMO-w1-JLY" firstAttribute="leading" secondItem="htA-W5-PpW" secondAttribute="leading" id="7JL-1S-Gzw"/>
+                            <constraint firstItem="cQG-V8-evy" firstAttribute="leading" secondItem="htA-W5-PpW" secondAttribute="leading" id="BzH-2f-VN8"/>
+                            <constraint firstItem="Aff-Q5-lD3" firstAttribute="top" secondItem="vMO-w1-JLY" secondAttribute="bottom" id="OVm-is-mcB"/>
+                            <constraint firstItem="vMO-w1-JLY" firstAttribute="top" secondItem="cQG-V8-evy" secondAttribute="bottom" id="YHo-3I-m0I"/>
+                            <constraint firstItem="cQG-V8-evy" firstAttribute="top" secondItem="qmy-Lb-Kae" secondAttribute="bottom" id="hBh-Ej-wSz"/>
+                            <constraint firstAttribute="trailing" secondItem="vMO-w1-JLY" secondAttribute="trailing" id="jve-K4-syQ"/>
+                            <constraint firstAttribute="trailing" secondItem="cQG-V8-evy" secondAttribute="trailing" id="t0f-vw-qsb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pDn-Kd-yXB">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="4lf-1M-jKU">

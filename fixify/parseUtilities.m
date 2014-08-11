@@ -11,12 +11,14 @@
 
 @implementation parseUtilities
 
+// Parse signup
 - (void) signUpWithUser:(PFUser *)user
        requestSucceeded:(void (^)(PFUser *user))success
           requestFailed:(void (^)(NSError *error))failure
 {
     self.successCallback = success;
     self.failureCallback = failure;
+    
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             self.successCallback(user);
@@ -26,6 +28,7 @@
     }];
 }
 
+//parse login
 - (void) logInWithUser:(PFUser *)loginUser
       requestSucceeded:(void (^)(PFUser *user))success
          requestFailed:(void (^)(NSError *error))failure
@@ -42,4 +45,5 @@
             }
     }];
 }
+
 @end

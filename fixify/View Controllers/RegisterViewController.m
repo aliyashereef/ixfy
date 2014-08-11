@@ -35,7 +35,11 @@
     [self getFacebookData];
     progressHud = [[MBProgressHUD alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.navigationItem.title= @"Registration";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:15.0]};
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
+    
     [self.navigationController.navigationBar
                                 setBackgroundImage:[UIImage new]
                                      forBarMetrics:UIBarMetricsDefault];
