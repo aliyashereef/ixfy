@@ -9,7 +9,6 @@
 #import "RegisterViewController.h"
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
-#import "parseUtilities.h"
 #import "VerifyNumberViewController.h"
 
 @interface RegisterViewController ()

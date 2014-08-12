@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
-#import "parseUtilities.h"
+#import "ParseUtilities.h"
 
 @interface SignInViewController ()
 
@@ -34,7 +34,7 @@
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"signed in automatically");
         PFUser *user = [PFUser currentUser];
-        parseUtilities *parse = [[parseUtilities alloc]init];
+        ParseUtilities *parse = [[ParseUtilities alloc]init];
         [parse LogOutWithUser:user];
     }
 
@@ -122,7 +122,7 @@
     PFUser *user = [PFUser user];
     user.username = self.emailField.text;
     user.password = self.passwordField.text;
-    parseUtilities *parse = [[parseUtilities alloc] init];
+    ParseUtilities *parse = [[ParseUtilities alloc] init];
 
     [parse logInWithUser:user requestSucceeded:^(PFUser *user){
             NSLog(@"sign in");

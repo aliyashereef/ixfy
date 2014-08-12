@@ -1,5 +1,5 @@
 //
-//  parseUtilities.h
+//  ParseUtilities.h
 //  fixify
 //
 //  Created by qbadmin on 08/08/14.
@@ -12,7 +12,7 @@
 typedef void (^Success)(PFUser *user);
 typedef void (^Failure)(NSError *error);
 
-@interface parseUtilities : NSObject
+@interface ParseUtilities : NSObject
 
 @property (nonatomic, strong) Success successCallback;
 @property (nonatomic, strong) Failure failureCallback;

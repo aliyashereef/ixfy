@@ -1,15 +1,15 @@
 //
-//  parseUtilities.m
+//  ParseUtilities.m
 //  fixify
 //
 //  Created by qbadmin on 08/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
-#import "parseUtilities.h"
+#import "ParseUtilities.h"
 #import <Parse/Parse.h>
 
-@implementation parseUtilities
+@implementation ParseUtilities
 
 // Parse signup
 - (void) signUpWithUser:(PFUser *)user
