@@ -137,10 +137,9 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
             if (user.isNew) {
-                [self getFacebookData];
             }else{
-                [Utilities showAlertWithTitle:@"ERROR" message:@"Already existing user"];
             }
+            [self getFacebookData];
         }
     }];
 }

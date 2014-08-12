@@ -32,12 +32,8 @@
     [self setUpView];
     // Check if user is cached and linked to Facebook, if so, bypass login
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        NSLog(@"signed in automatically");
-        PFUser *user = [PFUser currentUser];
-        ParseUtilities *parse = [[ParseUtilities alloc]init];
-        [parse LogOutWithUser:user];
+        
     }
-
 }
 
 - (void)didReceiveMemoryWarning{

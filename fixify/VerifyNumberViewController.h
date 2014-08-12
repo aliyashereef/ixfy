@@ -32,4 +32,7 @@
 @property (nonatomic, strong) NSString *currentPin;
 @property (nonatomic,strong) NSArray * buttonArray;
 
+- (IBAction)buttontouched:(id)sender;
+- (IBAction)deleteButtonAction:(id)sender;
+
 @end

@@ -8,6 +8,8 @@
 
 #import "AddJobViewController.h"
 #import "CategoryCell.h"
+#import "ParseUtilities.h"
+#import <Parse/Parse.h>
 
 @interface AddJobViewController ()
 {
@@ -87,6 +89,12 @@
     self.menuView.frame = newFrame;
     [UIView commitAnimations];
 
+}
+- (IBAction)signOutAction:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    ParseUtilities *parse = [[ParseUtilities alloc]init];
+    [parse LogOutWithUser:user];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (IBAction)notificationButton:(id)sender {
