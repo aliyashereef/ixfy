@@ -102,4 +102,5 @@
     self.menuView.frame = newFrame;
     [UIView commitAnimations];
 }
+
 @end

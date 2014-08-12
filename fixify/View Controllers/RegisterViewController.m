@@ -282,6 +282,7 @@
                                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                                   timeoutInterval:2.0f];
             NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+            [urlConnection start];
             self.emailId.text = user[@"email"];
             self.fullName.text = name;
         }
