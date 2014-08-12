@@ -1182,11 +1182,8 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMU-nD-m30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="974" y="-1091"/>
-=======
-            <point key="canvasLocation" x="832" y="-494"/>
->>>>>>> 2d384f0e1fb771a25d53757f3e7a5ce99c19b255
+        2d384f0e1fb771a25d53757f3e7a5ce99c19b255
         </scene>
         <!--Terms And Conditions View Controller-->
         <scene sceneID="QA3-M2-4UZ">
