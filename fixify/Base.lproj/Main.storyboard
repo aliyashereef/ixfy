@@ -404,11 +404,12 @@
                         <outlet property="passwordErrorImage" destination="Mxg-ID-ARc" id="ey8-GN-KcQ"/>
                         <outlet property="passwordField" destination="gJb-50-S3I" id="YEk-jk-Gt9"/>
                         <outlet property="passwordView" destination="zC1-W5-kXH" id="U9q-5J-wPf"/>
+                        <segue destination="SVP-Ll-9st" kind="modal" identifier="homeScreen" id="2sO-ZQ-DAF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgJ-FD-tcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349" y="-494"/>
+            <point key="canvasLocation" x="378" y="-494"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="j3s-Vz-yM8">
@@ -1047,7 +1048,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMU-nD-m30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-308" y="1349"/>
+            <point key="canvasLocation" x="832" y="-494"/>
         </scene>
         <!--Terms And Conditions View Controller-->
         <scene sceneID="QA3-M2-4UZ">

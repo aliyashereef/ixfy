@@ -145,6 +145,7 @@
 - (IBAction)signInButtonAction:(id)sender {
     if ([self validAllFields]) {
         [self login];
+        [self performSegueWithIdentifier:@"homeScreen" sender:self];
     }
 }
 - (void)hideErrorImage:(BOOL)hide {
@@ -204,6 +205,7 @@
             } else {
                 
             }
+            [self performSegueWithIdentifier:@"homeScreen" sender:self];
         }
     }];
 }
