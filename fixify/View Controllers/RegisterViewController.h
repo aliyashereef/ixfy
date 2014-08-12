@@ -27,8 +27,11 @@
 @property (weak, nonatomic) IBOutlet UIView *emailIdView;
 
 @property (weak, nonatomic) IBOutlet UIView *mobileNumberView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *mobileNumberErrorImage;
+
 @property (weak, nonatomic) IBOutlet UIImageView *passwordErrorImage;
+
 @property (weak, nonatomic) IBOutlet UIImageView *fullNameErrorImage;
 
 @property (weak, nonatomic) IBOutlet UITextField *fullName;
