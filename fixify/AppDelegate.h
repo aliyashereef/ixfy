@@ -14,5 +14,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) FBSession *session;
-- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
+
 @end

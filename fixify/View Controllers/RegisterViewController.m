@@ -36,7 +36,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.navigationItem.title= @"Registration";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:15.0]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     
     [self.navigationController.navigationBar
@@ -118,6 +118,32 @@
 
 #pragma mark - Done Button action
 
+- (IBAction)signUpWithFacebook:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSArray *permissionsArray = @[@"email"];
+    // Login PFUser using facebook
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if (!user) {
+            if (!error){
+                [Utilities showAlertWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login."];
+            } else {
+                NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                [Utilities showAlertWithTitle:@"Log In Error" message:errorString];
+            }
+        } else{
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            if (user.isNew) {
+                [self getFacebookData];
+            }else{
+                [Utilities showAlertWithTitle:@"ERROR" message:@"Already existing user"];
+            }
+        }
+    }];
+}
+
 - (IBAction)doneButton:(id)sender{
     if( ![self.fullName.text isEqualToString:@""] && ![self.password.text isEqualToString:@""] && ![self.emailId.text isEqualToString:@""] && ![self.mobileNumber.text isEqualToString:@""] && [self stringIsValidEmail:self.emailId.text] && [self stringIsValidMobileNumber:self.mobileNumber.text])
     {
@@ -125,6 +151,7 @@
         if (self.tradesmanSwitch.isOn) {
             tradesman  = YES;
         }
+        
         PFUser *user = [PFUser user];
         user.username = self.emailId.text;
         user.password = self.password.text;
@@ -165,8 +192,8 @@
             self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
             self.emailErrorImage.hidden = NO;
             [self.registerView setUserInteractionEnabled:YES];
-         }];
-    }
+         }];}
+    
     else{
         [self invalidEntry];
     }
@@ -237,5 +264,37 @@
     NSString *phoneRegex = @"^[0-9]{6,14}$";
     NSPredicate *mobileNumberTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     return [mobileNumberTest evaluateWithObject:checkString];
+}
+
+- (void)getFacebookData{
+    FBRequest *request = [FBRequest requestForMe];
+    [request startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+        if (!error) {
+            // result is a dictionary with the user's Facebook data
+            NSDictionary *userData = (NSDictionary *)user;
+            NSLog(@"%@",userData);
+            NSString *facebookID = userData[@"id"];
+            NSString *name = userData[@"name"];
+          
+            _imageData = [[NSMutableData alloc] init];
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
+                                                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                                  timeoutInterval:2.0f];
+            NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+            self.emailId.text = user[@"email"];
+            self.fullName.text = name;
+        }
+    }];
+}
+// Called every time a chunk of the data is received
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_imageData appendData:data]; // Build the image
+}
+
+// Called when the entire image is finished downloading
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // Set the image in the header imageView
+    self.defaultAvatar.image = [UIImage imageWithData:_imageData];
 }
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController <UIImagePickerControllerDelegate,UITextFieldDelegate,UINavigationControllerDelegate>
+@interface RegisterViewController : UIViewController <UIImagePickerControllerDelegate,UITextFieldDelegate,UINavigationControllerDelegate,NSURLConnectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *registerScrollView;
 
@@ -43,7 +43,10 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *tradesmanSwitch;
 
+- (IBAction)signUpWithFacebook:(id)sender;
+
 - (IBAction)doneButton:(id)sender;
 
+@property (strong,nonatomic) NSMutableData *imageData;
 
 @end

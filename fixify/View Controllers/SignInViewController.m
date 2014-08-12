@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
+#import "parseUtilities.h"
 
 @interface SignInViewController ()
 
@@ -29,6 +30,14 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self setUpView];
+    // Check if user is cached and linked to Facebook, if so, bypass login
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        NSLog(@"signed in automatically");
+        PFUser *user = [PFUser currentUser];
+        parseUtilities *parse = [[parseUtilities alloc]init];
+        [parse LogOutWithUser:user];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning{
@@ -94,7 +103,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.navigationItem.title= @"Sign In";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:15.0]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -110,10 +119,17 @@
 
 //Perform the parse API login.
 - (void)login{
-    [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error){
-        if (!error) {
+    PFUser *user = [PFUser user];
+    user.username = self.emailField.text;
+    user.password = self.passwordField.text;
+    parseUtilities *parse = [[parseUtilities alloc] init];
+
+    [parse logInWithUser:user requestSucceeded:^(PFUser *user){
             NSLog(@"sign in");
-        }else{
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        }requestFailed:^(NSError *error){
             //Some error  has ocurred in login process
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
             if ([errorString isEqualToString:@"invalid login credentials"]) {
@@ -123,8 +139,7 @@
             }else{
                 [Utilities showAlertWithTitle:@"Error" message:errorString];
             }
-        }
-    }];
+        }];
 }
 
 - (IBAction)signInButtonAction:(id)sender {
@@ -167,24 +182,32 @@
 
 - (IBAction)logInWithFacebook:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSArray *permissions = @[@"email"];
-    // Login PFUser using Facebook
-    [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
+    // Set permissions required from the facebook user account
+    NSArray *permissionsArray = @[@"email"];
+    
+    // Login PFUser using facebook
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (!user) {
             if (!error){
+                [Utilities showAlertWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login."];
             } else {
-                NSString *errorString = [[error userInfo] objectForKey:@"error"];
-                [Utilities showAlertWithTitle:@"ERROR" message:errorString];
+                 NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                [Utilities showAlertWithTitle:@"Log In Error" message:errorString];
             }
-        } else if (user.isNew) {
-            [self performSegueWithIdentifier:@"FACEBOOK_LOGIN" sender:nil];
-        } else {
-            NSLog(@"User with facebook logged in!");
-            //[self.navigationController pushViewController:nextviewcontroller animated:YES];
+        } else{
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            if (user.isNew) {
+                
+            } else {
+                
+            }
         }
     }];
 }
+
 #pragma mark - Alert View Methods
 
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
