@@ -23,6 +23,7 @@
 		2296061A199348F4003062CA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22960619199348F4003062CA /* Utilities.m */; };
 		2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296061B19936112003062CA /* FacebookSDK.framework */; };
 		2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2296061E19939600003062CA /* TermsAndConditionsViewController.m */; };
+		22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22968E761999DA730041E145 /* VerifyNumberViewController.m */; };
 		22B8B9B819935DE000D7E020 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
 		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
@@ -76,6 +77,8 @@
 		2296061B19936112003062CA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = fixify/Resources/FacebookSDK.framework; sourceTree = "<group>"; };
 		2296061D199395F2003062CA /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
 		2296061E19939600003062CA /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
+		22968E751999DA730041E145 /* VerifyNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyNumberViewController.h; sourceTree = "<group>"; };
+		22968E761999DA730041E145 /* VerifyNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyNumberViewController.m; sourceTree = "<group>"; };
 		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
 		22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppTourCell.m; path = "View Controllers/AppTourCell.m"; sourceTree = "<group>"; };
 		22CFAF0E1990F1370077D9E9 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = "View Controllers/SignInViewController.h"; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				22960618199348F4003062CA /* Utilities.h */,
 				22960619199348F4003062CA /* Utilities.m */,
 				22454590198A6D77009A52FE /* Main.storyboard */,
+				22968E751999DA730041E145 /* VerifyNumberViewController.h */,
+				22968E761999DA730041E145 /* VerifyNumberViewController.m */,
 				2249AEBD1992587F0028F92E /* MBProgressHUD.h */,
 				2249AEBB199258760028F92E /* MBProgressHUD.m */,
 				22DA2BFB1994A2CF00B0FBE8 /* parseUtilities.h */,
@@ -363,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */,
 				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
 				2296061A199348F4003062CA /* Utilities.m in Sources */,

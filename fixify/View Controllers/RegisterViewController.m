@@ -10,12 +10,14 @@
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "parseUtilities.h"
+#import "VerifyNumberViewController.h"
 
 @interface RegisterViewController ()
 {
     UIButton *closeButton;
     UIBarButtonItem *leftButton;
     MBProgressHUD *progressHud;
+    PFUser *parseUser;
 }
 
 @end
@@ -152,47 +154,48 @@
             tradesman  = YES;
         }
         
-        PFUser *user = [PFUser user];
-        user.username = self.emailId.text;
-        user.password = self.password.text;
-        user[@"FullName"]     = self.fullName.text;
-        user[@"MobileNumber"] = self.mobileNumber.text;
+        parseUser = [PFUser user];
+        parseUser.username = self.emailId.text;
+        parseUser.password = self.password.text;
+        parseUser[@"FullName"]     = self.fullName.text;
+        parseUser[@"MobileNumber"] = self.mobileNumber.text;
         NSData *imageData = UIImagePNGRepresentation(self.defaultAvatar.image);
         PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-        user[@"Image"] = imageFile;
+        parseUser[@"Image"] = imageFile;
         
         if (tradesman) {
-            user[@"Tradesman"] = @"YES";
+            parseUser[@"Tradesman"] = @"YES";
         }
         else{
-            user[@"Tradesman"] = @"NO";
+            parseUser[@"Tradesman"] = @"NO";
         }
-
-        [self.registerView setUserInteractionEnabled:NO];
-        progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        progressHud.mode = MBProgressHUDModeIndeterminate;
-        progressHud.labelText = @"Saving";
-        [progressHud show:YES];
-        [self invalidEntry];
-        parseUtilities *parse = [[parseUtilities alloc] init];
-        [parse signUpWithUser:user
-             requestSucceeded:^(PFUser *user)
-         {
-             [self dismissViewControllerAnimated:YES completion:Nil];
-             [progressHud hide:YES];
-         }requestFailed:^(NSError *error){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
-                       message:@"EmailID Already Exists"
-                      delegate:self
-             cancelButtonTitle:@"OK"
-             otherButtonTitles:Nil, nil];
-            [progressHud hide:YES];
-            [alert show];
-            self.emailIdView.layer.borderWidth = 2.0f;
-            self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
-            self.emailErrorImage.hidden = NO;
-            [self.registerView setUserInteractionEnabled:YES];
-         }];}
+        [self performSegueWithIdentifier:@"VERIFY_NUMBER" sender:nil];
+//        [self.registerView setUserInteractionEnabled:NO];
+//        progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        progressHud.mode = MBProgressHUDModeIndeterminate;
+//        progressHud.labelText = @"Saving";
+//        [progressHud show:YES];
+//        [self invalidEntry];
+//        parseUtilities *parse = [[parseUtilities alloc] init];
+//        [parse signUpWithUser:parseUser
+//             requestSucceeded:^(PFUser *user)
+//         {
+//             [self dismissViewControllerAnimated:YES completion:Nil];
+//             [progressHud hide:YES];
+//         }requestFailed:^(NSError *error){
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
+//                       message:@"EmailID Already Exists"
+//                      delegate:self
+//             cancelButtonTitle:@"OK"
+//             otherButtonTitles:Nil, nil];
+//            [progressHud hide:YES];
+//            [alert show];
+//            self.emailIdView.layer.borderWidth = 2.0f;
+//            self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
+//            self.emailErrorImage.hidden = NO;
+//            [self.registerView setUserInteractionEnabled:YES];
+//         }];
+    }
     
     else{
         [self invalidEntry];
@@ -282,6 +285,7 @@
                                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                                   timeoutInterval:2.0f];
             NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+            [urlConnection start];
             self.emailId.text = user[@"email"];
             self.fullName.text = name;
         }
@@ -296,5 +300,12 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // Set the image in the header imageView
     self.defaultAvatar.image = [UIImage imageWithData:_imageData];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"VERIFY_NUMBER"]) {
+        VerifyNumberViewController *verifyNumberViewController = (VerifyNumberViewController *)segue.destinationViewController;
+        verifyNumberViewController.user = parseUser;
+    }
 }
 @end
