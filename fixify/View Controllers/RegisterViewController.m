@@ -9,7 +9,7 @@
 #import "RegisterViewController.h"
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
-#import "parseUtilities.h"
+#import "ParseUtilities.h"
 
 @interface RegisterViewController ()
 {
@@ -147,7 +147,7 @@
         progressHud.labelText = @"Saving";
         [progressHud show:YES];
         [self invalidEntry];
-        parseUtilities *parse = [[parseUtilities alloc] init];
+        ParseUtilities *parse = [[ParseUtilities alloc] init];
         [parse signUpWithUser:user
              requestSucceeded:^(PFUser *user)
          {

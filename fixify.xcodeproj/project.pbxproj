@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2200F3081998A16A00729065 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2200F3071998A16A00729065 /* CategoryCell.m */; };
+		2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2200F30A1998A3E500729065 /* AddJobViewController.m */; };
 		2245457F198A6D77009A52FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2245457E198A6D77009A52FE /* Foundation.framework */; };
 		22454581198A6D77009A52FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22454580198A6D77009A52FE /* CoreGraphics.framework */; };
 		22454583198A6D77009A52FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22454582198A6D77009A52FE /* UIKit.framework */; };
@@ -38,7 +40,7 @@
 		22CFAF261990F4500077D9E9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF251990F4500077D9E9 /* Security.framework */; };
 		22CFAF281990F45D0077D9E9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF271990F45D0077D9E9 /* StoreKit.framework */; };
 		22CFAF2A1990F4660077D9E9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */; };
-		22DA2BFD1994A2CF00B0FBE8 /* parseUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DA2BFC1994A2CF00B0FBE8 /* parseUtilities.m */; };
+		22DA2BFD1994A2CF00B0FBE8 /* ParseUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */; };
 		22E3772F1992327600478404 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E3772E1992327600478404 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2200F3061998A16A00729065 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
+		2200F3071998A16A00729065 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		2200F3091998A3E500729065 /* AddJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddJobViewController.h; sourceTree = "<group>"; };
+		2200F30A1998A3E500729065 /* AddJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddJobViewController.m; sourceTree = "<group>"; };
 		2245457B198A6D77009A52FE /* fixify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fixify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2245457E198A6D77009A52FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		22454580198A6D77009A52FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -95,8 +101,8 @@
 		22CFAF271990F45D0077D9E9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		22CFAF2B1990F6680077D9E9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		22DA2BFB1994A2CF00B0FBE8 /* parseUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseUtilities.h; sourceTree = "<group>"; };
-		22DA2BFC1994A2CF00B0FBE8 /* parseUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = parseUtilities.m; sourceTree = "<group>"; };
+		22DA2BFB1994A2CF00B0FBE8 /* ParseUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUtilities.h; sourceTree = "<group>"; };
+		22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUtilities.m; sourceTree = "<group>"; };
 		22E3772E1992327600478404 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,8 +193,8 @@
 				22454590198A6D77009A52FE /* Main.storyboard */,
 				2249AEBD1992587F0028F92E /* MBProgressHUD.h */,
 				2249AEBB199258760028F92E /* MBProgressHUD.m */,
-				22DA2BFB1994A2CF00B0FBE8 /* parseUtilities.h */,
-				22DA2BFC1994A2CF00B0FBE8 /* parseUtilities.m */,
+				22DA2BFB1994A2CF00B0FBE8 /* ParseUtilities.h */,
+				22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */,
 				229A6A5C198B5EFE009B1930 /* Resources */,
 				229A6A52198B5C8B009B1930 /* Login */,
 				22EBDACE198F5C7E00323851 /* Views */,
@@ -236,6 +242,8 @@
 				22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */,
 				2296061D199395F2003062CA /* TermsAndConditionsViewController.h */,
 				2296061E19939600003062CA /* TermsAndConditionsViewController.m */,
+				2200F3091998A3E500729065 /* AddJobViewController.h */,
+				2200F30A1998A3E500729065 /* AddJobViewController.m */,
 				22CFAF141990F1600077D9E9 /* RegisterViewController.h */,
 				22CFAF151990F1690077D9E9 /* RegisterViewController.m */,
 			);
@@ -262,6 +270,8 @@
 			children = (
 				22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */,
 				22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */,
+				2200F3061998A16A00729065 /* CategoryCell.h */,
+				2200F3071998A16A00729065 /* CategoryCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -365,11 +375,13 @@
 			files = (
 				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
+				2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */,
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
 				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
 				2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */,
-				22DA2BFD1994A2CF00B0FBE8 /* parseUtilities.m in Sources */,
+				22DA2BFD1994A2CF00B0FBE8 /* ParseUtilities.m in Sources */,
 				22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */,
+				2200F3081998A16A00729065 /* CategoryCell.m in Sources */,
 				22B8B9B819935DE000D7E020 /* (null) in Sources */,
 				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,

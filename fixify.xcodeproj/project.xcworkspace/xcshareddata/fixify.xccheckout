@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C5B2F9FB-DE00-4B56-BACC-B21DB3B0F518</string>
+	<string>252B7FCF-C5B6-463F-88EB-61FC4CBA63D5</string>
 	<key>IDESourceControlProjectName</key>
 	<string>fixify</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</key>
-		<string>ssh://codebase.qburst.com/markerstudio-internal/fixify.git</string>
+		<key>41D3145E-7FE6-4B24-B0DF-983EE711E09B</key>
+		<string>http://codebase.qburst.com/markerstudio-internal/fixify.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>fixify.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</key>
+		<key>41D3145E-7FE6-4B24-B0DF-983EE711E09B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://codebase.qburst.com/markerstudio-internal/fixify.git</string>
+	<string>http://codebase.qburst.com/markerstudio-internal/fixify.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</string>
+	<string>41D3145E-7FE6-4B24-B0DF-983EE711E09B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9B5D63BC-8C89-4578-B7E4-8CA0D3BC12EE</string>
+			<string>41D3145E-7FE6-4B24-B0DF-983EE711E09B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>fixify</string>
 		</dict>

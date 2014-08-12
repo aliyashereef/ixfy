@@ -16,4 +16,5 @@
 
 //Facebook
 #define FACEBOOK_APP_ID @"627081887405413"
+#define CategoryCellID @"categoryCell"
 #endif
