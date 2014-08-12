@@ -25,6 +25,7 @@
 		2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2296061E19939600003062CA /* TermsAndConditionsViewController.m */; };
 		22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22968E761999DA730041E145 /* VerifyNumberViewController.m */; };
 		22B8B9B819935DE000D7E020 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		22C7BBF7199A25F000B3BDFC /* ABPadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C7BBF6199A25F000B3BDFC /* ABPadButton.m */; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
 		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
 		22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */; };
@@ -79,6 +80,8 @@
 		2296061E19939600003062CA /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
 		22968E751999DA730041E145 /* VerifyNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyNumberViewController.h; sourceTree = "<group>"; };
 		22968E761999DA730041E145 /* VerifyNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyNumberViewController.m; sourceTree = "<group>"; };
+		22C7BBF5199A25E100B3BDFC /* ABPadButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABPadButton.h; sourceTree = "<group>"; };
+		22C7BBF6199A25F000B3BDFC /* ABPadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPadButton.m; sourceTree = "<group>"; };
 		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
 		22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppTourCell.m; path = "View Controllers/AppTourCell.m"; sourceTree = "<group>"; };
 		22CFAF0E1990F1370077D9E9 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = "View Controllers/SignInViewController.h"; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				22968E751999DA730041E145 /* VerifyNumberViewController.h */,
 				22968E761999DA730041E145 /* VerifyNumberViewController.m */,
 				2249AEBD1992587F0028F92E /* MBProgressHUD.h */,
+				22C7BBF6199A25F000B3BDFC /* ABPadButton.m */,
+				22C7BBF5199A25E100B3BDFC /* ABPadButton.h */,
 				2249AEBB199258760028F92E /* MBProgressHUD.m */,
 				22DA2BFB1994A2CF00B0FBE8 /* parseUtilities.h */,
 				22DA2BFC1994A2CF00B0FBE8 /* parseUtilities.m */,
@@ -372,6 +377,7 @@
 				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
+				22C7BBF7199A25F000B3BDFC /* ABPadButton.m in Sources */,
 				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
 				2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */,
 				22DA2BFD1994A2CF00B0FBE8 /* parseUtilities.m in Sources */,

@@ -10,6 +10,7 @@
 #import <parse/Parse.h>
 
 @interface VerifyNumberViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *verificationCode;
 
 @property (nonatomic,weak) PFUser *user;
 
