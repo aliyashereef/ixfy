@@ -40,8 +40,8 @@
 		22CFAF261990F4500077D9E9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF251990F4500077D9E9 /* Security.framework */; };
 		22CFAF281990F45D0077D9E9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF271990F45D0077D9E9 /* StoreKit.framework */; };
 		22CFAF2A1990F4660077D9E9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */; };
+		22D1DF821999E85B007F91CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22D1DF811999E85B007F91CD /* Images.xcassets */; };
 		22DA2BFD1994A2CF00B0FBE8 /* ParseUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */; };
-		22E3772F1992327600478404 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E3772E1992327600478404 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,9 +101,9 @@
 		22CFAF271990F45D0077D9E9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		22CFAF2B1990F6680077D9E9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		22D1DF811999E85B007F91CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		22DA2BFB1994A2CF00B0FBE8 /* ParseUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUtilities.h; sourceTree = "<group>"; };
 		22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUtilities.m; sourceTree = "<group>"; };
-		22E3772E1992327600478404 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +198,7 @@
 				229A6A5C198B5EFE009B1930 /* Resources */,
 				229A6A52198B5C8B009B1930 /* Login */,
 				22EBDACE198F5C7E00323851 /* Views */,
-				22E3772E1992327600478404 /* Images.xcassets */,
+				22D1DF811999E85B007F91CD /* Images.xcassets */,
 				22454585198A6D77009A52FE /* Supporting Files */,
 			);
 			path = fixify;
@@ -352,7 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22E3772F1992327600478404 /* Images.xcassets in Resources */,
+				22D1DF821999E85B007F91CD /* Images.xcassets in Resources */,
 				22454589198A6D77009A52FE /* InfoPlist.strings in Resources */,
 				22454592198A6D77009A52FE /* Main.storyboard in Resources */,
 			);

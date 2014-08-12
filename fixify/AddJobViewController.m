@@ -44,36 +44,11 @@
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
-    
-    UIImage *menuImage = [UIImage imageNamed:@"ic_menu"];
-    menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [menuButton setImage:menuImage forState:UIControlStateNormal];
-    menuButton.frame = CGRectMake(0.0,0.0,menuImage.size.width,menuImage.size.height);
-    
-    [menuButton addTarget:self
-                    action:@selector(menuButtonClicked)
-          forControlEvents:UIControlEventTouchUpInside];
-    
-    leftButton = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
-    
-    self.navigationItem.leftBarButtonItem = leftButton;
-    
-    UIImage *notificationImage = [UIImage imageNamed:@"ic_notification"];
-    notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [notificationButton setImage:notificationImage forState:UIControlStateNormal];
-    notificationButton.frame = CGRectMake(0.0,0.0,notificationImage.size.width,notificationImage.size.height);
-    
-    [notificationButton addTarget:self
-                   action:@selector(notificationButtonClicked)
-         forControlEvents:UIControlEventTouchUpInside];
-    
-    rightButton = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
-    
-    self.navigationItem.rightBarButtonItem = rightButton;
     self.menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    self.menuView.alpha = 0.8f;
+    self.menuView.alpha = 0.95f;
+    
+    self.userAvatar.layer.cornerRadius = self.userAvatar.frame.size.width / 2;
+    self.userAvatar.clipsToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,27 +77,29 @@
 }
 
 #pragma mark - Bar Button Action
-- (void)menuButtonClicked{
-    static BOOL showMenu = NO;
-    float offset;
-    if (showMenu) {
-        offset = self.menuView.frame.size.width;
-    }else{
-        offset = -self.menuView.frame.size.width;
-    }
-    showMenu = !showMenu;
-//    [self.menuView transitionWithView:self.view
-//                      duration:0.75
-//                       options:UIViewAnimationTransitionFlipFromRight
-//                    animations:^{
-//                        
-//                    }
-//                    completion:nil];
- 
+- (IBAction)menuButton:(id)sender {
+    float offset = self.menuView.frame.size.width;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView  setAnimationDelegate:self];
+    CGRect newFrame = self.menuView.frame;
+    newFrame.origin.x = newFrame.origin.x + offset;
+    self.menuView.frame = newFrame;
+    [UIView commitAnimations];
+
 }
 
-- (void)notificationButtonClicked{
-    
+- (IBAction)notificationButton:(id)sender {
 }
 
+- (IBAction)menuCoseButton:(id)sender {
+    float offset = -self.menuView.frame.size.width;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView  setAnimationDelegate:self];
+    CGRect newFrame = self.menuView.frame;
+    newFrame.origin.x = newFrame.origin.x + offset;
+    self.menuView.frame = newFrame;
+    [UIView commitAnimations];
+}
 @end
