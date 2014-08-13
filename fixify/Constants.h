@@ -21,5 +21,6 @@
 //constants
 #define kLoginStatus @"LOGIN_STATUS"
 #define kLoggedInWithFacebook @"IS_FACEBOOK_LOGIN"
+#define kPinLength 4
 
 #endif

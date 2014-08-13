@@ -30,9 +30,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *deleteButton;
 
 @property (nonatomic, strong) NSString *currentPin;
-@property (nonatomic,strong) NSArray * buttonArray;
 
-- (IBAction)buttontouched:(id)sender;
+- (IBAction)buttonTapped:(id)sender;
 - (IBAction)deleteButtonAction:(id)sender;
+- (IBAction)skipButtonAction:(id)sender;
 
 @end

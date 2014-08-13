@@ -30,12 +30,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    self.navigationItem.title= @"Verify Number";
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationItem.title = @"Verify Number";
     self.navigationItem.hidesBackButton = YES;
     self.verificationCode.textColor = [UIColor whiteColor];
 }
@@ -45,25 +40,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSArray *)buttonArray{
-    return @[self.buttonZero,
-             self.buttonOne, self.buttonTwo, self.buttonThree,
-             self.buttonFour, self.buttonFive, self.buttonSix,
-             self.buttonSeven, self.buttonEight, self.buttonNine];
-}
-
-- (IBAction)buttontouched:(id)sender {
-    UIButton *TouchedButton=(UIButton *)sender;
-    [sender setImage:[UIImage imageNamed:@"keypad_tapped"] forState:UIControlStateHighlighted];
-    [self buttonSelected:TouchedButton];
+- (IBAction)buttonTapped:(id)sender {
+    UIButton *tappedButton=(UIButton *)sender;
+    [self buttonSelected:tappedButton];
 }
 
 - (IBAction)deleteButtonAction:(id)sender {
     if ([self.currentPin length] == 0){
+        self.verificationCode.text = @"----";
         return;
     }
     self.currentPin = [self.currentPin substringWithRange:NSMakeRange(0, [self.currentPin length] - 1)];
-    self.verificationCode.text = _currentPin;
+    self.verificationCode.text =[NSString stringWithFormat:@"%@%@",_currentPin,[self addHyphenMark:[_currentPin length]]];
+;
+}
+
+- (IBAction)skipButtonAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)buttonSelected:(UIButton *)sender{
@@ -73,7 +66,7 @@
     }else{
         self.currentPin = [NSString stringWithFormat:@"%@%d",self.currentPin,tag];
     }
-    self.verificationCode.text = _currentPin;
+    self.verificationCode.text =[NSString stringWithFormat:@"%@%@",_currentPin,[self addHyphenMark:[_currentPin length]]];
     if ([_currentPin length]==4) {
         [self processPin];
     }
@@ -100,7 +93,8 @@
              [self.navigationController popViewControllerAnimated:YES];
          }];
     }else{
-        self.verificationCode.text = _currentPin;
+        self.verificationCode.text =[NSString stringWithFormat:@"%@%@",_currentPin,[self addHyphenMark:[_currentPin length]]];
+;
         CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
         [shake setDuration:0.1];
         [shake setRepeatCount:4];
@@ -113,6 +107,14 @@
         [self.view setUserInteractionEnabled:YES];
     }
     _currentPin = @"";
+}
+- (NSString *)addHyphenMark:(NSInteger)pinlength{
+    NSString *hyphenString = @"";
+    int difference = kPinLength - pinlength;
+    for (int i=0; i<difference; i++) {
+        hyphenString = [NSString stringWithFormat:@"%@-",hyphenString];
+    }
+    return hyphenString;
 }
 
 @end
