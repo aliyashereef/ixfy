@@ -69,19 +69,24 @@
 #pragma mark - Textfield delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    int offsetmultiplier;
     if (textField == self.fullName) {
         [self.password becomeFirstResponder];
+        offsetmultiplier = 1;
     }
     else if (textField == self.password){
         [self.emailId becomeFirstResponder];
+        offsetmultiplier = 2;
     }
     else if (textField == self.emailId){
-        self.registerScrollView.contentOffset = CGPointMake(0,100);
         [self.mobileNumber becomeFirstResponder];
+        offsetmultiplier = 3;
     }
     else{
         [self doneButton:self];
+        offsetmultiplier = 4;
     }
+    self.registerScrollView.contentOffset = CGPointMake(0,offsetmultiplier * 80);
     return YES;
 }
 
