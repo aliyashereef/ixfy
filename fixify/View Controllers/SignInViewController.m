@@ -43,6 +43,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self hideErrorImage:YES];
+    [Utilities setBorderColor:[UIColor clearColor] forView:_emailView];
+    [Utilities setBorderColor:[UIColor clearColor] forView:_passwordView];
+    _passwordField.text = @"";
 }
 
 #pragma mark - Private Functions 
@@ -120,7 +123,6 @@
     ParseUtilities *parse = [[ParseUtilities alloc] init];
 
     [parse logInWithUser:user requestSucceeded:^(PFUser *user){
-            NSLog(@"sign in");
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
         [[NSUserDefaults standardUserDefaults] synchronize];
