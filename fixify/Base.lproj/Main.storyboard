@@ -926,8 +926,10 @@
                                     <constraint firstItem="TIH-jC-8Dw" firstAttribute="leading" secondItem="ifX-AG-FCP" secondAttribute="leading" id="Ad0-il-SVB"/>
                                     <constraint firstItem="OPo-p0-kNh" firstAttribute="leading" secondItem="ifX-AG-FCP" secondAttribute="leading" id="B7H-g9-b0U"/>
                                     <constraint firstItem="TIH-jC-8Dw" firstAttribute="top" secondItem="ifX-AG-FCP" secondAttribute="top" id="D3Q-Y6-l42"/>
+                                    <constraint firstAttribute="height" constant="504" id="LHu-h0-fJW"/>
                                     <constraint firstAttribute="trailing" secondItem="OPo-p0-kNh" secondAttribute="trailing" id="Sk5-0M-OhO"/>
-                                    <constraint firstAttribute="bottom" secondItem="OPo-p0-kNh" secondAttribute="bottom" constant="-200" id="W5S-ua-4AS"/>
+                                    <constraint firstAttribute="bottom" secondItem="OPo-p0-kNh" secondAttribute="bottom" constant="-126" id="W5S-ua-4AS"/>
+                                    <constraint firstAttribute="trailing" secondItem="TIH-jC-8Dw" secondAttribute="trailing" id="br6-MB-EXm"/>
                                     <constraint firstItem="OPo-p0-kNh" firstAttribute="top" secondItem="TIH-jC-8Dw" secondAttribute="bottom" constant="14" id="nod-ao-cOH"/>
                                 </constraints>
                                 <connections>

@@ -18,13 +18,11 @@
     MBProgressHUD *progressHud;
     PFUser *parseUser;
 }
-
 @end
 
 @implementation RegisterViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
     }
@@ -35,30 +33,23 @@
     [super viewDidLoad];
     progressHud = [[MBProgressHUD alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.navigationItem.title= @"Registration";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    
     [self.navigationController.navigationBar
                                 setBackgroundImage:[UIImage new]
                                      forBarMetrics:UIBarMetricsDefault];
-    
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
-    
     UIImage *closeImage = [UIImage imageNamed:@"ic_close"];
     closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeButton setImage:closeImage forState:UIControlStateNormal];
     closeButton.frame = CGRectMake(0.0,0.0,closeImage.size.width,closeImage.size.height);
-    
     [closeButton addTarget:self
                     action:@selector(closeButtonClicked)
           forControlEvents:UIControlEventTouchUpInside];
-    
     leftButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
-
     self.navigationItem.leftBarButtonItem = leftButton;
     self.defaultAvatar.layer.cornerRadius = self.defaultAvatar.frame.size.width / 2;
     self.defaultAvatar.clipsToBounds = YES;
@@ -81,17 +72,14 @@
     if (textField == self.fullName) {
         [self.password becomeFirstResponder];
     }
-    else if (textField == self.password)
-    {
+    else if (textField == self.password){
         [self.emailId becomeFirstResponder];
     }
-    else if (textField == self.emailId)
-    {
+    else if (textField == self.emailId){
         self.registerScrollView.contentOffset = CGPointMake(0,100);
         [self.mobileNumber becomeFirstResponder];
     }
-    else
-    {
+    else{
         [self doneButton:self];
     }
     return YES;
@@ -100,12 +88,10 @@
 #pragma mark - Change avatar
 
 - (IBAction)changeAvatarButton:(id)sender {
-    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     imagePickerController.delegate = self;
-    
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
@@ -125,7 +111,7 @@
     // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (!user) {
+        if (!user){
             if (!error){
                 [Utilities showAlertWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login."];
             } else {
@@ -133,25 +119,23 @@
                 [Utilities showAlertWithTitle:@"Log In Error" message:errorString];
             }
         } else{
+            [self getFacebookData];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
             if (user.isNew) {
             }else{
             }
-            [self getFacebookData];
         }
     }];
 }
 
 - (IBAction)doneButton:(id)sender{
-    if( ![self.fullName.text isEqualToString:@""] && ![self.password.text isEqualToString:@""] && ![self.emailId.text isEqualToString:@""] && ![self.mobileNumber.text isEqualToString:@""] && [self stringIsValidEmail:self.emailId.text] && [self stringIsValidMobileNumber:self.mobileNumber.text])
-    {
+    if( ![self.fullName.text isEqualToString:@""] && ![self.password.text isEqualToString:@""] && ![self.emailId.text isEqualToString:@""] && ![self.mobileNumber.text isEqualToString:@""] && [self stringIsValidEmail:self.emailId.text] && [self stringIsValidMobileNumber:self.mobileNumber.text]){
         BOOL tradesman = NO;
-        if (self.tradesmanSwitch.isOn) {
+        if (self.tradesmanSwitch.isOn){
             tradesman  = YES;
         }
-        
         parseUser = [PFUser user];
         parseUser.username = self.emailId.text;
         parseUser.password = self.password.text;
@@ -160,42 +144,13 @@
         NSData *imageData = UIImagePNGRepresentation(self.defaultAvatar.image);
         PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
         parseUser[@"Image"] = imageFile;
-        
         if (tradesman) {
             parseUser[@"Tradesman"] = @"YES";
-        }
-        else{
+        }else{
             parseUser[@"Tradesman"] = @"NO";
         }
         [self performSegueWithIdentifier:@"VERIFY_NUMBER" sender:nil];
-//        [self.registerView setUserInteractionEnabled:NO];
-//        progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        progressHud.mode = MBProgressHUDModeIndeterminate;
-//        progressHud.labelText = @"Saving";
-//        [progressHud show:YES];
-//        [self invalidEntry];
-//        parseUtilities *parse = [[parseUtilities alloc] init];
-//        [parse signUpWithUser:parseUser
-//             requestSucceeded:^(PFUser *user)
-//         {
-//             [self dismissViewControllerAnimated:YES completion:Nil];
-//             [progressHud hide:YES];
-//         }requestFailed:^(NSError *error){
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
-//                       message:@"EmailID Already Exists"
-//                      delegate:self
-//             cancelButtonTitle:@"OK"
-//             otherButtonTitles:Nil, nil];
-//            [progressHud hide:YES];
-//            [alert show];
-//            self.emailIdView.layer.borderWidth = 2.0f;
-//            self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
-//            self.emailErrorImage.hidden = NO;
-//            [self.registerView setUserInteractionEnabled:YES];
-//         }];
-    }
-    
-    else{
+    }else{
         [self invalidEntry];
     }
 }
@@ -209,13 +164,11 @@
 #pragma mark - Function to change border colour
 
 - (void)invalidEntry{
-    if(![self stringIsValidEmail:self.emailId.text])
-    {
+    if(![self stringIsValidEmail:self.emailId.text]){
         self.emailIdView.layer.borderWidth = 2.0f;
         self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
         self.emailErrorImage.hidden = NO;
-    }
-    else{
+    }else{
         self.emailIdView.layer.borderWidth = 0.0f;
         self.emailErrorImage.hidden = YES;
     }
@@ -224,18 +177,15 @@
         self.mobileNumberView.layer.borderWidth = 2.0f;
         self.mobileNumberView.layer.borderColor = [[UIColor redColor] CGColor];
         self.mobileNumberErrorImage.hidden = NO;
-    }
-    else{
+    }else{
         self.mobileNumberView.layer.borderWidth = 0.0f;
         self.mobileNumberErrorImage.hidden = YES;
     }
-    
     if ([self.fullName.text isEqualToString:@""]) {
         self.fullNameView.layer.borderWidth = 2.0f;
         self.fullNameView.layer.borderColor = [[UIColor redColor] CGColor];
         self.fullNameErrorImage.hidden = NO;
-    }
-    else{
+    }else{
         self.fullNameView.layer.borderWidth = 0.0f;
         self.fullNameErrorImage.hidden = YES;
     }
@@ -243,8 +193,7 @@
         self.passwordView.layer.borderWidth = 2.0f;
         self.passwordView.layer.borderColor = [[UIColor redColor] CGColor];
         self.passwordErrorImage.hidden = NO;
-    }
-    else{
+    }else{
         self.passwordView.layer.borderWidth = 0.0f;
         self.passwordErrorImage.hidden = YES;
     }

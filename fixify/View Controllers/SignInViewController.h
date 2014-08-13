@@ -10,12 +10,17 @@
 
 @interface SignInViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
+
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 - (IBAction)signInButtonAction:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIView *emailView;
 @property (weak, nonatomic) IBOutlet UIView *passwordView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *emailErrorImage;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordErrorImage;
+
 - (IBAction)resetPassword:(id)sender;
 - (IBAction)logInWithFacebook:(id)sender;
 

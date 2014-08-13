@@ -83,28 +83,22 @@
     [self.view setUserInteractionEnabled:NO];
     NSString *testString =@"1234";
     if ([_currentPin isEqualToString:testString]) {
-        MBProgressHUD *progressHud ;
-        
-             progressHud.mode = MBProgressHUDModeIndeterminate;
-               progressHud.labelText = @"Saving";
-              [progressHud show:YES];
-        ParseUtilities *parse;
+        MBProgressHUD *progressHud = [[MBProgressHUD alloc]init] ;
+        progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        progressHud.mode = MBProgressHUDModeIndeterminate;
+        progressHud.labelText = @"Saving";
+        [progressHud show:YES];
+        ParseUtilities *parse = [[ParseUtilities alloc]init];
         [parse signUpWithUser:_user
              requestSucceeded:^(PFUser *user){
                  [progressHud hide:YES];
                  [self dismissViewControllerAnimated:YES completion:nil];
          }requestFailed:^(NSError *error){
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Register"
-                                                             message:@"EmailID Already Exists"
-                                                            delegate:self
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:Nil, nil];
+             NSString *errorString = [[error userInfo] objectForKey:@"error"];
+             [Utilities showAlertWithTitle:@"Register" message:errorString];
              [progressHud hide:YES];
-             [self dismissViewControllerAnimated:YES completion:nil];
-             [alert show];
+             [self.navigationController popViewControllerAnimated:YES];
          }];
-
-        
     }else{
         CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
         [shake setDuration:0.1];

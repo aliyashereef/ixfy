@@ -22,7 +22,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -50,13 +49,13 @@
 
 - (BOOL)validAllFields {
     BOOL isValid = YES;
-    if([Utilities cleanString:self.emailField.text].length == 0) {
+    if([Utilities cleanString:self.emailField.text].length == 0){
         isValid = NO;
         _emailErrorImage.hidden = NO;
         [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
         [self.emailField becomeFirstResponder];
-    } else {
-        if([Utilities isValidEmail:self.emailField.text]) {
+    }else{
+        if([Utilities isValidEmail:self.emailField.text]){
             _emailErrorImage.hidden = YES;
             [Utilities setBorderColor:[UIColor clearColor] forView:_emailView];
         } else {
