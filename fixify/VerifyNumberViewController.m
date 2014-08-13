@@ -100,6 +100,7 @@
              [self.navigationController popViewControllerAnimated:YES];
          }];
     }else{
+        self.verificationCode.text = _currentPin;
         CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
         [shake setDuration:0.1];
         [shake setRepeatCount:4];
@@ -109,10 +110,9 @@
         [shake setToValue:[NSValue valueWithCGPoint:
                            CGPointMake(self.verificationCode.center.x + 5,self.verificationCode.center.y)]];
         [self.verificationCode.layer addAnimation:shake forKey:@"position"];
-        _currentPin = @"";
-        self.verificationCode.text = _currentPin;
         [self.view setUserInteractionEnabled:YES];
     }
+    _currentPin = @"";
 }
 
 @end
