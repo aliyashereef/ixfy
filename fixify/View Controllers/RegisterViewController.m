@@ -2,7 +2,7 @@
 //  RegisterViewController.m
 //  fixify
 //
-//  Created by qbadmin on 01/08/14.
+//  Created by Vineeth on 01/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -69,24 +69,24 @@
 #pragma mark - Textfield delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    int offsetmultiplier;
+    int offsetMultiplier;
     if (textField == self.fullName) {
         [self.password becomeFirstResponder];
-        offsetmultiplier = 1;
+        offsetMultiplier = 1;
     }
     else if (textField == self.password){
         [self.emailId becomeFirstResponder];
-        offsetmultiplier = 2;
+        offsetMultiplier = 2;
     }
     else if (textField == self.emailId){
         [self.mobileNumber becomeFirstResponder];
-        offsetmultiplier = 3;
+        offsetMultiplier = 3;
     }
     else{
         [self doneButton:self];
-        offsetmultiplier = 4;
+        offsetMultiplier = 4;
     }
-    self.registerScrollView.contentOffset = CGPointMake(0,offsetmultiplier * 80);
+    self.registerScrollView.contentOffset = CGPointMake(0,offsetMultiplier * 80);
     return YES;
 }
 
@@ -230,7 +230,6 @@
             NSLog(@"%@",userData);
             NSString *facebookID = userData[@"id"];
             NSString *name = userData[@"name"];
-          
             _imageData = [[NSMutableData alloc] init];
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL

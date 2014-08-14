@@ -2,7 +2,7 @@
 //  ParseUtilities.h
 //  fixify
 //
-//  Created by qbadmin on 08/08/14.
+//  Created by Vineeth on 08/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -23,6 +23,6 @@ typedef void (^Failure)(NSError *error);
 - (void) logInWithUser:(PFUser *)loginUser
       requestSucceeded:(void (^)(PFUser *user))success
          requestFailed:(void (^)(NSError *error))failure;
-- (void) LogOutWithUser :(PFUser *)user;
+- (void) logOutWithUser :(PFUser *)user;
 
 @end

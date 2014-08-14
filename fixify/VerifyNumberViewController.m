@@ -13,16 +13,13 @@
 #import "ParseUtilities.h"
 
 @interface VerifyNumberViewController ()
-
 @end
 
 @implementation VerifyNumberViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
     }
     return self;
 }
@@ -37,7 +34,6 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)buttonTapped:(id)sender {
@@ -50,15 +46,15 @@
         self.verificationCode.text = @"----";
         return;
     }
-    self.currentPin = [self.currentPin substringWithRange:NSMakeRange(0, [self.currentPin length] - 1)];
+    self.currentPin = [self.currentPin substringWithRange:NSMakeRange(0,[self.currentPin length]-1)];
     self.verificationCode.text =[NSString stringWithFormat:@"%@%@",_currentPin,[self addHyphenMark:[_currentPin length]]];
-;
 }
 
 - (IBAction)skipButtonAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//when a button clicked append the last pressed button tag with the current verification pin.
 - (void)buttonSelected:(UIButton *)sender{
     NSInteger tag = sender.tag;
     if(!self.currentPin){
@@ -72,6 +68,7 @@
     }
 }
 
+//Check whether the pin is correct and perform the sign up function.
 - (void)processPin{
     [self.view setUserInteractionEnabled:NO];
     NSString *testString =@"1234";
@@ -80,12 +77,10 @@
         progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHud.mode = MBProgressHUDModeIndeterminate;
         progressHud.labelText = @"Saving";
-        [progressHud show:YES];
         ParseUtilities *parse = [[ParseUtilities alloc]init];
-        [parse signUpWithUser:_user
-             requestSucceeded:^(PFUser *user){
-                 [progressHud hide:YES];
-                 [self dismissViewControllerAnimated:YES completion:nil];
+        [parse signUpWithUser:_user requestSucceeded:^(PFUser *user){
+            [progressHud hide:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
          }requestFailed:^(NSError *error){
              NSString *errorString = [[error userInfo] objectForKey:@"error"];
              [Utilities showAlertWithTitle:@"Register" message:errorString];
@@ -94,20 +89,19 @@
          }];
     }else{
         self.verificationCode.text =[NSString stringWithFormat:@"%@%@",_currentPin,[self addHyphenMark:[_currentPin length]]];
-;
         CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
         [shake setDuration:0.1];
         [shake setRepeatCount:4];
         [shake setAutoreverses:YES];
-        [shake setFromValue:[NSValue valueWithCGPoint:
-                             CGPointMake(self.verificationCode.center.x - 5,self.verificationCode.center.y)]];
-        [shake setToValue:[NSValue valueWithCGPoint:
-                           CGPointMake(self.verificationCode.center.x + 5,self.verificationCode.center.y)]];
+        [shake setFromValue:[NSValue valueWithCGPoint:CGPointMake(self.verificationCode.center.x - 5,self.verificationCode.center.y)]];
+        [shake setToValue:[NSValue valueWithCGPoint:CGPointMake(self.verificationCode.center.x + 5,self.verificationCode.center.y)]];
         [self.verificationCode.layer addAnimation:shake forKey:@"position"];
         [self.view setUserInteractionEnabled:YES];
     }
     _currentPin = @"";
 }
+
+//add hypen mark for the unfilled digits in the verification pin..
 - (NSString *)addHyphenMark:(NSInteger)pinlength{
     NSString *hyphenString = @"";
     int difference = kPinLength - pinlength;

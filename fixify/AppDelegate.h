@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  fixify
 //
-//  Created by qbadmin on 31/07/14.
+//  Created by Aliya on 31/07/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -13,6 +13,5 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) FBSession *session;
 
 @end

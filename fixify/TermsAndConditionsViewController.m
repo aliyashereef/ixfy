@@ -2,7 +2,7 @@
 //  TermsAndConditionsViewController.m
 //  fixify
 //
-//  Created by qbadmin on 07/08/14.
+//  Created by Vineeth on 07/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -15,24 +15,21 @@
 
 @implementation TermsAndConditionsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     NSURL *url = [NSURL URLWithString:@"http://www.google.com"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.termsAndConditionsWebView loadRequest:request];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 
@@ -82,6 +79,7 @@
 }
 
 #pragma mark - Function to change state of Bar buttons
+
 - (void)refreshNavigationToolBar:(BOOL)loading {
     self.webViewBackButton.enabled = self.termsAndConditionsWebView.canGoBack;
     self.webViewNextButton.enabled = self.termsAndConditionsWebView.canGoForward;

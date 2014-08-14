@@ -2,7 +2,7 @@
 //  ParseUtilities.m
 //  fixify
 //
-//  Created by qbadmin on 08/08/14.
+//  Created by Vineeth on 08/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -46,7 +46,7 @@
     }];
 }
 
--(void) LogOutWithUser :(PFUser *)user
+-(void) logOutWithUser :(PFUser *)user
 {
     [PFUser logOut];
 }

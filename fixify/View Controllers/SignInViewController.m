@@ -2,7 +2,7 @@
 //  SignInViewController.m
 //  fixify
 //
-//  Created by qbadmin on 01/08/14.
+//  Created by Aliya on 01/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -14,7 +14,6 @@
 #import "ParseUtilities.h"
 
 @interface SignInViewController ()
-
 @end
 
 @implementation SignInViewController
@@ -30,14 +29,13 @@
     [super viewDidLoad];
     [self setUpView];
     // Check if user is cached and linked to Facebook, if so, bypass login
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]){
         
     }
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -121,11 +119,11 @@
     user.username = self.emailField.text;
     user.password = self.passwordField.text;
     ParseUtilities *parse = [[ParseUtilities alloc] init];
-
     [parse logInWithUser:user requestSucceeded:^(PFUser *user){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self performSegueWithIdentifier:@"homeScreen" sender:self];
         }requestFailed:^(NSError *error){
             //Some error  has ocurred in login process
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
@@ -142,9 +140,9 @@
 - (IBAction)signInButtonAction:(id)sender {
     if ([self validAllFields]) {
         [self login];
-        [self performSegueWithIdentifier:@"homeScreen" sender:self];
     }
 }
+
 - (void)hideErrorImage:(BOOL)hide {
     _passwordErrorImage.hidden = hide;
     _emailErrorImage.hidden = hide;
@@ -180,10 +178,7 @@
 
 - (IBAction)logInWithFacebook:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[@"email"];
-    
-    // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (!user) {
@@ -198,9 +193,7 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
             if (user.isNew) {
-                
             } else {
-                
             }
             [self performSegueWithIdentifier:@"homeScreen" sender:self];
         }

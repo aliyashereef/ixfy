@@ -14,7 +14,7 @@
 
 @property (nonatomic,weak) PFUser *user;
 
-@property (nonatomic,weak) IBOutlet UIButton *buttonOne;
+@property (nonatomic, strong) IBOutlet UIButton *buttonOne;
 @property (nonatomic, strong) IBOutlet UIButton *buttonTwo;
 @property (nonatomic, strong) IBOutlet UIButton *buttonThree;
 @property (nonatomic, strong) IBOutlet UIButton *buttonFour;

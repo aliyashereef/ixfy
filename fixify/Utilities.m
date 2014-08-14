@@ -2,7 +2,7 @@
 //  Utilities.m
 //  fixify
 //
-//  Created by qbadmin on 07/08/14.
+//  Created by Aliya on 07/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -28,7 +28,7 @@
     return result;
 }
 
-//  Removes blank space and new line characters from the begining and end of a string;
+//  Removes blank space and new line characters from the begining and end of a string
 + (NSString *)cleanString:(NSString *)string {
     return[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }

@@ -2,7 +2,7 @@
 //  Utilities.h
 //  fixify
 //
-//  Created by qbadmin on 07/08/14.
+//  Created by Aliya on 07/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -24,4 +24,5 @@
 
 // Set border color for a view
 + (void)setBorderColor:(UIColor *)color forView:(UIView *)view ;
+
 @end

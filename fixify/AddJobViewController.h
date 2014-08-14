@@ -2,7 +2,7 @@
 //  AddJobViewController.h
 //  fixify
 //
-//  Created by qbadmin on 11/08/14.
+//  Created by Vineeth on 11/08/14.
 //  Copyright (c) 2014 qburst. All rights reserved.
 //
 
@@ -18,7 +18,7 @@
 
 - (IBAction)notificationButton:(id)sender;
 
-- (IBAction)menuCoseButton:(id)sender;
+- (IBAction)menuCloseButton:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIImageView *userAvatar;
 

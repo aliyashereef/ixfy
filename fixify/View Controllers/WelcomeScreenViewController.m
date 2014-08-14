@@ -24,7 +24,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     [self setUpView];
 }
 
@@ -41,7 +40,6 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Collection View Methods
@@ -76,8 +74,9 @@
     }
 }
 
+#pragma mark - Private Methods
 - (void)setUpView{
-    //self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.navigationController.navigationBar.hidden= YES;
 }
 
