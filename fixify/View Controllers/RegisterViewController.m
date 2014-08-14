@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "VerifyNumberViewController.h"
+#import "Utilities.h"
 
 @interface RegisterViewController ()
 {
@@ -136,7 +137,7 @@
 }
 
 - (IBAction)doneButton:(id)sender{
-    if( ![self.fullName.text isEqualToString:@""] && ![self.password.text isEqualToString:@""] && ![self.emailId.text isEqualToString:@""] && ![self.mobileNumber.text isEqualToString:@""] && [self stringIsValidEmail:self.emailId.text] && [self stringIsValidMobileNumber:self.mobileNumber.text]){
+    if([self invalidEntry]){
         BOOL tradesman = NO;
         if (self.tradesmanSwitch.isOn){
             tradesman  = YES;
@@ -154,8 +155,6 @@
             parseUser.isTradesman = @"NO";
         }
         [self performSegueWithIdentifier:@"VERIFY_NUMBER" sender:nil];
-    }else{
-        [self invalidEntry];
     }
 }
 
@@ -167,20 +166,22 @@
 
 #pragma mark - Function to change border colour
 
-- (void)invalidEntry{
-    if(![self stringIsValidEmail:self.emailId.text]){
+- (BOOL)invalidEntry{
+    BOOL isValid = YES;
+    if(![Utilities isValidEmail:self.emailId.text]){
         self.emailIdView.layer.borderWidth = 2.0f;
         self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
         self.emailErrorImage.hidden = NO;
+        isValid = NO;
     }else{
         self.emailIdView.layer.borderWidth = 0.0f;
         self.emailErrorImage.hidden = YES;
     }
-    if(![self stringIsValidMobileNumber:self.mobileNumber.text])
-    {
+    if(![Utilities stringIsValidMobileNumber:self.mobileNumber.text]){
         self.mobileNumberView.layer.borderWidth = 2.0f;
         self.mobileNumberView.layer.borderColor = [[UIColor redColor] CGColor];
         self.mobileNumberErrorImage.hidden = NO;
+        isValid = NO;
     }else{
         self.mobileNumberView.layer.borderWidth = 0.0f;
         self.mobileNumberErrorImage.hidden = YES;
@@ -189,6 +190,7 @@
         self.fullNameView.layer.borderWidth = 2.0f;
         self.fullNameView.layer.borderColor = [[UIColor redColor] CGColor];
         self.fullNameErrorImage.hidden = NO;
+        isValid = NO;
     }else{
         self.fullNameView.layer.borderWidth = 0.0f;
         self.fullNameErrorImage.hidden = YES;
@@ -197,27 +199,12 @@
         self.passwordView.layer.borderWidth = 2.0f;
         self.passwordView.layer.borderColor = [[UIColor redColor] CGColor];
         self.passwordErrorImage.hidden = NO;
+        isValid = NO;
     }else{
         self.passwordView.layer.borderWidth = 0.0f;
         self.passwordErrorImage.hidden = YES;
     }
-}
-
-#pragma mark - Funtions for validation
-
--(BOOL) stringIsValidEmail:(NSString *)checkString{
-    BOOL stricterFilter = YES;
-    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
-    NSString *laxString = @".+@([A-Za-z0-9]+\\.)+[A-Za-z]{2}[A-Za-z]*";
-    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:checkString];
-}
-
--(BOOL) stringIsValidMobileNumber:(NSString *)checkString{
-    NSString *phoneRegex = @"^[0-9]{6,14}$";
-    NSPredicate *mobileNumberTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
-    return [mobileNumberTest evaluateWithObject:checkString];
+    return isValid;
 }
 
 - (void)getFacebookData{
@@ -226,7 +213,6 @@
         if (!error) {
             // result is a dictionary with the user's Facebook data
             NSDictionary *userData = (NSDictionary *)user;
-            NSLog(@"%@",userData);
             NSString *facebookID = userData[@"id"];
             NSString *name = userData[@"name"];
             _imageData = [[NSMutableData alloc] init];
@@ -258,4 +244,5 @@
         verifyNumberViewController.user = parseUser;
     }
 }
+
 @end

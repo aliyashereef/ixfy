@@ -25,4 +25,7 @@
 // Set border color for a view
 + (void)setBorderColor:(UIColor *)color forView:(UIView *)view ;
 
+// Validate Mobile Number
++ (BOOL)stringIsValidMobileNumber:(NSString *)checkString;
+
 @end
