@@ -148,11 +148,11 @@
         parseUser.mobileNumber = self.mobileNumber.text;
         NSData *imageData = UIImagePNGRepresentation(self.defaultAvatar.image);
         PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-        parseUser.avatar = imageFile;
+        parseUser.Image = imageFile;
         if (tradesman) {
-            parseUser.isTradesman = @"YES";
+            parseUser.Tradesman = @"YES";
         }else{
-            parseUser.isTradesman = @"NO";
+            parseUser.Tradesman = @"NO";
         }
         [self performSegueWithIdentifier:@"VERIFY_NUMBER" sender:nil];
     }
@@ -169,8 +169,7 @@
 - (BOOL)invalidEntry{
     BOOL isValid = YES;
     if(![Utilities isValidEmail:self.emailId.text]){
-        self.emailIdView.layer.borderWidth = 2.0f;
-        self.emailIdView.layer.borderColor = [[UIColor redColor] CGColor];
+        [Utilities setBorderColor:[UIColor redColor] forView:_emailIdView];
         self.emailErrorImage.hidden = NO;
         isValid = NO;
     }else{
@@ -178,8 +177,7 @@
         self.emailErrorImage.hidden = YES;
     }
     if(![Utilities stringIsValidMobileNumber:self.mobileNumber.text]){
-        self.mobileNumberView.layer.borderWidth = 2.0f;
-        self.mobileNumberView.layer.borderColor = [[UIColor redColor] CGColor];
+        [Utilities setBorderColor:[UIColor redColor] forView:_mobileNumberView];
         self.mobileNumberErrorImage.hidden = NO;
         isValid = NO;
     }else{
@@ -187,8 +185,7 @@
         self.mobileNumberErrorImage.hidden = YES;
     }
     if ([self.fullName.text isEqualToString:@""]) {
-        self.fullNameView.layer.borderWidth = 2.0f;
-        self.fullNameView.layer.borderColor = [[UIColor redColor] CGColor];
+        [Utilities setBorderColor:[UIColor redColor] forView:_fullNameView];
         self.fullNameErrorImage.hidden = NO;
         isValid = NO;
     }else{
@@ -196,8 +193,7 @@
         self.fullNameErrorImage.hidden = YES;
     }
     if ([self.password.text isEqualToString:@""]) {
-        self.passwordView.layer.borderWidth = 2.0f;
-        self.passwordView.layer.borderColor = [[UIColor redColor] CGColor];
+        [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
         self.passwordErrorImage.hidden = NO;
         isValid = NO;
     }else{

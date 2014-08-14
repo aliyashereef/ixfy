@@ -10,6 +10,7 @@
 #import "CategoryCell.h"
 #import "FixifyUser.h"
 #import <Parse/Parse.h>
+#import "EditProfileViewController.h"
 
 @interface AddJobViewController (){
     UIButton *menuButton;
@@ -99,5 +100,12 @@
 
 - (IBAction)profileView:(id)sender {
     [self performSegueWithIdentifier:@"EDIT_PROFILE" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"EDIT_PROFILE"]) {
+        EditProfileViewController *editProfileViewController = (EditProfileViewController *)segue.destinationViewController;
+        editProfileViewController.user = [FixifyUser currentUser];
+    }
 }
 @end

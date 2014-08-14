@@ -176,9 +176,9 @@
 - (IBAction)logInWithFacebook:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSArray *permissionsArray = @[@"email"];
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *fbUser, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (!user) {
+        if (!fbUser) {
             if (!error){
                 [Utilities showAlertWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login."];
             } else {
@@ -189,9 +189,27 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            if (user.isNew) {
-            } else {
-            }
+            if (fbUser.isNew) {
+                FBRequest *request = [FBRequest requestForMe];
+                [request startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+                    if (!error) {
+                        NSDictionary *userData = (NSDictionary *)user;
+                        NSString *facebookID = userData[@"id"];
+                        fbUser[@"FullName"] = userData[@"name"];
+                        fbUser.username = user[@"email"];
+                        _imageData = [[NSMutableData alloc] init];
+                        NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+                        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
+                                                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                                              timeoutInterval:2.0f];
+                        NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+                        [urlConnection start];
+                        fbUser[@"Image"] = [PFFile fileWithData:_imageData];
+                        fbUser[@"Tradesman"] = @"NO";
+                        [fbUser saveInBackground];
+                    }
+                }];
+            } 
             [self performSegueWithIdentifier:@"homeScreen" sender:self];
         }
     }];
@@ -216,6 +234,17 @@
             }];
         }
     }
+}
+
+// Called every time a chunk of the data is received
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_imageData appendData:data]; // Build the image
+}
+
+// Called when the entire image is finished downloading
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // Set the image in the header imageView
+    
 }
 
 

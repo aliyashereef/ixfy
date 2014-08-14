@@ -11,13 +11,13 @@
 
 @interface FixifyUser : PFUser<PFSubclassing>
 
-@property (retain) NSString *fullName;
+@property (retain) NSString *FullName;
 
-@property (retain) NSString *mobileNumber;
+@property (retain) NSString *MobileNumber;
 
-@property (retain) NSString *isTradesman;
+@property (retain) NSString *Tradesman;
 
-@property (retain) PFFile *avatar;
+@property (retain) PFFile *Image;
 
 
 @end

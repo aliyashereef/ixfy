@@ -1331,6 +1331,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="closeButtonAction:" destination="LtV-9U-HR8" eventType="touchUpInside" id="uBw-TG-3LW"/>
                                             <action selector="menuButton:" destination="SVP-Ll-9st" eventType="touchUpInside" id="PV5-wb-D1T"/>
                                         </connections>
                                     </button>
@@ -1370,6 +1371,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="changeAvatarButton:" destination="Jb2-ig-fFd" eventType="touchUpInside" id="8l1-31-tGv"/>
+                                                            <action selector="changeAvatarButton:" destination="LtV-9U-HR8" eventType="touchUpInside" id="qTY-nH-InN"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1436,7 +1438,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="751" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meA-g4-zab">
-                                                <rect key="frame" x="12" y="323" width="296" height="55"/>
+                                                <rect key="frame" x="12" y="264" width="296" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="DONE" backgroundImage="register">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1444,30 +1446,9 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="doneButton:" destination="Jb2-ig-fFd" eventType="touchUpInside" id="3GE-qh-CL5"/>
+                                                    <action selector="doneButton:" destination="LtV-9U-HR8" eventType="touchUpInside" id="ZdB-c3-wH2"/>
                                                 </connections>
                                             </button>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ic_info" translatesAutoresizingMaskIntoConstraints="NO" id="Prd-tQ-dIk">
-                                                <rect key="frame" x="12" y="272" width="30" height="30"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Want to become a Fixify tradesman?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="161" translatesAutoresizingMaskIntoConstraints="NO" id="4Mi-IW-RFI">
-                                                <rect key="frame" x="48" y="272" width="161" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" onImage="switch_on" offImage="switch_handle" translatesAutoresizingMaskIntoConstraints="NO" id="OS0-f1-kke">
-                                                <rect key="frame" x="255" y="272" width="51" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </switch>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By tapping on done you agree to our" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REE-IE-EWx">
-                                                <rect key="frame" x="62" y="384" width="196" height="13"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="error_field" translatesAutoresizingMaskIntoConstraints="NO" id="5LS-eQ-f4F">
                                                 <rect key="frame" x="275" y="208" width="22" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
@@ -1484,15 +1465,6 @@
                                                 <rect key="frame" x="275" y="87" width="22" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="me1-Sw-qaM">
-                                                <rect key="frame" x="62" y="405" width="196" height="12"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                                <state key="normal" title="Terms and Conditions">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration">
@@ -1509,10 +1481,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="wiE-GA-fxd"/>
                     <connections>
+                        <outlet property="avatarView" destination="uWn-5x-rml" id="Xrm-Zr-gkP"/>
                         <outlet property="detailScroll" destination="l69-wv-tRI" id="U08-47-LtU"/>
+                        <outlet property="emailErrorImage" destination="OxD-j7-nwJ" id="JrS-ri-aCk"/>
                         <outlet property="emailField" destination="v9c-kW-5pU" id="ZMx-Hi-5AY"/>
+                        <outlet property="emailIdView" destination="VW4-zG-XLU" id="s0f-Bm-w4d"/>
+                        <outlet property="fullNameErrorImage" destination="jRF-1s-2wk" id="Zaw-1N-wx5"/>
+                        <outlet property="fullNameView" destination="tax-nf-3PC" id="6Jq-eX-IEF"/>
+                        <outlet property="mobileNumberErrorImage" destination="5LS-eQ-f4F" id="fmd-zc-27b"/>
                         <outlet property="mobileNumberField" destination="plx-gC-b7e" id="fmh-Pr-5fx"/>
+                        <outlet property="mobileNumberView" destination="VW4-zG-XLU" id="gyr-vn-HyK"/>
+                        <outlet property="passwordErrorImage" destination="1km-nt-or9" id="7S8-lC-Jbp"/>
                         <outlet property="passwordField" destination="zBJ-ju-E8O" id="pzI-0N-lsT"/>
+                        <outlet property="passwordView" destination="bpB-Y1-XbG" id="IQK-Z1-L7x"/>
                         <outlet property="usernameField" destination="Nav-mY-TdK" id="iw6-Vd-1ZI"/>
                     </connections>
                 </viewController>
