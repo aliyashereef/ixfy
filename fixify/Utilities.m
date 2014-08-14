@@ -49,4 +49,11 @@
     view.layer.borderWidth = 1.0f;
 }
 
+// Validate Mobile Number
++ (BOOL)stringIsValidMobileNumber:(NSString *)checkString{
+    NSString *phoneRegex = @"^[0-9]{6,14}$";
+    NSPredicate *mobileNumberTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [mobileNumberTest evaluateWithObject:checkString];
+}
+
 @end
