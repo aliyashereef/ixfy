@@ -16,7 +16,7 @@
     UIButton *closeButton;
     UIBarButtonItem *leftButton;
     MBProgressHUD *progressHud;
-    PFUser *parseUser;
+    FixifyUser *parseUser;
 }
 @end
 
@@ -141,18 +141,17 @@
         if (self.tradesmanSwitch.isOn){
             tradesman  = YES;
         }
-        parseUser = [PFUser user];
         parseUser.username = self.emailId.text;
         parseUser.password = self.password.text;
-        parseUser[@"FullName"]     = self.fullName.text;
-        parseUser[@"MobileNumber"] = self.mobileNumber.text;
+        parseUser.fullName    = self.fullName.text;
+        parseUser.mobileNumber = self.mobileNumber.text;
         NSData *imageData = UIImagePNGRepresentation(self.defaultAvatar.image);
         PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-        parseUser[@"Image"] = imageFile;
+        parseUser.avatar = imageFile;
         if (tradesman) {
-            parseUser[@"Tradesman"] = @"YES";
+            parseUser.isTradesman = @"YES";
         }else{
-            parseUser[@"Tradesman"] = @"NO";
+            parseUser.isTradesman = @"NO";
         }
         [self performSegueWithIdentifier:@"VERIFY_NUMBER" sender:nil];
     }else{

@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
-#import "ParseUtilities.h"
+#import "FixifyUser.h"
 
 @interface SignInViewController ()
 @end
@@ -29,7 +29,7 @@
     [super viewDidLoad];
     [self setUpView];
     // Check if user is cached and linked to Facebook, if so, bypass login
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]){
+    if ([FixifyUser currentUser] && [PFFacebookUtils isLinkedWithUser:[FixifyUser currentUser]]){
         
     }
 }
@@ -115,26 +115,23 @@
 
 //Perform the parse API login.
 - (void)login{
-    PFUser *user = [PFUser user];
-    user.username = self.emailField.text;
-    user.password = self.passwordField.text;
-    ParseUtilities *parse = [[ParseUtilities alloc] init];
-    [parse logInWithUser:user requestSucceeded:^(PFUser *user){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self performSegueWithIdentifier:@"homeScreen" sender:self];
-        }requestFailed:^(NSError *error){
-            //Some error  has ocurred in login process
+    [FixifyUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
+        if (!error) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self performSegueWithIdentifier:@"homeScreen" sender:self];
+            }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
             if ([errorString isEqualToString:@"invalid login credentials"]) {
                 [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
                 [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
                 [self hideErrorImage:NO];
-            }else{
+                }else{
                 [Utilities showAlertWithTitle:@"Error" message:errorString];
+                }
             }
-        }];
+    }];
 }
 
 - (IBAction)signInButtonAction:(id)sender {
@@ -208,7 +205,7 @@
         UITextField *alertTextField = [alertView textFieldAtIndex:0];
         if([self validateEmail:alertTextField.text]) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [PFUser requestPasswordResetForEmailInBackground:alertTextField.text block:^(BOOL succeeded, NSError *error){
+            [FixifyUser requestPasswordResetForEmailInBackground:alertTextField.text block:^(BOOL succeeded, NSError *error){
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 if (!error) {
                     [Utilities showAlertWithTitle:@"Success" message:@"Please check your mail to reset the password"];

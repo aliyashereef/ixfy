@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <parse/Parse.h>
+#import "FixifyUser.h"
+#import "ParseUtilities.h"
 
 @interface VerifyNumberViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *verificationCode;
 
-@property (nonatomic,weak) PFUser *user;
+@property (nonatomic,weak) FixifyUser *user;
 
 @property (nonatomic, strong) IBOutlet UIButton *buttonOne;
 @property (nonatomic, strong) IBOutlet UIButton *buttonTwo;

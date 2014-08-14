@@ -24,4 +24,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 
+- (IBAction)profileView:(id)sender;
+
+
 @end
