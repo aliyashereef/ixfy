@@ -22,7 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *animeViewHeightConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *animeViewWidthtConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *animeViewWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *animeViewHorizontalConstraint;
 

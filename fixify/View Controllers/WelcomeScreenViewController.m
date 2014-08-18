@@ -74,11 +74,10 @@
 
 #pragma mark - Animate Logo
 - (void)animateView{
-    CGRect animeViewNewFrame;
-    animeViewNewFrame.origin.x          = 102.0f;
-    animeViewNewFrame.origin.y          = 48.0f;
-    animeViewNewFrame.size.height       = 124.0f;
-    animeViewNewFrame.size.width        = 116.0f;
+    CGFloat animeViewNewVerticalDistance   = 48.0f;
+    CGFloat animeViewNewHeight             = 124.0f;
+    CGFloat animeViewNewWidth              = 116.0f;
+    CGFloat animeViewNewHorizontalDistance = 102.0f;
     
     [UIView animateWithDuration:1.0f
                           delay:1.0f
@@ -92,10 +91,10 @@
                                                    delay:1.0f
                                                  options: UIViewAnimationOptionCurveLinear
                                               animations:^{
-                                                  self.animeViewVerticalConstraint.constant     = animeViewNewFrame.origin.y;
-                                                  self.animeViewHeightConstraint.constant       = animeViewNewFrame.size.height;
-                                                  self.animeViewWidthtConstraint.constant       = animeViewNewFrame.size.width;
-                                                  self.animeViewHorizontalConstraint.constant   = animeViewNewFrame.origin.x;
+                                                  self.animeViewVerticalConstraint.constant     = animeViewNewVerticalDistance;
+                                                  self.animeViewHeightConstraint.constant       = animeViewNewHeight;
+                                                  self.animeViewWidthConstraint.constant        = animeViewNewWidth;
+                                                  self.animeViewHorizontalConstraint.constant   = animeViewNewHorizontalDistance;
                                                   self.animeView.clipsToBounds                  = YES;
                                                   [self.animeView layoutIfNeeded];
                                                   
