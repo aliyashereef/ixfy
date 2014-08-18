@@ -8,6 +8,7 @@
 
 #import "EditProfileViewController.h"
 #import "MBProgressHUD.h"
+#import "ChangePasswordViewController.h"
 
 @interface EditProfileViewController ()
 
@@ -135,4 +136,13 @@
 - (IBAction)changePassword:(id)sender {
     [self performSegueWithIdentifier:@"CHANGE_PASSWORD" sender:nil];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"CHANGE_PASSWORD"]) {
+        ChangePasswordViewController *changePasswordViewController = (ChangePasswordViewController *)segue.destinationViewController;
+        changePasswordViewController.user =_user;
+    }
+}
+
 @end
+

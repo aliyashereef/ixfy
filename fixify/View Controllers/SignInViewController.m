@@ -170,6 +170,7 @@
         [_passwordField resignFirstResponder];
         [self signInButtonAction:nil];
     }
+    self.signInScrollView.contentOffset = CGPointMake(0,80);
     return NO;
 }
 
@@ -206,7 +207,7 @@
                                                                               timeoutInterval:2.0f];
                         NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
                         [urlConnection start];
-                        fbUser[@"Image"] = [PFFile fileWithName:@"image" data:fullImageData];
+                        fbUser[@"Image"] = [PFFile fileWithName:@"image" data:_imageData];
                         fbUser[@"Tradesman"] = @"NO";
                         [fbUser saveInBackground];
                     }
@@ -248,9 +249,6 @@
     UIImageView *defaultAvatar = [[UIImageView alloc]init];
     defaultAvatar.image = [UIImage imageWithData:_imageData];
     fullImageData = UIImageJPEGRepresentation(defaultAvatar.image, 0);
-    
 }
-
-
 
 @end

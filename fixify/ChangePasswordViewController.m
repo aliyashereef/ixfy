@@ -42,9 +42,9 @@
 
 - (IBAction)doneButton:(id)sender {
     if([self isValidPassword]) {
-        if(_confirmPassword.text == [FixifyUser currentUser].password){
-            [FixifyUser currentUser].password = _passwordField.text;
-            [[FixifyUser currentUser] saveInBackground];
+        if([_confirmPassword.text isEqual: _passwordField.text]){
+            _user.password = _passwordField.text;
+            [_user saveInBackground];
             [self dismissViewControllerAnimated:NO completion:nil];
         }else{
             [Utilities setBorderColor:[UIColor redColor] forView:_confirmPasswordView];
@@ -69,7 +69,7 @@
         isValid = NO;
     }else{
         [Utilities setBorderColor:[UIColor clearColor] forView:_confirmPasswordView];
-        self.confirmPasswordView.hidden = YES;
+        self.confirmPasswordErrorImage.hidden = YES;
     }
     return isValid;
 }

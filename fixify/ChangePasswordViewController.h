@@ -21,6 +21,8 @@
 
 - (IBAction)doneButton:(id)sender;
 
+@property (nonatomic,weak) FixifyUser *user;
+
 @property (weak, nonatomic) IBOutlet UITextField *confirmPassword;
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;

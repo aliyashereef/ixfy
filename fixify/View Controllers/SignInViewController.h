@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSMutableData* imageData;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *signInScrollView;
 - (IBAction)resetPassword:(id)sender;
 - (IBAction)logInWithFacebook:(id)sender;
 
