@@ -8,8 +8,9 @@
 
 #import "AddJobViewController.h"
 #import "CategoryCell.h"
-#import "ParseUtilities.h"
+#import "FixifyUser.h"
 #import <Parse/Parse.h>
+#import "EditProfileViewController.h"
 
 @interface AddJobViewController (){
     UIButton *menuButton;
@@ -76,9 +77,10 @@
 }
 
 - (IBAction)signOutAction:(id)sender {
-    PFUser *user = [PFUser currentUser];
-    ParseUtilities *parse = [[ParseUtilities alloc]init];
-    [parse logOutWithUser:user];
+    [PFUser logOut];
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    [defaults setBool:NO forKey:kLoginStatus];
+    [defaults synchronize];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
@@ -96,4 +98,14 @@
     [UIView commitAnimations];
 }
 
+- (IBAction)profileView:(id)sender {
+    [self performSegueWithIdentifier:@"EDIT_PROFILE" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"EDIT_PROFILE"]) {
+        EditProfileViewController *editProfileViewController = (EditProfileViewController *)segue.destinationViewController;
+        editProfileViewController.user = [FixifyUser currentUser];
+    }
+}
 @end

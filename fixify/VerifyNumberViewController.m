@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MBProgressHUD.h"
 #import <Parse/Parse.h>
-#import "ParseUtilities.h"
+#import "FixifyUser.h"
 
 @interface VerifyNumberViewController ()
 @end
@@ -81,12 +81,12 @@
         [parse signUpWithUser:_user requestSucceeded:^(PFUser *user){
             [progressHud hide:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
-         }requestFailed:^(NSError *error){
+        }requestFailed:^(NSError *error){
              NSString *errorString = [[error userInfo] objectForKey:@"error"];
-             [Utilities showAlertWithTitle:@"Register" message:errorString];
-             [progressHud hide:YES];
-             [self.navigationController popViewControllerAnimated:YES];
-         }];
+            [Utilities showAlertWithTitle:@"Register" message:errorString];
+            [progressHud hide:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }else{
         self.verificationCode.text =[NSString stringWithFormat:@"%@%@",_currentPin,[self addHyphenMark:[_currentPin length]]];
         CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];

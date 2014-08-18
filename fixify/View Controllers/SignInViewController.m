@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
-#import "ParseUtilities.h"
+#import "FixifyUser.h"
 
 @interface SignInViewController ()
 @end
@@ -29,7 +29,7 @@
     [super viewDidLoad];
     [self setUpView];
     // Check if user is cached and linked to Facebook, if so, bypass login
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]){
+    if ([FixifyUser currentUser] && [PFFacebookUtils isLinkedWithUser:[FixifyUser currentUser]]){
         
     }
 }
@@ -115,26 +115,23 @@
 
 //Perform the parse API login.
 - (void)login{
-    PFUser *user = [PFUser user];
-    user.username = self.emailField.text;
-    user.password = self.passwordField.text;
-    ParseUtilities *parse = [[ParseUtilities alloc] init];
-    [parse logInWithUser:user requestSucceeded:^(PFUser *user){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self performSegueWithIdentifier:@"homeScreen" sender:self];
-        }requestFailed:^(NSError *error){
-            //Some error  has ocurred in login process
+    [FixifyUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
+        if (!error) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self performSegueWithIdentifier:@"homeScreen" sender:self];
+            }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
             if ([errorString isEqualToString:@"invalid login credentials"]) {
                 [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
                 [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
                 [self hideErrorImage:NO];
-            }else{
+                }else{
                 [Utilities showAlertWithTitle:@"Error" message:errorString];
+                }
             }
-        }];
+    }];
 }
 
 - (IBAction)signInButtonAction:(id)sender {
@@ -179,9 +176,9 @@
 - (IBAction)logInWithFacebook:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSArray *permissionsArray = @[@"email"];
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *fbUser, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (!user) {
+        if (!fbUser) {
             if (!error){
                 [Utilities showAlertWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login."];
             } else {
@@ -192,9 +189,27 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            if (user.isNew) {
-            } else {
-            }
+            if (fbUser.isNew) {
+                FBRequest *request = [FBRequest requestForMe];
+                [request startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+                    if (!error) {
+                        NSDictionary *userData = (NSDictionary *)user;
+                        NSString *facebookID = userData[@"id"];
+                        fbUser[@"FullName"] = userData[@"name"];
+                        fbUser.username = user[@"email"];
+                        _imageData = [[NSMutableData alloc] init];
+                        NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+                        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
+                                                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                                              timeoutInterval:2.0f];
+                        NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+                        [urlConnection start];
+                        fbUser[@"Image"] = [PFFile fileWithData:_imageData];
+                        fbUser[@"Tradesman"] = @"NO";
+                        [fbUser saveInBackground];
+                    }
+                }];
+            } 
             [self performSegueWithIdentifier:@"homeScreen" sender:self];
         }
     }];
@@ -208,7 +223,7 @@
         UITextField *alertTextField = [alertView textFieldAtIndex:0];
         if([self validateEmail:alertTextField.text]) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [PFUser requestPasswordResetForEmailInBackground:alertTextField.text block:^(BOOL succeeded, NSError *error){
+            [FixifyUser requestPasswordResetForEmailInBackground:alertTextField.text block:^(BOOL succeeded, NSError *error){
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 if (!error) {
                     [Utilities showAlertWithTitle:@"Success" message:@"Please check your mail to reset the password"];
@@ -219,6 +234,17 @@
             }];
         }
     }
+}
+
+// Called every time a chunk of the data is received
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_imageData appendData:data]; // Build the image
+}
+
+// Called when the entire image is finished downloading
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // Set the image in the header imageView
+    
 }
 
 
