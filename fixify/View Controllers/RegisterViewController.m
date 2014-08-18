@@ -177,15 +177,14 @@
         self.emailErrorImage.hidden = YES;
     }
     if(![Utilities isValidMobileNumber:self.mobileNumber.text]){
-        self.mobileNumberView.layer.borderWidth = 2.0f;
-        self.mobileNumberView.layer.borderColor = [[UIColor redColor] CGColor];
+        [Utilities setBorderColor:[UIColor redColor] forView:_mobileNumberView];
         self.mobileNumberErrorImage.hidden = NO;
         isValid = NO;
     }else{
         self.mobileNumberView.layer.borderWidth = 0.0f;
         self.mobileNumberErrorImage.hidden = YES;
     }
-    if ([self.fullName.text isEqualToString:@""]) {
+    if ([[Utilities cleanString:self.fullName.text] isEqualToString:@""]) {
         [Utilities setBorderColor:[UIColor redColor] forView:_fullNameView];
         self.fullNameErrorImage.hidden = NO;
         isValid = NO;
@@ -193,7 +192,7 @@
         self.fullNameView.layer.borderWidth = 0.0f;
         self.fullNameErrorImage.hidden = YES;
     }
-    if ([self.password.text isEqualToString:@""]) {
+    if ([[Utilities cleanString:self.password.text] isEqualToString:@""]) {
         [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
         self.passwordErrorImage.hidden = NO;
         isValid = NO;
