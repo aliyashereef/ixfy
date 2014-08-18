@@ -74,23 +74,29 @@
 
 #pragma mark - Animate Logo
 - (void)animateView{
-    [UIView animateWithDuration:1.0
-                          delay:1.0
+    CGRect animeViewNewFrame;
+    animeViewNewFrame.origin.x          = 102.0f;
+    animeViewNewFrame.origin.y          = 48.0f;
+    animeViewNewFrame.size.height       = 124.0f;
+    animeViewNewFrame.size.width        = 116.0f;
+    
+    [UIView animateWithDuration:1.0f
+                          delay:1.0f
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
-                         _background.alpha = 0.0;
+                         _background.alpha = 0.0f;
                                              }
                      completion:^ (BOOL finished){
                          if (finished) {
-                             [UIView animateWithDuration:1.5
-                                                   delay:1.0
+                             [UIView animateWithDuration:1.5f
+                                                   delay:1.0f
                                                  options: UIViewAnimationOptionCurveLinear
                                               animations:^{
-                                                  self.heightConstraint.constant     = 48.0;
-                                                  self.viewHeightConstraint.constant = 124.0;
-                                                  self.viewWidthtConstraint.constant = 116.0;
-                                                  self.widthConstraint.constant      = 102.0;
-                                                  self.animeView.clipsToBounds       = YES;
+                                                  self.animeViewVerticalConstraint.constant     = animeViewNewFrame.origin.y;
+                                                  self.animeViewHeightConstraint.constant       = animeViewNewFrame.size.height;
+                                                  self.animeViewWidthtConstraint.constant       = animeViewNewFrame.size.width;
+                                                  self.animeViewHorizontalConstraint.constant   = animeViewNewFrame.origin.x;
+                                                  self.animeView.clipsToBounds                  = YES;
                                                   [self.animeView layoutIfNeeded];
                                                   
                                               }completion:^ (BOOL finished){

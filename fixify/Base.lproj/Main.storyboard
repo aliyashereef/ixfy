@@ -197,13 +197,13 @@
                     <navigationItem key="navigationItem" id="rcK-0f-ZWQ"/>
                     <connections>
                         <outlet property="animeView" destination="pfU-qy-LeB" id="Mci-DD-m4I"/>
+                        <outlet property="animeViewHeightConstraint" destination="Wzj-PR-I5V" id="7N9-3r-jzi"/>
+                        <outlet property="animeViewHorizontalConstraint" destination="yvy-aB-U65" id="HJd-LW-MU1"/>
+                        <outlet property="animeViewVerticalConstraint" destination="4FM-1P-hbh" id="CDY-rQ-nnL"/>
+                        <outlet property="animeViewWidthtConstraint" destination="rOl-Ug-4zv" id="hPg-Ar-Nqv"/>
                         <outlet property="appTour" destination="aLp-vq-CN7" id="9pW-1L-NP6"/>
                         <outlet property="background" destination="JMT-pY-z7l" id="RXX-hN-dLW"/>
-                        <outlet property="heightConstraint" destination="4FM-1P-hbh" id="nPk-gG-Xqh"/>
                         <outlet property="pageControl" destination="IWZ-g5-YfB" id="Ldb-xr-TCZ"/>
-                        <outlet property="viewHeightConstraint" destination="Wzj-PR-I5V" id="zxg-RZ-kZS"/>
-                        <outlet property="viewWidthtConstraint" destination="rOl-Ug-4zv" id="ino-RA-eZK"/>
-                        <outlet property="widthConstraint" destination="yvy-aB-U65" id="ble-zT-rg3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

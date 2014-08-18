@@ -50,10 +50,10 @@
 }
 
 // Validate Mobile Number
-+ (BOOL)isValidMobileNumber:(NSString *)checkString{
++ (BOOL)isValidMobileNumber:(NSString *)mobileNumber{
     NSString *phoneRegex = @"^[0-9]{6,14}$";
-    NSPredicate *mobileNumberTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
-    return [mobileNumberTest evaluateWithObject:checkString];
+    NSPredicate *mobileNumberPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [mobileNumberPredicate evaluateWithObject:mobileNumber];
 }
 
 @end
