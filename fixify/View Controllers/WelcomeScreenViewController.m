@@ -78,12 +78,13 @@
     CGFloat animeViewNewHeight             = 124.0f;
     CGFloat animeViewNewWidth              = 116.0f;
     CGFloat animeViewNewHorizontalDistance = 102.0f;
+    CGFloat newBackgroundAlpha             = 0.0f;
     
     [UIView animateWithDuration:1.0f
                           delay:1.0f
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
-                         _background.alpha = 0.0f;
+                         _background.alpha = newBackgroundAlpha;
                                              }
                      completion:^ (BOOL finished){
                          if (finished) {
