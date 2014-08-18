@@ -26,6 +26,6 @@
 + (void)setBorderColor:(UIColor *)color forView:(UIView *)view ;
 
 // Validate Mobile Number
-+ (BOOL)stringIsValidMobileNumber:(NSString *)checkString;
++ (BOOL)isValidMobileNumber:(NSString *)checkString;
 
 @end

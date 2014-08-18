@@ -15,27 +15,16 @@
 
 @implementation WelcomeScreenViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad{
+    self.appTour.hidden = YES;
+    self.pageControl.hidden = YES;
     [super viewDidLoad];
     [self setUpView];
+    [self animateView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [UIView animateWithDuration:2.0
-                          delay: 1.0
-                        options: UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         _background.alpha = 0.0;
-                     }
-                     completion:nil];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -43,6 +32,7 @@
 }
 
 #pragma mark - Collection View Methods
+#pragma mark
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return 4;
@@ -51,9 +41,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"Cell";
 	AppTourCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+   
     if (cell==nil){
         cell=[[AppTourCell alloc] init];
     }
+    
     cell.logo.image =[UIImage imageNamed:@"logo_signIn"];
     cell.description.text = @"Book and manage urgent home repairs, using local trade professionals.";
     cell.subTitle.text = @"Don't DIY - fixify";
@@ -80,4 +72,35 @@
     self.navigationController.navigationBar.hidden= YES;
 }
 
+#pragma mark - Animate Logo
+- (void)animateView{
+    [UIView animateWithDuration:1.0
+                          delay:1.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _background.alpha = 0.0;
+                                             }
+                     completion:^ (BOOL finished){
+                         if (finished) {
+                             [UIView animateWithDuration:1.5
+                                                   delay:1.0
+                                                 options: UIViewAnimationOptionCurveLinear
+                                              animations:^{
+                                                  self.heightConstraint.constant     = 48.0;
+                                                  self.viewHeightConstraint.constant = 124.0;
+                                                  self.viewWidthtConstraint.constant = 116.0;
+                                                  self.widthConstraint.constant      = 102.0;
+                                                  self.animeView.clipsToBounds       = YES;
+                                                  [self.animeView layoutIfNeeded];
+                                                  
+                                              }completion:^ (BOOL finished){
+                                                  if (finished){
+                                                      self.animeView.hidden      = YES;
+                                                      self.appTour.hidden        = NO;
+                                                      self.pageControl.hidden    = NO;
+                                                  }
+                                              }];
+                         }
+                     }];
+}
 @end

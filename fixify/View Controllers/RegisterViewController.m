@@ -85,7 +85,7 @@
     }
     else{
         [self doneButton:self];
-        offsetMultiplier = 4;
+        offsetMultiplier = 3;
     }
     self.registerScrollView.contentOffset = CGPointMake(0,offsetMultiplier * 80);
     return YES;
@@ -137,7 +137,7 @@
 }
 
 - (IBAction)doneButton:(id)sender{
-    if([self invalidEntry]){
+    if([self isValidEntry]){
         BOOL tradesman = NO;
         if (self.tradesmanSwitch.isOn){
             tradesman  = YES;
@@ -167,7 +167,7 @@
 
 #pragma mark - Function to change border colour
 
-- (BOOL)invalidEntry{
+- (BOOL)isValidEntry{
     BOOL isValid = YES;
     if(![Utilities isValidEmail:self.emailId.text]){
         self.emailIdView.layer.borderWidth = 2.0f;
@@ -178,7 +178,7 @@
         self.emailIdView.layer.borderWidth = 0.0f;
         self.emailErrorImage.hidden = YES;
     }
-    if(![Utilities stringIsValidMobileNumber:self.mobileNumber.text]){
+    if(![Utilities isValidMobileNumber:self.mobileNumber.text]){
         self.mobileNumberView.layer.borderWidth = 2.0f;
         self.mobileNumberView.layer.borderColor = [[UIColor redColor] CGColor];
         self.mobileNumberErrorImage.hidden = NO;
