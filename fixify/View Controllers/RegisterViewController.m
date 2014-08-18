@@ -85,7 +85,7 @@
     }
     else{
         [self doneButton:self];
-        offsetMultiplier = 4;
+        offsetMultiplier = 3;
     }
     self.registerScrollView.contentOffset = CGPointMake(0,offsetMultiplier * 80);
     return YES;
@@ -137,7 +137,7 @@
 }
 
 - (IBAction)doneButton:(id)sender{
-    if([self invalidEntry]){
+    if([self isValidEntry]){
         BOOL tradesman = NO;
         if (self.tradesmanSwitch.isOn){
             tradesman  = YES;
@@ -166,7 +166,7 @@
 
 #pragma mark - Function to change border colour
 
-- (BOOL)invalidEntry{
+- (BOOL)isValidEntry{
     BOOL isValid = YES;
     if(![Utilities isValidEmail:self.emailId.text]){
         [Utilities setBorderColor:[UIColor redColor] forView:_emailIdView];
@@ -176,7 +176,7 @@
         self.emailIdView.layer.borderWidth = 0.0f;
         self.emailErrorImage.hidden = YES;
     }
-    if(![Utilities stringIsValidMobileNumber:self.mobileNumber.text]){
+    if(![Utilities isValidMobileNumber:self.mobileNumber.text]){
         [Utilities setBorderColor:[UIColor redColor] forView:_mobileNumberView];
         self.mobileNumberErrorImage.hidden = NO;
         isValid = NO;
@@ -184,7 +184,7 @@
         self.mobileNumberView.layer.borderWidth = 0.0f;
         self.mobileNumberErrorImage.hidden = YES;
     }
-    if ([self.fullName.text isEqualToString:@""]) {
+    if ([[Utilities cleanString:self.fullName.text] isEqualToString:@""]) {
         [Utilities setBorderColor:[UIColor redColor] forView:_fullNameView];
         self.fullNameErrorImage.hidden = NO;
         isValid = NO;
@@ -192,7 +192,7 @@
         self.fullNameView.layer.borderWidth = 0.0f;
         self.fullNameErrorImage.hidden = YES;
     }
-    if ([self.password.text isEqualToString:@""]) {
+    if ([[Utilities cleanString:self.password.text] isEqualToString:@""]) {
         [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
         self.passwordErrorImage.hidden = NO;
         isValid = NO;

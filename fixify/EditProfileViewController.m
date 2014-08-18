@@ -105,7 +105,7 @@
         self.emailIdView.layer.borderWidth = 0.0f;
         self.emailErrorImage.hidden = YES;
     }
-    if(![Utilities stringIsValidMobileNumber:self.mobileNumberField.text]){
+    if(![Utilities isValidMobileNumber:self.mobileNumberField.text]){
         [Utilities setBorderColor:[UIColor redColor] forView:_mobileNumberView];
         self.mobileNumberErrorImage.hidden = NO;
         isValid = NO;

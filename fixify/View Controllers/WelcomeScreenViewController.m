@@ -15,27 +15,22 @@
 
 @implementation WelcomeScreenViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        
+        if (screenSize.height == 480) {
+            _animeViewVerticalConstraint.constant = _animeViewVerticalConstraint.constant - 45.0f;
+        }
+    }
     [self setUpView];
+    [self animateView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [UIView animateWithDuration:2.0
-                          delay: 1.0
-                        options: UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         _background.alpha = 0.0;
-                     }
-                     completion:nil];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -54,6 +49,7 @@
     if (cell==nil){
         cell=[[AppTourCell alloc] init];
     }
+    
     cell.logo.image =[UIImage imageNamed:@"logo_signIn"];
     cell.description.text = @"Book and manage urgent home repairs, using local trade professionals.";
     cell.subTitle.text = @"Don't DIY - fixify";
@@ -80,4 +76,44 @@
     self.navigationController.navigationBar.hidden= YES;
 }
 
+#pragma mark - Animate Logo
+- (void)animateView{
+    self.appTour.hidden = YES;
+    self.pageControl.hidden = YES;
+    
+    CGFloat animeViewNewVerticalDistance   = 48.0f;
+    CGFloat animeViewNewHeight             = 124.0f;
+    CGFloat animeViewNewWidth              = 116.0f;
+    CGFloat animeViewNewHorizontalDistance = 102.0f;
+    CGFloat newBackgroundAlpha             = 0.0f;
+    
+    [UIView animateWithDuration:1.0f
+                          delay:1.0f
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _background.alpha = newBackgroundAlpha;
+                                             }
+                     completion:^ (BOOL finished){
+                         if (finished) {
+                             [UIView animateWithDuration:1.5f
+                                                   delay:1.0f
+                                                 options: UIViewAnimationOptionCurveLinear
+                                              animations:^{
+                                                  self.animeViewVerticalConstraint.constant     = animeViewNewVerticalDistance;
+                                                  self.animeViewHeightConstraint.constant       = animeViewNewHeight;
+                                                  self.animeViewWidthConstraint.constant        = animeViewNewWidth;
+                                                  self.animeViewHorizontalConstraint.constant   = animeViewNewHorizontalDistance;
+                                                  self.animeView.clipsToBounds                  = YES;
+                                                  [self.animeView layoutIfNeeded];
+                                                  
+                                              }completion:^ (BOOL finished){
+                                                  if (finished){
+                                                      self.animeView.hidden      = YES;
+                                                      self.appTour.hidden        = NO;
+                                                      self.pageControl.hidden    = NO;
+                                                  }
+                                              }];
+                         }
+                     }];
+}
 @end
