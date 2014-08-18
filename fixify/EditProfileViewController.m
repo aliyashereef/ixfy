@@ -29,6 +29,8 @@
     self.emailField.text = self.user.username;
     self.mobileNumberField.text = self.user.MobileNumber;
     PFFile *imageFile=self.user.Image;
+    self.avatarView.layer.cornerRadius = self.avatarView.frame.size.width / 2;
+    self.avatarView.clipsToBounds = YES;
     [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
         if (!error){
             self.avatarView.image = [UIImage imageWithData:result];
@@ -40,8 +42,8 @@
     [super viewWillAppear:animated];
     self.emailErrorImage.hidden = YES;
     self.mobileNumberErrorImage.hidden = YES;
-    self.passwordErrorImage.hidden = YES;
     self.fullNameErrorImage.hidden = YES;
+    self.passwordErrorImage.hidden = YES;
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -69,11 +71,10 @@
 - (IBAction)doneButton:(id)sender{
     if([self invalidEntry]){
         _user.username = self.emailField.text;
-        _user.password = self.passwordField.text;
         _user.FullName    = self.usernameField.text;
         _user.MobileNumber = self.mobileNumberField.text;
-        NSData *imageData = UIImagePNGRepresentation(self.avatarView.image);
-        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+        NSData *imageData = UIImageJPEGRepresentation(self.avatarView.image,0);
+        PFFile *imageFile = [PFFile fileWithName:@"image" data:imageData];
         _user.Image = imageFile;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeIndeterminate;
@@ -81,9 +82,14 @@
         [hud show:YES];
         [_user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         [hud hide:YES];
-            if (!error)
-            {// Show success message
-            }}];
+            if (!error){
+                [Utilities showAlertWithTitle:@"SUCCESS" message:@"Updated the profile"];
+            }else{
+                 NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                [Utilities showAlertWithTitle:@"FAILURE" message:errorString];
+            }
+            [self dismissViewControllerAnimated:YES completion:Nil];
+        }];
     }
 }
 
@@ -126,4 +132,7 @@
     return isValid;
 }
 
+- (IBAction)changePassword:(id)sender {
+    [self performSegueWithIdentifier:@"CHANGE_PASSWORD" sender:nil];
+}
 @end

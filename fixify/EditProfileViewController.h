@@ -37,14 +37,17 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *mobileNumberErrorImage;
 
-@property (weak, nonatomic) IBOutlet UIImageView *passwordErrorImage;
-
 @property (weak, nonatomic) IBOutlet UIImageView *fullNameErrorImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *emailErrorImage;
 
+@property (weak, nonatomic) IBOutlet UIImageView *passwordErrorImage;
+
 - (IBAction)doneButton:(id)sender;
 
 @property (nonatomic,weak) FixifyUser *user;
+
+@property (weak, nonatomic) IBOutlet UIButton *changePassword;
+
 
 @end

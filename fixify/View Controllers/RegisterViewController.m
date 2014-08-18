@@ -146,8 +146,8 @@
         parseUser.password = self.password.text;
         parseUser.fullName    = self.fullName.text;
         parseUser.mobileNumber = self.mobileNumber.text;
-        NSData *imageData = UIImagePNGRepresentation(self.defaultAvatar.image);
-        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+        NSData *imageData = UIImageJPEGRepresentation(self.defaultAvatar.image,0);
+        PFFile *imageFile = [PFFile fileWithName:@"image" data:imageData];
         parseUser.Image = imageFile;
         if (tradesman) {
             parseUser.Tradesman = @"YES";

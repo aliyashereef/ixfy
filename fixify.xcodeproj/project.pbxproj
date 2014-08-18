@@ -28,6 +28,7 @@
 		22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22968E761999DA730041E145 /* VerifyNumberViewController.m */; };
 		22980B90199C8DD10088B3AB /* FixifyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B8F199C8DD10088B3AB /* FixifyUser.m */; };
 		22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B92199CAA6A0088B3AB /* EditProfileViewController.m */; };
+		229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */; };
 		22B8B9B819935DE000D7E020 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
 		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
@@ -91,6 +92,8 @@
 		22980B8F199C8DD10088B3AB /* FixifyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixifyUser.m; sourceTree = "<group>"; };
 		22980B91199CAA6A0088B3AB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		22980B92199CAA6A0088B3AB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		229EF15919A1CF56008B5CCF /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
 		22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppTourCell.m; path = "View Controllers/AppTourCell.m"; sourceTree = "<group>"; };
 		22CFAF0E1990F1370077D9E9 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = "View Controllers/SignInViewController.h"; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				22CFAF111990F14C0077D9E9 /* WelcomeScreenViewController.h */,
+				229EF15919A1CF56008B5CCF /* ChangePasswordViewController.h */,
+				229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */,
 				22980B91199CAA6A0088B3AB /* EditProfileViewController.h */,
 				22980B92199CAA6A0088B3AB /* EditProfileViewController.m */,
 				22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */,
@@ -410,6 +415,7 @@
 				22B8B9B819935DE000D7E020 /* (null) in Sources */,
 				22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */,
 				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
+				229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,
 				22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */,
 			);

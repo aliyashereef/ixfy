@@ -17,7 +17,9 @@
 @end
 
 @implementation SignInViewController
-
+{
+    NSData *fullImageData;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -204,7 +206,7 @@
                                                                               timeoutInterval:2.0f];
                         NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
                         [urlConnection start];
-                        fbUser[@"Image"] = [PFFile fileWithData:_imageData];
+                        fbUser[@"Image"] = [PFFile fileWithName:@"image" data:fullImageData];
                         fbUser[@"Tradesman"] = @"NO";
                         [fbUser saveInBackground];
                     }
@@ -243,7 +245,9 @@
 
 // Called when the entire image is finished downloading
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    // Set the image in the header imageView
+    UIImageView *defaultAvatar = [[UIImageView alloc]init];
+    defaultAvatar.image = [UIImage imageWithData:_imageData];
+    fullImageData = UIImageJPEGRepresentation(defaultAvatar.image, 0);
     
 }
 
