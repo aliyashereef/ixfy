@@ -16,9 +16,15 @@
 @implementation WelcomeScreenViewController
 
 - (void)viewDidLoad{
-    self.appTour.hidden = YES;
-    self.pageControl.hidden = YES;
     [super viewDidLoad];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        
+        if (screenSize.height == 480) {
+            _animeViewVerticalConstraint.constant = _animeViewVerticalConstraint.constant - 45.0f;
+        }
+    }
     [self setUpView];
     [self animateView];
 }
@@ -32,7 +38,6 @@
 }
 
 #pragma mark - Collection View Methods
-#pragma mark
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return 4;
@@ -41,7 +46,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"Cell";
 	AppTourCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-   
     if (cell==nil){
         cell=[[AppTourCell alloc] init];
     }
@@ -74,6 +78,9 @@
 
 #pragma mark - Animate Logo
 - (void)animateView{
+    self.appTour.hidden = YES;
+    self.pageControl.hidden = YES;
+    
     CGFloat animeViewNewVerticalDistance   = 48.0f;
     CGFloat animeViewNewHeight             = 124.0f;
     CGFloat animeViewNewWidth              = 116.0f;
