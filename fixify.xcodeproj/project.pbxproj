@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2200F3081998A16A00729065 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2200F3071998A16A00729065 /* CategoryCell.m */; };
 		2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2200F30A1998A3E500729065 /* AddJobViewController.m */; };
+		2208A88F19A373F700D125ED /* JobOppurtunityCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2208A88E19A373F700D125ED /* JobOppurtunityCellTableViewCell.m */; };
+		2208A89119A37EC400D125ED /* window.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2208A89019A37EC400D125ED /* window.jpg */; };
 		2245457F198A6D77009A52FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2245457E198A6D77009A52FE /* Foundation.framework */; };
 		22454581198A6D77009A52FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22454580198A6D77009A52FE /* CoreGraphics.framework */; };
 		22454583198A6D77009A52FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22454582198A6D77009A52FE /* UIKit.framework */; };
@@ -26,6 +28,11 @@
 		2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296061B19936112003062CA /* FacebookSDK.framework */; };
 		2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2296061E19939600003062CA /* TermsAndConditionsViewController.m */; };
 		22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22968E761999DA730041E145 /* VerifyNumberViewController.m */; };
+		22974B7F19A318DA00A245D1 /* JobListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B7E19A318DA00A245D1 /* JobListingViewController.m */; };
+		22974B8219A318FE00A245D1 /* OppurtunityListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B8119A318FE00A245D1 /* OppurtunityListingViewController.m */; };
+		22974B8619A3405B00A245D1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22974B8519A3405B00A245D1 /* MapKit.framework */; };
+		22974B8919A34B1E00A245D1 /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B8819A34B1D00A245D1 /* AnnotationView.m */; };
+		22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B8C19A35F5900A245D1 /* HMSegmentedControl.m */; };
 		22980B90199C8DD10088B3AB /* FixifyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B8F199C8DD10088B3AB /* FixifyUser.m */; };
 		22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B92199CAA6A0088B3AB /* EditProfileViewController.m */; };
 		229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */; };
@@ -63,6 +70,9 @@
 		2200F3071998A16A00729065 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		2200F3091998A3E500729065 /* AddJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddJobViewController.h; sourceTree = "<group>"; };
 		2200F30A1998A3E500729065 /* AddJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddJobViewController.m; sourceTree = "<group>"; };
+		2208A88D19A373F700D125ED /* JobOppurtunityCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobOppurtunityCellTableViewCell.h; sourceTree = "<group>"; };
+		2208A88E19A373F700D125ED /* JobOppurtunityCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobOppurtunityCellTableViewCell.m; sourceTree = "<group>"; };
+		2208A89019A37EC400D125ED /* window.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = window.jpg; sourceTree = "<group>"; };
 		2245457B198A6D77009A52FE /* fixify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fixify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2245457E198A6D77009A52FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		22454580198A6D77009A52FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,6 +98,15 @@
 		2296061E19939600003062CA /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
 		22968E751999DA730041E145 /* VerifyNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyNumberViewController.h; sourceTree = "<group>"; };
 		22968E761999DA730041E145 /* VerifyNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyNumberViewController.m; sourceTree = "<group>"; };
+		22974B7D19A318DA00A245D1 /* JobListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobListingViewController.h; sourceTree = "<group>"; };
+		22974B7E19A318DA00A245D1 /* JobListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobListingViewController.m; sourceTree = "<group>"; };
+		22974B8019A318FE00A245D1 /* OppurtunityListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OppurtunityListingViewController.h; sourceTree = "<group>"; };
+		22974B8119A318FE00A245D1 /* OppurtunityListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OppurtunityListingViewController.m; sourceTree = "<group>"; };
+		22974B8519A3405B00A245D1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		22974B8719A34B1D00A245D1 /* AnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationView.h; sourceTree = "<group>"; };
+		22974B8819A34B1D00A245D1 /* AnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationView.m; sourceTree = "<group>"; };
+		22974B8B19A35F5900A245D1 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		22974B8C19A35F5900A245D1 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		22980B8E199C8DD10088B3AB /* FixifyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixifyUser.h; sourceTree = "<group>"; };
 		22980B8F199C8DD10088B3AB /* FixifyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixifyUser.m; sourceTree = "<group>"; };
 		22980B91199CAA6A0088B3AB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -123,6 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CFAF1E1990F4120077D9E9 /* CoreLocation.framework in Frameworks */,
+				22974B8619A3405B00A245D1 /* MapKit.framework in Frameworks */,
 				22CFAF2A1990F4660077D9E9 /* SystemConfiguration.framework in Frameworks */,
 				22CFAF281990F45D0077D9E9 /* StoreKit.framework in Frameworks */,
 				22CFAF261990F4500077D9E9 /* Security.framework in Frameworks */,
@@ -130,7 +151,6 @@
 				22CFAF221990F43A0077D9E9 /* MobileCoreServices.framework in Frameworks */,
 				22CFAF201990F42E0077D9E9 /* libz.dylib in Frameworks */,
 				22454581198A6D77009A52FE /* CoreGraphics.framework in Frameworks */,
-				22CFAF1E1990F4120077D9E9 /* CoreLocation.framework in Frameworks */,
 				22CFAF1C1990F4020077D9E9 /* CFNetwork.framework in Frameworks */,
 				22CFAF1A1990F3FB0077D9E9 /* AudioToolbox.framework in Frameworks */,
 				22CFAF181990F3E20077D9E9 /* Parse.framework in Frameworks */,
@@ -175,6 +195,7 @@
 		2245457D198A6D77009A52FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22974B8519A3405B00A245D1 /* MapKit.framework */,
 				2296061B19936112003062CA /* FacebookSDK.framework */,
 				22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */,
 				22CFAF271990F45D0077D9E9 /* StoreKit.framework */,
@@ -203,12 +224,11 @@
 				22960618199348F4003062CA /* Utilities.h */,
 				22960619199348F4003062CA /* Utilities.m */,
 				22454590198A6D77009A52FE /* Main.storyboard */,
-				22968E751999DA730041E145 /* VerifyNumberViewController.h */,
-				22968E761999DA730041E145 /* VerifyNumberViewController.m */,
 				2249AEBD1992587F0028F92E /* MBProgressHUD.h */,
 				2249AEBB199258760028F92E /* MBProgressHUD.m */,
 				22DA2BFB1994A2CF00B0FBE8 /* ParseUtilities.h */,
 				22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */,
+				22974B7C19A317D100A245D1 /* Tradesman */,
 				229A6A5C198B5EFE009B1930 /* Resources */,
 				229A6A52198B5C8B009B1930 /* Login */,
 				22EBDACE198F5C7E00323851 /* Views */,
@@ -247,6 +267,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		22974B7C19A317D100A245D1 /* Tradesman */ = {
+			isa = PBXGroup;
+			children = (
+				22974B7D19A318DA00A245D1 /* JobListingViewController.h */,
+				22974B7E19A318DA00A245D1 /* JobListingViewController.m */,
+				22974B8019A318FE00A245D1 /* OppurtunityListingViewController.h */,
+				22974B8119A318FE00A245D1 /* OppurtunityListingViewController.m */,
+				22974B8719A34B1D00A245D1 /* AnnotationView.h */,
+				22974B8819A34B1D00A245D1 /* AnnotationView.m */,
+			);
+			name = Tradesman;
+			sourceTree = "<group>";
+		};
+		22974B8A19A35F5900A245D1 /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				22974B8B19A35F5900A245D1 /* HMSegmentedControl.h */,
+				22974B8C19A35F5900A245D1 /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
 		22980B8D199C8CA60088B3AB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,10 +301,12 @@
 		229A6A52198B5C8B009B1930 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				22968E751999DA730041E145 /* VerifyNumberViewController.h */,
+				22968E761999DA730041E145 /* VerifyNumberViewController.m */,
 				22CFAF111990F14C0077D9E9 /* WelcomeScreenViewController.h */,
+				22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */,
 				229EF15919A1CF56008B5CCF /* ChangePasswordViewController.h */,
 				229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */,
-				22CFAF121990F1520077D9E9 /* WelcomeScreenViewController.m */,
 				22980B91199CAA6A0088B3AB /* EditProfileViewController.h */,
 				22980B92199CAA6A0088B3AB /* EditProfileViewController.m */,
 				22CFAF0E1990F1370077D9E9 /* SignInViewController.h */,
@@ -280,6 +324,7 @@
 		229A6A5C198B5EFE009B1930 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				22974B8A19A35F5900A245D1 /* HMSegmentedControl */,
 				229A6A5D198B5F55009B1930 /* Images */,
 			);
 			name = Resources;
@@ -288,6 +333,7 @@
 		229A6A5D198B5F55009B1930 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2208A89019A37EC400D125ED /* window.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -300,6 +346,8 @@
 				22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */,
 				2200F3061998A16A00729065 /* CategoryCell.h */,
 				2200F3071998A16A00729065 /* CategoryCell.m */,
+				2208A88D19A373F700D125ED /* JobOppurtunityCellTableViewCell.h */,
+				2208A88E19A373F700D125ED /* JobOppurtunityCellTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -381,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D1DF821999E85B007F91CD /* Images.xcassets in Resources */,
+				2208A89119A37EC400D125ED /* window.jpg in Resources */,
 				22454589198A6D77009A52FE /* InfoPlist.strings in Resources */,
 				22454592198A6D77009A52FE /* Main.storyboard in Resources */,
 			);
@@ -404,18 +453,23 @@
 				22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */,
 				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
+				22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */,
+				22974B7F19A318DA00A245D1 /* JobListingViewController.m in Sources */,
 				2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */,
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
 				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
 				2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */,
+				22974B8219A318FE00A245D1 /* OppurtunityListingViewController.m in Sources */,
 				22980B90199C8DD10088B3AB /* FixifyUser.m in Sources */,
 				22DA2BFD1994A2CF00B0FBE8 /* ParseUtilities.m in Sources */,
 				22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */,
+				2208A88F19A373F700D125ED /* JobOppurtunityCellTableViewCell.m in Sources */,
 				2200F3081998A16A00729065 /* CategoryCell.m in Sources */,
 				22B8B9B819935DE000D7E020 /* (null) in Sources */,
 				22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */,
 				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
 				229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */,
+				22974B8919A34B1E00A245D1 /* AnnotationView.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,
 				22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */,
 			);

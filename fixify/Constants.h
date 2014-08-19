@@ -21,6 +21,7 @@
 //constants
 
 #define CategoryCellID @"categoryCell"
+#define JobOppurtunityCellID @"JOB_OPPURTUNITY_CELL"
 #define kLoginStatus @"LOGIN_STATUS"
 #define kLoggedInWithFacebook @"IS_FACEBOOK_LOGIN"
 #define kPinLength 4

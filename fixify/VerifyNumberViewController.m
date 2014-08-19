@@ -77,15 +77,16 @@
         progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHud.mode = MBProgressHUDModeIndeterminate;
         progressHud.labelText = @"Saving";
-        ParseUtilities *parse = [[ParseUtilities alloc]init];
-        [parse signUpWithUser:_user requestSucceeded:^(PFUser *user){
-            [progressHud hide:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }requestFailed:^(NSError *error){
-             NSString *errorString = [[error userInfo] objectForKey:@"error"];
-            [Utilities showAlertWithTitle:@"Register" message:errorString];
-            [progressHud hide:YES];
-            [self.navigationController popViewControllerAnimated:YES];
+        [_user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                [progressHud hide:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }else{
+                [progressHud hide:YES];
+                NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                [Utilities showAlertWithTitle:@"Register" message:errorString];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }];
     }else{
         self.verificationCode.text =[NSString stringWithFormat:@"%@%@",_currentPin,[self addHyphenMark:[_currentPin length]]];
@@ -103,11 +104,8 @@
 
 //add hypen mark for the unfilled digits in the verification pin..
 - (NSString *)addHyphenMark:(NSInteger)pinlength{
-    NSString *hyphenString = @"";
     int difference = kPinLength - pinlength;
-    for (int i=0; i<difference; i++) {
-        hyphenString = [NSString stringWithFormat:@"%@-",hyphenString];
-    }
+    NSString *hyphenString = [@"" stringByPaddingToLength:difference withString:@"-" startingAtIndex:0];
     return hyphenString;
 }
 

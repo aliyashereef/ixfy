@@ -14,13 +14,13 @@
 
 @dynamic password;
 
-@dynamic FullName;
+@dynamic fullName;
 
-@dynamic Image;
+@dynamic image;
 
-@dynamic Tradesman;
+@dynamic isTradesman;
 
-@dynamic MobileNumber;
+@dynamic mobileNumber;
 
 @dynamic objectId;
 

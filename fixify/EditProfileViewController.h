@@ -25,6 +25,8 @@
 
 - (IBAction)closeButtonAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *editProfileScrollView;
+
 - (IBAction)changeAvatarButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *fullNameView;

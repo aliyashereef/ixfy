@@ -150,9 +150,9 @@
         PFFile *imageFile = [PFFile fileWithName:@"image" data:imageData];
         parseUser.Image = imageFile;
         if (tradesman) {
-            parseUser.Tradesman = @"YES";
+            parseUser.isTradesman = YES;
         }else{
-            parseUser.Tradesman = @"NO";
+            parseUser.isTradesman = NO;
         }
         [self performSegueWithIdentifier:@"VERIFY_NUMBER" sender:nil];
     }

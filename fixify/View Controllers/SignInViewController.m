@@ -198,7 +198,7 @@
                     if (!error) {
                         NSDictionary *userData = (NSDictionary *)user;
                         NSString *facebookID = userData[@"id"];
-                        fbUser[@"FullName"] = userData[@"name"];
+                        fbUser[@"fullName"] = userData[@"name"];
                         fbUser.username = user[@"email"];
                         _imageData = [[NSMutableData alloc] init];
                         NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
@@ -207,8 +207,8 @@
                                                                               timeoutInterval:2.0f];
                         NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
                         [urlConnection start];
-                        fbUser[@"Image"] = [PFFile fileWithName:@"image" data:_imageData];
-                        fbUser[@"Tradesman"] = @"NO";
+                        fbUser[@"image"] = [PFFile fileWithName:@"image" data:fullImageData];
+                        fbUser[@"isTradesman"] = @NO;
                         [fbUser saveInBackground];
                     }
                 }];

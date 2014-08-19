@@ -47,8 +47,8 @@
             [_user saveInBackground];
             [self dismissViewControllerAnimated:NO completion:nil];
         }else{
-            [Utilities setBorderColor:[UIColor redColor] forView:_confirmPasswordView];
-            self.confirmPasswordErrorImage.hidden = NO;
+            [Utilities setBorderColor:[UIColor redColor] forView:_passwordView];
+            self.passwordErrorImage.hidden = NO;
         }
     }
 }

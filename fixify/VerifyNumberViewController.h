@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <parse/Parse.h>
 #import "FixifyUser.h"
-#import "ParseUtilities.h"
 
 @interface VerifyNumberViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *verificationCode;

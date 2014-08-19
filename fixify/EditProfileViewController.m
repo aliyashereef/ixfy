@@ -26,10 +26,10 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    self.usernameField.text = self.user.FullName;
+    self.usernameField.text = self.user.fullName;
     self.emailField.text = self.user.username;
-    self.mobileNumberField.text = self.user.MobileNumber;
-    PFFile *imageFile=self.user.Image;
+    self.mobileNumberField.text = self.user.mobileNumber;
+    PFFile *imageFile=self.user.image;
     self.avatarView.layer.cornerRadius = self.avatarView.frame.size.width / 2;
     self.avatarView.clipsToBounds = YES;
     [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
@@ -72,11 +72,11 @@
 - (IBAction)doneButton:(id)sender{
     if([self invalidEntry]){
         _user.username = self.emailField.text;
-        _user.FullName    = self.usernameField.text;
-        _user.MobileNumber = self.mobileNumberField.text;
+        _user.fullName    = self.usernameField.text;
+        _user.mobileNumber = self.mobileNumberField.text;
         NSData *imageData = UIImageJPEGRepresentation(self.avatarView.image,0);
         PFFile *imageFile = [PFFile fileWithName:@"image" data:imageData];
-        _user.Image = imageFile;
+        _user.image = imageFile;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeIndeterminate;
         hud.labelText = @"Uploading";
@@ -142,6 +142,29 @@
         ChangePasswordViewController *changePasswordViewController = (ChangePasswordViewController *)segue.destinationViewController;
         changePasswordViewController.user =_user;
     }
+}
+
+#pragma mark - Textfield delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    int offsetMultiplier;
+    if (textField == self.usernameField) {
+        [self.emailField becomeFirstResponder];
+        offsetMultiplier = 1;
+    }
+    else if (textField == self.emailField){
+        [self.mobileNumberField becomeFirstResponder];
+        offsetMultiplier = 2;
+    }
+    else if (textField == self.mobileNumberField){
+        [self.mobileNumberField resignFirstResponder];
+        offsetMultiplier = 3;
+    }
+    else{
+        [self doneButton:self];
+    }
+    self.editProfileScrollView.contentOffset = CGPointMake(0,offsetMultiplier * 80);
+    return YES;
 }
 
 @end
