@@ -7,13 +7,15 @@
 //
 
 #import "OppurtunityListingViewController.h"
-#import "AnnotationView.h"
 #import "HMSegmentedControl.h"
 #import "JobOppurtunityCellTableViewCell.h"
+#import "SMCalloutView.h"
 
 @interface OppurtunityListingViewController ()
 {
     HMSegmentedControl *segmentedControl;
+    SMCalloutView *calloutView;
+    MKAnnotationView *pinView;
 }
 @end
 
@@ -28,9 +30,8 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.jobMapView.hidden = YES;
-    //_mapView.showsUserLocation = YES;
     [self addSegmentedControl];
+    self.jobMapView.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.navigationItem.title= @"Oppurtunities";
@@ -51,18 +52,45 @@
     feedbackButton.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.rightBarButtonItem = feedbackButton;
+    MKPointAnnotation *annotation =
+    [[MKPointAnnotation alloc]init];
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = 9.931;
+    coordinate.longitude = 76.2678;
+    annotation.coordinate = coordinate;
+    [_mapView addAnnotation:annotation];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    float spanX = 0.00725;
+    float spanY = 0.00725;
+    MKCoordinateRegion region;
+    region.center.latitude = self.mapView.userLocation.coordinate.latitude;
+    region.center.longitude = self.mapView.userLocation.coordinate.longitude;
+    region.span.latitudeDelta = spanX;
+    region.span.longitudeDelta = spanY;
+    [self.mapView setRegion:region animated:YES];
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 
+- (void)mapView:(MKMapView *)mapView
+didUpdateUserLocation:
+(MKUserLocation *)userLocation{
+    _mapView.centerCoordinate =
+    userLocation.location.coordinate;
+    [calloutView dismissCalloutAnimated:NO];
+}
+
 - (void)segmentedControlChangedValue:(UISegmentedControl *)sender{
     if(segmentedControl.selectedSegmentIndex == 0){
         self.listView.hidden = NO;
-        self.mapView.hidden = YES;
+        self.jobMapView.hidden = YES;
     }else if(segmentedControl.selectedSegmentIndex == 1){
-        self.mapView.hidden = NO;
+        self.jobMapView.hidden = NO;
         self.listView.hidden = YES;
     }
 }
@@ -87,9 +115,9 @@
     return headerView;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobOppurtunityCellTableViewCell *cell = (JobOppurtunityCellTableViewCell*)[tableView dequeueReusableCellWithIdentifier:JobOppurtunityCellID];
+    JobOppurtunityCellTableViewCell *cell = (JobOppurtunityCellTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kJobOppurtunityCellID];
     if(cell == nil){
-        cell = [[JobOppurtunityCellTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JobOppurtunityCellID];
+        cell = [[JobOppurtunityCellTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kJobOppurtunityCellID];
     }
     cell.jobTitle.text = @"Window Repair";
     cell.jobDescription.text = @"So i need some one to cook my food and help me repair my kitchen window";
@@ -104,11 +132,17 @@
 
 - (void)addSegmentedControl{
     segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"List",@"Map"]];
-    segmentedControl.frame = CGRectMake(0, 66, 320, 40);
-    segmentedControl.tintColor = [UIColor whiteColor];
+    segmentedControl.frame = CGRectMake(60, 66, 200, 40);
     segmentedControl.backgroundColor = [UIColor clearColor];
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    segmentedControl.selectedTextColor = [UIColor whiteColor];
+    segmentedControl.font = [UIFont fontWithName:@"DINAlternate-Bold" size:15.0f];
+    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    segmentedControl.selectionIndicatorHeight = 4.0f;
+    segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed;
     segmentedControl.selectedSegmentIndex = 0;
+    segmentedControl.selectionIndicatorColor = [UIColor whiteColor];
+    segmentedControl.textColor = [UIColor whiteColor];
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentedControl];
 }
@@ -117,6 +151,61 @@
 }
 
 - (void)feedbackButtonAction{
+}
+
+#pragma mark MKMapView delegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    if ([annotation isKindOfClass:[MKPointAnnotation class]]){
+        pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:kCustomPinAnnotation];
+        if (!pinView){
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kCustomPinAnnotation];
+            //pinView.animatesDrop = YES;
+            pinView.canShowCallout = NO;
+            pinView.image = [UIImage imageNamed:@"map_pin"];
+        } else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
+    calloutView = [SMCalloutView platformCalloutView];
+    calloutView.delegate = self;
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72,0, 170, 20)];
+    titleLabel.text = @"Window Repair";
+    titleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
+    UILabel *subTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72, 25, 170, 40)];
+    subTitleLabel.text = @"so i need some one to cook my food and help me repair my kitchen window";
+    subTitleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
+    subTitleLabel.numberOfLines = 2;
+    subTitleLabel.textColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+    titleLabel.textColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+    calloutView.backgroundView = [[SMCalloutBackgroundView alloc]initWithFrame:CGRectMake(0, 0, 250, 70)];
+    calloutView.contentView = [[SMCalloutView alloc]initWithFrame:CGRectMake(0, 0, 225,35)];
+    calloutView.backgroundView.backgroundColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,65,65)];
+    imageView.image = [UIImage imageNamed:@"window.jpg"];
+    UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(5,5,240,65)];
+    mainView.layer.cornerRadius = 0;
+    mainView.clipsToBounds = YES;
+    mainView.backgroundColor = [UIColor whiteColor];
+    [mainView addSubview:imageView];
+    [mainView addSubview:titleLabel];
+    [mainView addSubview:subTitleLabel];
+    [calloutView.backgroundView addSubview:mainView];
+    calloutView.calloutOffset = annotationView.calloutOffset;
+    [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapView animated:NO];
+    
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    
+    [calloutView dismissCalloutAnimated:YES];
 }
 
 @end

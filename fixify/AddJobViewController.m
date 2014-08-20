@@ -51,9 +51,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CategoryCell *cell = (CategoryCell*)[tableView dequeueReusableCellWithIdentifier:CategoryCellID];
+    CategoryCell *cell = (CategoryCell*)[tableView dequeueReusableCellWithIdentifier:kCategoryCellID];
     if(cell == nil){
-        cell = [[CategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CategoryCellID];
+        cell = [[CategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCategoryCellID];
     }
     cell.categoryName.text = @"Engineer";
     cell.categoryName.textColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];

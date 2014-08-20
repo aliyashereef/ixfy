@@ -594,7 +594,7 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInView:self];
-    NSLog(@"touchLocation.x %f",touchLocation.x);
+    
     
     if (CGRectContainsPoint(self.bounds, touchLocation)) {
         NSInteger segment = 0;
