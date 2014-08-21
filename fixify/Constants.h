@@ -21,6 +21,8 @@
 //constants
 
 #define kCategoryCellID @"categoryCell"
+#define kJObImageCellID @"JOB_IMAGE"
+#define kCommentListID @"COMMENTS_LIST"
 #define kJobOppurtunityCellID @"JOB_OPPURTUNITY_CELL"
 #define kCustomPinAnnotation @"CustomPinAnnotationView"
 #define kLoginStatus @"LOGIN_STATUS"

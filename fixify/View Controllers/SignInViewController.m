@@ -32,7 +32,11 @@
     [self setUpView];
     // Check if user is cached and linked to Facebook, if so, bypass login
     if ([FixifyUser currentUser] && [PFFacebookUtils isLinkedWithUser:[FixifyUser currentUser]]){
-        
+        if ([FixifyUser currentUser].isTradesman) {
+           // [self performSegueWithIdentifier:@"Tradesman" sender:nil];
+        }else{
+           // [self performSegueWithIdentifier:@"HomeScreen" sender:nil];
+        }
     }
 }
 
@@ -122,7 +126,11 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [self performSegueWithIdentifier:@"homeScreen" sender:self];
+            if (user[@"isTradesman"]) {
+                [self performSegueWithIdentifier:@"Tradesman" sender:nil];
+            }else{
+                [self performSegueWithIdentifier:@"HomeScreen" sender:nil];
+            }
             }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
             if ([errorString isEqualToString:@"invalid login credentials"]) {
@@ -213,7 +221,7 @@
                     }
                 }];
             } 
-            [self performSegueWithIdentifier:@"homeScreen" sender:self];
+            [self performSegueWithIdentifier:@"HomeScreen" sender:self];
         }
     }];
 }

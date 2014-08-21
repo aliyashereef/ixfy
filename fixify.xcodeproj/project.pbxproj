@@ -35,6 +35,9 @@
 		22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B8C19A35F5900A245D1 /* HMSegmentedControl.m */; };
 		22980B90199C8DD10088B3AB /* FixifyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B8F199C8DD10088B3AB /* FixifyUser.m */; };
 		22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B92199CAA6A0088B3AB /* EditProfileViewController.m */; };
+		22994A0519A5BA1900151CD0 /* JobDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22994A0419A5BA1900151CD0 /* JobDetailViewController.m */; };
+		22994A0819A5DE2700151CD0 /* CommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22994A0719A5DE2700151CD0 /* CommentsTableViewCell.m */; };
+		22994A0B19A5DE7000151CD0 /* JobImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22994A0A19A5DE7000151CD0 /* JobImageCollectionViewCell.m */; };
 		229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */; };
 		22B8B9B819935DE000D7E020 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
@@ -111,6 +114,12 @@
 		22980B8F199C8DD10088B3AB /* FixifyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixifyUser.m; sourceTree = "<group>"; };
 		22980B91199CAA6A0088B3AB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		22980B92199CAA6A0088B3AB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		22994A0319A5BA1900151CD0 /* JobDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobDetailViewController.h; sourceTree = "<group>"; };
+		22994A0419A5BA1900151CD0 /* JobDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobDetailViewController.m; sourceTree = "<group>"; };
+		22994A0619A5DE2700151CD0 /* CommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewCell.h; sourceTree = "<group>"; };
+		22994A0719A5DE2700151CD0 /* CommentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewCell.m; sourceTree = "<group>"; };
+		22994A0919A5DE7000151CD0 /* JobImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobImageCollectionViewCell.h; sourceTree = "<group>"; };
+		22994A0A19A5DE7000151CD0 /* JobImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobImageCollectionViewCell.m; sourceTree = "<group>"; };
 		229EF15919A1CF56008B5CCF /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
 		229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
@@ -224,8 +233,6 @@
 				22960618199348F4003062CA /* Utilities.h */,
 				22960619199348F4003062CA /* Utilities.m */,
 				22454590198A6D77009A52FE /* Main.storyboard */,
-				2249AEBD1992587F0028F92E /* MBProgressHUD.h */,
-				2249AEBB199258760028F92E /* MBProgressHUD.m */,
 				22DA2BFB1994A2CF00B0FBE8 /* ParseUtilities.h */,
 				22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */,
 				22974B7C19A317D100A245D1 /* Tradesman */,
@@ -274,6 +281,8 @@
 				22974B7E19A318DA00A245D1 /* JobListingViewController.m */,
 				22974B8019A318FE00A245D1 /* OppurtunityListingViewController.h */,
 				22974B8119A318FE00A245D1 /* OppurtunityListingViewController.m */,
+				22994A0319A5BA1900151CD0 /* JobDetailViewController.h */,
+				22994A0419A5BA1900151CD0 /* JobDetailViewController.m */,
 			);
 			name = Tradesman;
 			sourceTree = "<group>";
@@ -322,6 +331,8 @@
 		229A6A5C198B5EFE009B1930 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2249AEBD1992587F0028F92E /* MBProgressHUD.h */,
+				2249AEBB199258760028F92E /* MBProgressHUD.m */,
 				222FE06019A4AC5E00FD61BA /* SMCalloutView.m */,
 				222FE05F19A4AC4D00FD61BA /* SMCalloutView.h */,
 				22974B8A19A35F5900A245D1 /* HMSegmentedControl */,
@@ -348,6 +359,10 @@
 				2200F3071998A16A00729065 /* CategoryCell.m */,
 				2208A88D19A373F700D125ED /* JobOppurtunityCellTableViewCell.h */,
 				2208A88E19A373F700D125ED /* JobOppurtunityCellTableViewCell.m */,
+				22994A0619A5DE2700151CD0 /* CommentsTableViewCell.h */,
+				22994A0719A5DE2700151CD0 /* CommentsTableViewCell.m */,
+				22994A0919A5DE7000151CD0 /* JobImageCollectionViewCell.h */,
+				22994A0A19A5DE7000151CD0 /* JobImageCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -453,8 +468,10 @@
 				22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */,
 				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				222FE06119A4AC5E00FD61BA /* SMCalloutView.m in Sources */,
+				22994A0519A5BA1900151CD0 /* JobDetailViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
 				22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */,
+				22994A0B19A5DE7000151CD0 /* JobImageCollectionViewCell.m in Sources */,
 				22974B7F19A318DA00A245D1 /* JobListingViewController.m in Sources */,
 				2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */,
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
@@ -468,6 +485,7 @@
 				2200F3081998A16A00729065 /* CategoryCell.m in Sources */,
 				22B8B9B819935DE000D7E020 /* (null) in Sources */,
 				22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */,
+				22994A0819A5DE2700151CD0 /* CommentsTableViewCell.m in Sources */,
 				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
 				229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,

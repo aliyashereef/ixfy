@@ -35,7 +35,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.navigationItem.title= @"Oppurtunities";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:  [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -128,6 +128,7 @@ didUpdateUserLocation:
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"JOB_DETAIL" sender:nil];
 }
 
 - (void)addSegmentedControl{
@@ -156,8 +157,9 @@ didUpdateUserLocation:
 #pragma mark MKMapView delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
-    if ([annotation isKindOfClass:[MKUserLocation class]])
+    if ([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
+    }
     if ([annotation isKindOfClass:[MKPointAnnotation class]]){
         pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:kCustomPinAnnotation];
         if (!pinView){
@@ -200,11 +202,9 @@ didUpdateUserLocation:
     [calloutView.backgroundView addSubview:mainView];
     calloutView.calloutOffset = annotationView.calloutOffset;
     [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapView animated:NO];
-    
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    
     [calloutView dismissCalloutAnimated:YES];
 }
 
