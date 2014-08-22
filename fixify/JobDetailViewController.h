@@ -31,5 +31,11 @@
 
 - (IBAction)jobCompletedButtonAction:(id)sender;
 - (IBAction)submitEstimateButtonAction:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobCompletedViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *descriptionLabelHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobProgressViewHeight;
+
 
 @end

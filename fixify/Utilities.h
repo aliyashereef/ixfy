@@ -28,4 +28,7 @@
 // Validate Mobile Number
 + (BOOL)isValidMobileNumber:(NSString *)checkString;
 
+//  Returns required size for text with max width and font.
++ (CGSize)getRequiredSizeForText:(NSString *)text font:(UIFont *)font maxWidth:(CGFloat)width;
+
 @end

@@ -176,36 +176,39 @@ didUpdateUserLocation:
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
-    calloutView = [SMCalloutView platformCalloutView];
-    calloutView.delegate = self;
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72,0, 170, 20)];
-    titleLabel.text = @"Window Repair";
-    titleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
-    UILabel *subTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72, 25, 170, 40)];
-    subTitleLabel.text = @"so i need some one to cook my food and help me repair my kitchen window";
-    subTitleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
-    subTitleLabel.numberOfLines = 2;
-    subTitleLabel.textColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
-    titleLabel.textColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
-    calloutView.backgroundView = [[SMCalloutBackgroundView alloc]initWithFrame:CGRectMake(0, 0, 250, 70)];
-    calloutView.contentView = [[SMCalloutView alloc]initWithFrame:CGRectMake(0, 0, 225,35)];
-    calloutView.backgroundView.backgroundColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,65,65)];
-    imageView.image = [UIImage imageNamed:@"window.jpg"];
-    UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(5,5,240,65)];
-    mainView.layer.cornerRadius = 0;
-    mainView.clipsToBounds = YES;
-    mainView.backgroundColor = [UIColor whiteColor];
-    [mainView addSubview:imageView];
-    [mainView addSubview:titleLabel];
-    [mainView addSubview:subTitleLabel];
-    [calloutView.backgroundView addSubview:mainView];
-    calloutView.calloutOffset = annotationView.calloutOffset;
-    [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapView animated:NO];
+    MKAnnotationView *selectedAnnotation = annotationView;
+    if(![selectedAnnotation.annotation.title isEqualToString:@"Current Location"]){
+        calloutView = [SMCalloutView platformCalloutView];
+        calloutView.delegate = self;
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72,0, 170, 20)];
+        titleLabel.text = @"Window Repair";
+        titleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
+        UILabel *subTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72, 25, 170, 40)];
+        subTitleLabel.text = @"so i need some one to cook my food and help me repair my kitchen window";
+        subTitleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
+        subTitleLabel.numberOfLines = 2;
+        subTitleLabel.textColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+        titleLabel.textColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+        calloutView.backgroundView = [[SMCalloutBackgroundView alloc]initWithFrame:CGRectMake(0, 0, 250, 70)];
+        calloutView.contentView = [[SMCalloutView alloc]initWithFrame:CGRectMake(0, 0, 225,35)];
+        calloutView.backgroundView.backgroundColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,65,65)];
+        imageView.image = [UIImage imageNamed:@"window.jpg"];
+        UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(5,5,240,65)];
+        mainView.layer.cornerRadius = 0;
+        mainView.clipsToBounds = YES;
+        mainView.backgroundColor = [UIColor whiteColor];
+        [mainView addSubview:imageView];
+        [mainView addSubview:titleLabel];
+        [mainView addSubview:subTitleLabel];
+        [calloutView.backgroundView addSubview:mainView];
+        calloutView.calloutOffset = annotationView.calloutOffset;
+        [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapView animated:NO];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    [calloutView dismissCalloutAnimated:YES];
+    [calloutView dismissCalloutAnimated:NO];
 }
 
 @end

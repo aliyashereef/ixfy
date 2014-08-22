@@ -77,7 +77,6 @@
         progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         progressHud.mode = MBProgressHUDModeIndeterminate;
         progressHud.labelText = @"Saving";
-        //PFUser *usr = (PFUser*)_user;
         [_user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 [progressHud hide:YES];

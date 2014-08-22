@@ -26,10 +26,11 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self presentView];
     self.tradesmanImage.layer.cornerRadius = self.tradesmanImage.frame.size.width / 2;
     self.tradesmanImage.clipsToBounds = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
+
     self.navigationItem.title= @"Job Detail";
     UIBarButtonItem *backButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"previous_white"]
                                         style:UIBarButtonItemStylePlain
@@ -42,12 +43,21 @@
     self.navigationItem.leftBarButtonItem = backButton;
     addButton.tintColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
     self.navigationItem.rightBarButtonItem = addButton;
+    CGSize requiredSize =[Utilities getRequiredSizeForText:_descriptionLabel.text
+                                                                 font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
+                                                             maxWidth:_descriptionLabel.frame.size.width];
+    _descriptionLabelHeight.constant = requiredSize.height +1;
     PFFile *imageFile=[FixifyUser currentUser].image;
     [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
         if (!error){
             self.tradesmanImage.image = [UIImage imageWithData:result];
         }
     }];
+}
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self showOrHideJobCompletedView];
+    _detailViewHeight.constant = 445 + _jobProgressViewHeight.constant+ _jobCompletedViewHeight.constant +_descriptionLabelHeight.constant;
 }
 
 - (void)didReceiveMemoryWarning{
@@ -87,6 +97,10 @@
 	return cell;
 }
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 12;
+}
+
 #pragma mark - UIScrollVewDelegate for UIPageControl
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -114,14 +128,21 @@
     cell.avatarView.clipsToBounds = YES;
     cell.avatarView.image = [UIImage imageNamed:@"window.jpg"];
     cell.fullName.text = @"Andrew Simons";
-    cell.commentLabel.text = @"Does the window have double glazing?";
+    cell.commentLabel.text = @"Does the window have double glazing and is it porecelain glass?";
+    CGSize requiredSize = [Utilities getRequiredSizeForText:cell.commentLabel.text
+                                                        font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
+                                                    maxWidth:cell.commentLabel.frame.size.width];
+    cell.commentLabelHeight.constant = requiredSize.height +1;
+    
     return cell;
 }
 
-- (void)presentView{
+- (void)showOrHideJobCompletedView{
     int r = arc4random() % 10;
     if (r%2 ==0) {
+        _jobCompletedViewHeight.constant = 0;
     }else{
+        _jobProgressViewHeight.constant = 0;
     }
 }
 

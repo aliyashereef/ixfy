@@ -56,4 +56,13 @@
     return [mobileNumberPredicate evaluateWithObject:mobileNumber];
 }
 
+//  Returns required size for text with max width and font.
++ (CGSize)getRequiredSizeForText:(NSString *)text font:(UIFont *)font maxWidth:(CGFloat)width {
+    CGRect textRect = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName:font}
+                                         context:nil];
+    return textRect.size;
+}
+
 @end
