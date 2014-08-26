@@ -29,4 +29,9 @@
 #define kLoggedInWithFacebook @"IS_FACEBOOK_LOGIN"
 #define kPinLength 4
 
+//colors
+
+#define kThemeBrown   [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1]      
+
+
 #endif

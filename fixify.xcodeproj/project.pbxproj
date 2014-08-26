@@ -29,6 +29,7 @@
 		2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296061B19936112003062CA /* FacebookSDK.framework */; };
 		2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2296061E19939600003062CA /* TermsAndConditionsViewController.m */; };
 		22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22968E761999DA730041E145 /* VerifyNumberViewController.m */; };
+		2296F03E19AC5B9C004364CA /* SubmitQuoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2296F03D19AC5B9C004364CA /* SubmitQuoteViewController.m */; };
 		22974B7F19A318DA00A245D1 /* JobListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B7E19A318DA00A245D1 /* JobListingViewController.m */; };
 		22974B8219A318FE00A245D1 /* OppurtunityListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B8119A318FE00A245D1 /* OppurtunityListingViewController.m */; };
 		22974B8619A3405B00A245D1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22974B8519A3405B00A245D1 /* MapKit.framework */; };
@@ -103,6 +104,8 @@
 		2296061E19939600003062CA /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
 		22968E751999DA730041E145 /* VerifyNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyNumberViewController.h; sourceTree = "<group>"; };
 		22968E761999DA730041E145 /* VerifyNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyNumberViewController.m; sourceTree = "<group>"; };
+		2296F03C19AC5B9C004364CA /* SubmitQuoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitQuoteViewController.h; sourceTree = "<group>"; };
+		2296F03D19AC5B9C004364CA /* SubmitQuoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitQuoteViewController.m; sourceTree = "<group>"; };
 		22974B7D19A318DA00A245D1 /* JobListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobListingViewController.h; sourceTree = "<group>"; };
 		22974B7E19A318DA00A245D1 /* JobListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobListingViewController.m; sourceTree = "<group>"; };
 		22974B8019A318FE00A245D1 /* OppurtunityListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OppurtunityListingViewController.h; sourceTree = "<group>"; };
@@ -283,6 +286,8 @@
 				22974B8119A318FE00A245D1 /* OppurtunityListingViewController.m */,
 				22994A0319A5BA1900151CD0 /* JobDetailViewController.h */,
 				22994A0419A5BA1900151CD0 /* JobDetailViewController.m */,
+				2296F03C19AC5B9C004364CA /* SubmitQuoteViewController.h */,
+				2296F03D19AC5B9C004364CA /* SubmitQuoteViewController.m */,
 			);
 			name = Tradesman;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				22994A0B19A5DE7000151CD0 /* JobImageCollectionViewCell.m in Sources */,
 				22974B7F19A318DA00A245D1 /* JobListingViewController.m in Sources */,
 				2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */,
+				2296F03E19AC5B9C004364CA /* SubmitQuoteViewController.m in Sources */,
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
 				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
 				2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */,

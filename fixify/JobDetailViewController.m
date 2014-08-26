@@ -29,8 +29,7 @@
     self.tradesmanImage.layer.cornerRadius = self.tradesmanImage.frame.size.width / 2;
     self.tradesmanImage.clipsToBounds = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
-
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kThemeBrown,NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     self.navigationItem.title= @"Job Detail";
     UIBarButtonItem *backButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"previous_white"]
                                         style:UIBarButtonItemStylePlain
@@ -39,9 +38,9 @@
     UIBarButtonItem *addButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add_job"] style:UIBarButtonItemStylePlain
                                         target:self
                                         action:@selector(addButtonAction)];
-    backButton.tintColor= [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+    backButton.tintColor= kThemeBrown;
     self.navigationItem.leftBarButtonItem = backButton;
-    addButton.tintColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+    addButton.tintColor = kThemeBrown;
     self.navigationItem.rightBarButtonItem = addButton;
     CGSize requiredSize =[Utilities getRequiredSizeForText:_descriptionLabel.text
                                                                  font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]

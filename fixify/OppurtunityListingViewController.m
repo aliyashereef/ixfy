@@ -35,7 +35,6 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.navigationItem.title= @"Oppurtunities";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:  [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -63,6 +62,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:  [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
     float spanX = 0.00725;
     float spanY = 0.00725;
     MKCoordinateRegion region;
@@ -187,11 +187,11 @@ didUpdateUserLocation:
         subTitleLabel.text = @"so i need some one to cook my food and help me repair my kitchen window";
         subTitleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
         subTitleLabel.numberOfLines = 2;
-        subTitleLabel.textColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
-        titleLabel.textColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+        subTitleLabel.textColor = kThemeBrown;
+        titleLabel.textColor =kThemeBrown;
         calloutView.backgroundView = [[SMCalloutBackgroundView alloc]initWithFrame:CGRectMake(0, 0, 250, 70)];
         calloutView.contentView = [[SMCalloutView alloc]initWithFrame:CGRectMake(0, 0, 225,35)];
-        calloutView.backgroundView.backgroundColor =[UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+        calloutView.backgroundView.backgroundColor =kThemeBrown;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,65,65)];
         imageView.image = [UIImage imageNamed:@"window.jpg"];
         UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(5,5,240,65)];

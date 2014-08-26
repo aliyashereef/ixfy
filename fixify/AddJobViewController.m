@@ -56,7 +56,7 @@
         cell = [[CategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCategoryCellID];
     }
     cell.categoryName.text = @"Engineer";
-    cell.categoryName.textColor = [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1];
+    cell.categoryName.textColor = kThemeBrown;
     return cell;
 }
 
