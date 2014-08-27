@@ -94,15 +94,9 @@
     self.date.text = [self formatDate:picker.date];
 }
 
-- (BOOL)isValidNumber:(NSString *)Number{
-    NSString *phoneRegex = @"^(?:|0|[1-9]\\d*)(?:\\.\\d*)?$";
-    NSPredicate *NumberPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
-    return [NumberPredicate evaluateWithObject:Number];
-}
-
 - (BOOL)validAllFields {
     BOOL isValid = YES;
-    if (![self isValidNumber:self.estimate.text]) {
+    if (![Utilities isValidNumber:self.estimate.text]) {
         isValid = NO;
         self.estimateErrorImage.hidden = NO;
         [Utilities setBorderColor:[UIColor redColor] forView:_estimateView];

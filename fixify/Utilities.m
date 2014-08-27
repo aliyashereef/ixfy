@@ -65,4 +65,11 @@
     return textRect.size;
 }
 
+// Validate a numeric string.
++ (BOOL)isValidNumber:(NSString *)Number{
+    NSString *phoneRegex = @"^(?:|0|[1-9]\\d*)(?:\\.\\d*)?$";
+    NSPredicate *NumberPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [NumberPredicate evaluateWithObject:Number];
+}
+
 @end

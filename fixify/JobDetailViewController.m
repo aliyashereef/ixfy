@@ -132,7 +132,6 @@
                                                         font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
                                                     maxWidth:cell.commentLabel.frame.size.width];
     cell.commentLabelHeight.constant = requiredSize.height +1;
-    
     return cell;
 }
 

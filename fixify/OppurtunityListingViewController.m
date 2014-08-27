@@ -16,6 +16,7 @@
     HMSegmentedControl *segmentedControl;
     SMCalloutView *calloutView;
     MKAnnotationView *pinView;
+    CLLocationCoordinate2D coordinate;
 }
 @end
 
@@ -53,7 +54,7 @@
     self.navigationItem.rightBarButtonItem = feedbackButton;
     MKPointAnnotation *annotation =
     [[MKPointAnnotation alloc]init];
-    CLLocationCoordinate2D coordinate;
+    
     coordinate.latitude = 9.931;
     coordinate.longitude = 76.2678;
     annotation.coordinate = coordinate;
@@ -66,23 +67,25 @@
     float spanX = 0.00725;
     float spanY = 0.00725;
     MKCoordinateRegion region;
-    region.center.latitude = self.mapView.userLocation.coordinate.latitude;
-    region.center.longitude = self.mapView.userLocation.coordinate.longitude;
+    //region.center.latitude = self.mapView.userLocation.coordinate.latitude;
+    //region.center.longitude = self.mapView.userLocation.coordinate.longitude;
+    region.center.latitude = (self.mapView.userLocation.coordinate.latitude + coordinate.latitude);
+    region.center.longitude = (self.mapView.userLocation.coordinate.longitude + coordinate.longitude);
     region.span.latitudeDelta = spanX;
     region.span.longitudeDelta = spanY;
-    [self.mapView setRegion:region animated:YES];
+    //region.span.latitudeDelta = abs(self.mapView.userLocation.coordinate.latitude - coordinate.latitude);
+    //region.span.latitudeDelta = (region.span.latitudeDelta < 0.01)? 0.01: region.span.latitudeDelta;
+    //region.span.longitudeDelta = abs(self.mapView.userLocation.coordinate.longitude - coordinate.longitude);
+    [_mapView setRegion:region animated:YES];
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 
-- (void)mapView:(MKMapView *)mapView
-didUpdateUserLocation:
-(MKUserLocation *)userLocation{
-    _mapView.centerCoordinate =
-    userLocation.location.coordinate;
-    [calloutView dismissCalloutAnimated:NO];
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    //_mapView.centerCoordinate = userLocation.location.coordinate;
+    
 }
 
 - (void)segmentedControlChangedValue:(UISegmentedControl *)sender{
@@ -208,7 +211,7 @@ didUpdateUserLocation:
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    [calloutView dismissCalloutAnimated:NO];
+    [self performSegueWithIdentifier:@"JOB_DETAIL" sender:nil];
 }
 
 @end

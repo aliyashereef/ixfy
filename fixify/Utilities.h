@@ -31,4 +31,6 @@
 //  Returns required size for text with max width and font.
 + (CGSize)getRequiredSizeForText:(NSString *)text font:(UIFont *)font maxWidth:(CGFloat)width;
 
+// Validate a numeric string.
++ (BOOL)isValidNumber:(NSString *)Number;
 @end
