@@ -33,5 +33,8 @@
 
 #define kThemeBrown   [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1]      
 
+//fonts
+
+#define kThemeFont [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f]
 
 #endif

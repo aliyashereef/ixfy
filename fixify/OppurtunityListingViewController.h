@@ -10,10 +10,13 @@
 #import <MapKit/MapKit.h>
 #import "SMCalloutView.h"
 
+@class CustomMapView;
+
 @interface OppurtunityListingViewController : UIViewController<MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate,SMCalloutViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *listView;
 @property (weak, nonatomic) IBOutlet UIView *jobMapView;
+@property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
 
 @end

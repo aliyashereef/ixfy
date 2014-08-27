@@ -11,8 +11,11 @@
 #import "JobOppurtunityCellTableViewCell.h"
 #import "SMCalloutView.h"
 
-@interface OppurtunityListingViewController ()
-{
+@interface CustomMapView : MKMapView
+@property (nonatomic, strong) SMCalloutView *calloutView;
+@end
+
+@interface OppurtunityListingViewController (){
     HMSegmentedControl *segmentedControl;
     SMCalloutView *calloutView;
     MKAnnotationView *pinView;
@@ -52,50 +55,16 @@
     feedbackButton.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.rightBarButtonItem = feedbackButton;
-    MKPointAnnotation *annotation =
-    [[MKPointAnnotation alloc]init];
-    
-    coordinate.latitude = 9.931;
-    coordinate.longitude = 76.2678;
-    annotation.coordinate = coordinate;
-    [_mapView addAnnotation:annotation];
+    [self addAnnotation];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:  [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
-    float spanX = 0.00725;
-    float spanY = 0.00725;
-    MKCoordinateRegion region;
-    //region.center.latitude = self.mapView.userLocation.coordinate.latitude;
-    //region.center.longitude = self.mapView.userLocation.coordinate.longitude;
-    region.center.latitude = (self.mapView.userLocation.coordinate.latitude + coordinate.latitude);
-    region.center.longitude = (self.mapView.userLocation.coordinate.longitude + coordinate.longitude);
-    region.span.latitudeDelta = spanX;
-    region.span.longitudeDelta = spanY;
-    //region.span.latitudeDelta = abs(self.mapView.userLocation.coordinate.latitude - coordinate.latitude);
-    //region.span.latitudeDelta = (region.span.latitudeDelta < 0.01)? 0.01: region.span.latitudeDelta;
-    //region.span.longitudeDelta = abs(self.mapView.userLocation.coordinate.longitude - coordinate.longitude);
-    [_mapView setRegion:region animated:YES];
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-}
-
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
-    //_mapView.centerCoordinate = userLocation.location.coordinate;
-    
-}
-
-- (void)segmentedControlChangedValue:(UISegmentedControl *)sender{
-    if(segmentedControl.selectedSegmentIndex == 0){
-        self.listView.hidden = NO;
-        self.jobMapView.hidden = YES;
-    }else if(segmentedControl.selectedSegmentIndex == 1){
-        self.jobMapView.hidden = NO;
-        self.listView.hidden = YES;
-    }
 }
 
 #pragma mark - TableView Delegates and Data Source
@@ -109,7 +78,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 10.;
+    return 10;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -134,6 +103,8 @@
     [self performSegueWithIdentifier:@"JOB_DETAIL" sender:nil];
 }
 
+#pragma mark - Private Methods
+
 - (void)addSegmentedControl{
     segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"List",@"Map"]];
     segmentedControl.frame = CGRectMake(60, 66, 200, 40);
@@ -151,15 +122,54 @@
     [self.view addSubview:segmentedControl];
 }
 
+- (void)segmentedControlChangedValue:(UISegmentedControl *)sender{
+    if(segmentedControl.selectedSegmentIndex == 0){
+        self.listView.hidden = NO;
+        self.jobMapView.hidden = YES;
+    }else if(segmentedControl.selectedSegmentIndex == 1){
+        self.jobMapView.hidden = NO;
+        self.listView.hidden = YES;
+    }
+}
+
 - (void)menuButtonAction{
 }
 
 - (void)feedbackButtonAction{
 }
 
+- (void)addAnnotation{
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
+    coordinate.latitude = 10.49861448;
+    coordinate.longitude = 76.2286377;
+    annotation.coordinate = coordinate;
+    self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.jobMapView.bounds];
+    self.mapKitWithSMCalloutView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.mapKitWithSMCalloutView.delegate = self;
+    [self.mapKitWithSMCalloutView addAnnotation:annotation];
+    _mapKitWithSMCalloutView.showsUserLocation = YES;
+    [self.jobMapView addSubview:self.mapKitWithSMCalloutView];
+}
+
 #pragma mark MKMapView delegate
 
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    _mapKitWithSMCalloutView.centerCoordinate = userLocation.location.coordinate;
+    
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+    MKMapRect zoomRect = MKMapRectNull;
+    for (id <MKAnnotation> annotation in _mapKitWithSMCalloutView.annotations) {
+        MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
+        MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
+        if (MKMapRectIsNull(zoomRect)) {
+            zoomRect = pointRect;
+        } else {
+            zoomRect = MKMapRectUnion(zoomRect, pointRect);
+        }
+    }
+    [_mapKitWithSMCalloutView setVisibleMapRect:zoomRect edgePadding:UIEdgeInsetsMake(20,20,20,20) animated:YES];
     if ([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
     }
@@ -167,7 +177,6 @@
         pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:kCustomPinAnnotation];
         if (!pinView){
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kCustomPinAnnotation];
-            //pinView.animatesDrop = YES;
             pinView.canShowCallout = NO;
             pinView.image = [UIImage imageNamed:@"map_pin"];
         } else {
@@ -183,12 +192,13 @@
     if(![selectedAnnotation.annotation.title isEqualToString:@"Current Location"]){
         calloutView = [SMCalloutView platformCalloutView];
         calloutView.delegate = self;
+        self.mapKitWithSMCalloutView.calloutView = calloutView;
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72,0, 170, 20)];
         titleLabel.text = @"Window Repair";
-        titleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
+        titleLabel.font = kThemeFont;
         UILabel *subTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(72, 25, 170, 40)];
         subTitleLabel.text = @"so i need some one to cook my food and help me repair my kitchen window";
-        subTitleLabel.font = [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f];
+        subTitleLabel.font = kThemeFont;
         subTitleLabel.numberOfLines = 2;
         subTitleLabel.textColor = kThemeBrown;
         titleLabel.textColor =kThemeBrown;
@@ -206,12 +216,43 @@
         [mainView addSubview:subTitleLabel];
         [calloutView.backgroundView addSubview:mainView];
         calloutView.calloutOffset = annotationView.calloutOffset;
-        [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapView animated:NO];
+        [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapKitWithSMCalloutView animated:NO];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    [self performSegueWithIdentifier:@"JOB_DETAIL" sender:nil];
+    [calloutView dismissCalloutAnimated:NO];
+}
+
+#pragma mark - CalloutView Delegate Methods
+
+- (void)calloutViewClicked:(SMCalloutView *)calloutView{
+    [self performSegueWithIdentifier:@"JOB_DETAIL" sender:self];
 }
 
 @end
+
+#pragma mark - Custom class Implementation
+
+@interface MKMapView (UIGestureRecognizer)
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
+@end
+
+@implementation CustomMapView
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIControl class]])
+        return NO;
+    else
+        return [super gestureRecognizer:gestureRecognizer shouldReceiveTouch:touch];
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *calloutMaybe = [self.calloutView hitTest:[self.calloutView convertPoint:point fromView:self] withEvent:event];
+    if (calloutMaybe) return calloutMaybe;
+    return [super hitTest:point withEvent:event];
+}
+
+@end
+
