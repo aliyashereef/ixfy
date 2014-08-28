@@ -29,21 +29,8 @@
     self.tradesmanImage.layer.cornerRadius = self.tradesmanImage.frame.size.width / 2;
     self.tradesmanImage.clipsToBounds = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kThemeBrown,NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
-    self.navigationItem.title= @"Job Detail";
-    UIBarButtonItem *backButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"previous_white"]
-                                        style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:@selector(backButtonAction)];
-    UIBarButtonItem *addButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add_job"] style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:@selector(addButtonAction)];
-    backButton.tintColor= kThemeBrown;
-    self.navigationItem.leftBarButtonItem = backButton;
-    addButton.tintColor = kThemeBrown;
-    self.navigationItem.rightBarButtonItem = addButton;
     CGSize requiredSize =[Utilities getRequiredSizeForText:_descriptionLabel.text
-                                                                 font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
+                                                                 font:kThemeFont
                                                              maxWidth:_descriptionLabel.frame.size.width];
     _descriptionLabelHeight.constant = requiredSize.height +1;
     PFFile *imageFile=[FixifyUser currentUser].image;
@@ -70,13 +57,6 @@
 }
 
 - (IBAction)submitEstimateButtonAction:(id)sender {
-}
-
-- (void)backButtonAction{
-    [self.navigationController popToRootViewControllerAnimated:NO];
-}
-
-- (void)addButtonAction{
 }
 
 #pragma mark - Collection View Methods
@@ -144,4 +124,7 @@
     }
 }
 
+- (IBAction)backButtonAction:(id)sender {
+     [self.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

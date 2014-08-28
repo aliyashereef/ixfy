@@ -8,6 +8,7 @@
 
 #import "WelcomeScreenViewController.h"
 #import "AppTourCell.h"
+#import "FixifyUser.h"
 
 @interface WelcomeScreenViewController ()
 
@@ -17,20 +18,28 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        
-        if (screenSize.height == 480) {
-            _animeViewVerticalConstraint.constant = _animeViewVerticalConstraint.constant - 45.0f;
-        }
-    }
-    [self setUpView];
-    [self animateView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if([[NSUserDefaults standardUserDefaults]boolForKey:kLoginStatus]){
+        if ([FixifyUser currentUser].isTradesman){
+            UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"TradesmanViewController"];
+            [self.navigationController presentViewController:controller animated:NO completion:nil];
+        }else{
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"UserController"];
+            [self.navigationController presentViewController:controller animated:NO completion:nil];
+        }
+    }else{
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+            if (screenSize.height == 480) {
+                _animeViewVerticalConstraint.constant = _animeViewVerticalConstraint.constant - 45.0f;
+            }
+        }
+        [self setUpView];
+        [self animateView];
+    }
 }
 
 - (void)didReceiveMemoryWarning{

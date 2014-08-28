@@ -36,6 +36,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobProgressViewHeight;
+- (IBAction)backButtonAction:(id)sender;
 
 
 @end

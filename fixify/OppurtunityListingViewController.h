@@ -18,5 +18,11 @@
 @property (weak, nonatomic) IBOutlet UIView *listView;
 @property (weak, nonatomic) IBOutlet UIView *jobMapView;
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
+@property (weak, nonatomic) IBOutlet UIView *menuView;
+
+- (IBAction)menuButtonAction:(id)sender;
+- (IBAction)signOutButtonAction:(id)sender;
+- (IBAction)menuCloseButtonAction:(id)sender;
+- (IBAction)profileViewButtonAction:(id)sender;
 
 @end

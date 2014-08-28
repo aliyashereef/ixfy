@@ -30,14 +30,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self setUpView];
-    // Check if user is cached and linked to Facebook, if so, bypass login
-    if ([FixifyUser currentUser] && [PFFacebookUtils isLinkedWithUser:[FixifyUser currentUser]]){
-        if ([FixifyUser currentUser].isTradesman) {
-           // [self performSegueWithIdentifier:@"Tradesman" sender:nil];
-        }else{
-           // [self performSegueWithIdentifier:@"HomeScreen" sender:nil];
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning{

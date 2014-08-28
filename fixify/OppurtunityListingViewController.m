@@ -10,6 +10,7 @@
 #import "HMSegmentedControl.h"
 #import "JobOppurtunityCellTableViewCell.h"
 #import "SMCalloutView.h"
+#import "FixifyUser.h"
 
 @interface CustomMapView : MKMapView
 @property (nonatomic, strong) SMCalloutView *calloutView;
@@ -36,31 +37,16 @@
     [super viewDidLoad];
     [self addSegmentedControl];
     self.jobMapView.hidden = YES;
+    self.menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
+    self.menuView.alpha = 0.95f;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    self.navigationItem.title= @"Oppurtunities";
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
-    UIBarButtonItem *menuButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_menu"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                    target:self
-                                                action:@selector(menuButtonAction)];
-    UIBarButtonItem *feedbackButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_menu_feedback"] style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(feedbackButtonAction)];
-    menuButton.tintColor= [UIColor whiteColor];
-    feedbackButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = menuButton;
-    self.navigationItem.rightBarButtonItem = feedbackButton;
+    self.navigationController.navigationBarHidden = YES;
     [self addAnnotation];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:  [UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"DINAlternate-Bold" size:20.0]};
 }
 
 - (void)didReceiveMemoryWarning{
@@ -132,12 +118,6 @@
     }
 }
 
-- (void)menuButtonAction{
-}
-
-- (void)feedbackButtonAction{
-}
-
 - (void)addAnnotation{
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
     coordinate.latitude = 10.49861448;
@@ -155,7 +135,6 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     _mapKitWithSMCalloutView.centerCoordinate = userLocation.location.coordinate;
-    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
@@ -230,6 +209,40 @@
     [self performSegueWithIdentifier:@"JOB_DETAIL" sender:self];
 }
 
+- (IBAction)menuButtonAction:(id)sender {
+    [self.view sendSubviewToBack:segmentedControl];
+    float offset = self.menuView.frame.size.width;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView  setAnimationDelegate:self];
+    CGRect newFrame = self.menuView.frame;
+    newFrame.origin.x = newFrame.origin.x + offset;
+    self.menuView.frame = newFrame;
+    [UIView commitAnimations];
+}
+
+- (IBAction)signOutButtonAction:(id)sender {
+    [FixifyUser logOut];
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    [defaults setBool:NO forKey:kLoginStatus];
+    [defaults synchronize];
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (IBAction)menuCloseButtonAction:(id)sender {
+    float offset = -self.menuView.frame.size.width;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView  setAnimationDelegate:self];
+    CGRect newFrame = self.menuView.frame;
+    newFrame.origin.x = newFrame.origin.x + offset;
+    self.menuView.frame = newFrame;
+    [UIView commitAnimations];
+}
+- (IBAction)profileViewButtonAction:(id)sender {
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileView"];
+    [self.navigationController presentViewController:controller animated:NO completion:nil];
+}
 @end
 
 #pragma mark - Custom class Implementation
