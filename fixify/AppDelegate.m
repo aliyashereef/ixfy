@@ -7,11 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "FixifyJob.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [FixifyUser registerSubclass];
+    [FixifyJob registerSubclass];
     [Parse setApplicationId:ParseApplicationID
                   clientKey:ParseClientKey];
     [PFFacebookUtils initializeFacebook];

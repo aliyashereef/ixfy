@@ -118,12 +118,12 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kLoginStatus];
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kLoggedInWithFacebook];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            if (user[@"isTradesman"]) {
+            if ([user[@"isTradesman"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
                 [self performSegueWithIdentifier:@"Tradesman" sender:nil];
             }else{
                 [self performSegueWithIdentifier:@"HomeScreen" sender:nil];
             }
-            }else{
+        }else{
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
             if ([errorString isEqualToString:@"invalid login credentials"]) {
                 [Utilities setBorderColor:[UIColor redColor] forView:_emailView];
@@ -132,7 +132,7 @@
                 }else{
                 [Utilities showAlertWithTitle:@"Error" message:errorString];
                 }
-            }
+        }
     }];
 }
 

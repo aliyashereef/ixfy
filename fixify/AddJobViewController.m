@@ -17,6 +17,7 @@
     UIBarButtonItem *leftButton;
     UIButton *notificationButton;
     UIBarButtonItem *rightButton;
+    NSMutableArray *jobArray;
 }
 
 @end
@@ -39,6 +40,8 @@
     self.menuView.alpha = 0.95f;
     self.userAvatar.layer.cornerRadius = self.userAvatar.frame.size.width / 2;
     self.userAvatar.clipsToBounds = YES;
+    jobArray = [[NSMutableArray alloc]init];
+    jobArray =[NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"JobList"ofType:@"plist"]];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -47,7 +50,7 @@
 
 #pragma mark - TableView Delegates and Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -55,12 +58,16 @@
     if(cell == nil){
         cell = [[CategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCategoryCellID];
     }
-    cell.categoryName.text = @"Engineer";
+    NSDictionary  *job=[[NSDictionary alloc]init];
+    job = [jobArray objectAtIndex:indexPath.row ];
+    cell.categoryName.text =[job objectForKey:@"title"];
     cell.categoryName.textColor = kThemeBrown;
+    cell.categoryImage.image = [UIImage imageWithData:[job objectForKey:@"image"]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"CHOOSE_ADRESS" sender:nil];
 }
 
 #pragma mark - Bar Button Action
@@ -77,7 +84,7 @@
 }
 
 - (IBAction)signOutAction:(id)sender {
-    [PFUser logOut];
+    [FixifyUser logOut];
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     [defaults setBool:NO forKey:kLoginStatus];
     [defaults synchronize];

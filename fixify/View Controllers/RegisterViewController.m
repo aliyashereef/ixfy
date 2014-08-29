@@ -12,8 +12,7 @@
 #import "VerifyNumberViewController.h"
 #import "Utilities.h"
 
-@interface RegisterViewController ()
-{
+@interface RegisterViewController (){
     UIButton *closeButton;
     UIBarButtonItem *leftButton;
     MBProgressHUD *progressHud;
@@ -32,6 +31,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    parseUser =[[FixifyUser alloc]init];
     progressHud = [[MBProgressHUD alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title= @"Registration";
