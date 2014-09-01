@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddJobDescriptionViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface AddJobDescriptionViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
 - (IBAction)backButtonAction:(id)sender;
 - (IBAction)postTheJobButtonAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 
 - (IBAction)addImage:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *addImage;
+@property (weak, nonatomic) IBOutlet UIScrollView *imageScroll;
+
 
 @end

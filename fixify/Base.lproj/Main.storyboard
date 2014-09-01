@@ -840,6 +840,9 @@
                                         <state key="normal" image="accept_brown">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="postTheJobButtonAction:" destination="LvU-RN-jky" eventType="touchUpInside" id="xfP-C1-Jlk"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show and Tell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phr-Bm-6dB">
                                         <rect key="frame" x="61" y="27" width="198" height="21"/>
@@ -850,27 +853,21 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B2o-xS-YiZ">
-                                <rect key="frame" x="24" y="88" width="262" height="140"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltW-z3-I3T">
-                                <rect key="frame" x="12" y="88" width="262" height="140"/>
+                                <rect key="frame" x="12" y="88" width="296" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.87197618599397586" green="0.8599279932228916" blue="0.8599279932228916" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eb-vb-BOg">
-                                <rect key="frame" x="12" y="240" width="110" height="110"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B2o-xS-YiZ">
+                                <rect key="frame" x="24" y="88" width="284" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="add_image_white">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <color key="textColor" red="0.54901960780000003" green="0.51372549020000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="addImage:" destination="LvU-RN-jky" eventType="touchUpInside" id="7pL-tQ-BMg"/>
+                                    <outlet property="delegate" destination="LvU-RN-jky" id="w4x-Zq-pNr"/>
                                 </connections>
-                            </button>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sy0-Op-rhx">
                                 <rect key="frame" x="12" y="488" width="296" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -883,13 +880,16 @@
                                     <action selector="postTheJobButtonAction:" destination="LvU-RN-jky" eventType="touchUpInside" id="UQm-la-Woi"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIu-JY-d86">
+                                <rect key="frame" x="0.0" y="228" width="320" height="244"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="addImage" destination="4eb-vb-BOg" id="35L-52-1bc"/>
                         <outlet property="descriptionField" destination="B2o-xS-YiZ" id="Kbg-HM-pll"/>
-                        <outlet property="postTheJobButtonAction" destination="nuv-d1-28L" id="zdc-dK-8Qj"/>
+                        <outlet property="imageScroll" destination="iIu-JY-d86" id="aAf-gZ-WAk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZx-Mx-ETr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3143,7 +3143,6 @@
         <image name="Register_View" width="71" height="71"/>
         <image name="accept_brown" width="25" height="25"/>
         <image name="add_estimate_brown" width="30" height="30"/>
-        <image name="add_image_white" width="96" height="96"/>
         <image name="brown_button" width="296" height="55"/>
         <image name="close" width="25" height="25"/>
         <image name="error_field" width="22" height="25"/>
