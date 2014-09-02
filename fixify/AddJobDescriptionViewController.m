@@ -52,12 +52,14 @@
 didFinishPickingMediaWithInfo:(NSDictionary *)info{
     frame = [addImage frame];
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    UIButton *addedImage = [[UIButton alloc]initWithFrame:CGRectMake(frame.origin.x,frame.origin.y,96,96)];
-    [addedImage setImage:[UIImage imageNamed:@"remove_image_or_video"] forState:UIControlStateNormal];
-    [addedImage addTarget:self action:@selector(deteteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *selectionImage = [[UIImageView alloc]initWithFrame:CGRectMake(2,2,94,94)];
-    selectionImage.image = image;
-    [addedImage addSubview:selectionImage];
+    UIImageView *addedImage = [[UIImageView alloc]initWithFrame:CGRectMake(frame.origin.x,frame.origin.y,96,96)];
+    UIButton *deleteButton =[[UIButton alloc]initWithFrame:CGRectMake(80, 0, 20, 20)];
+    [deleteButton setImage:[UIImage imageNamed:@"delete_image"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(deteteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    addedImage.image = image;
+    deleteButton.userInteractionEnabled = YES;
+    addedImage.userInteractionEnabled = YES;
+    [addedImage addSubview:deleteButton];
     [self.imageScroll addSubview:addedImage];
     addedImage.tag = indexOfImage;
     [imageArray addObject:image];
@@ -93,8 +95,23 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
+
 - (IBAction)deteteButtonAction:(id)sender{
-    UIImageView *tappedImage = (UIImageView *)sender;
+    UIImageView *tappedImage = (UIImageView *)[sender superview];
     [imageArray removeObjectAtIndex:(tappedImage.tag-1)];
+    [tappedImage removeFromSuperview];
+    int offsetMultiplier = frame.origin.y/100;
+    if (offsetMultiplier >0) {
+        if (frame.origin.x >12) {
+            frame.origin.x -=100;
+        }else{
+            frame.origin.y -=offsetMultiplier * 100;
+            frame.origin.x = 212;
+        }
+    }else{
+       frame.origin.x -=100;
+    }
+    [addImage setFrame:frame];
 }
+
 @end
