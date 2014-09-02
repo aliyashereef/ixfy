@@ -7,6 +7,7 @@
 //
 
 #import "AddJobDescriptionViewController.h"
+#import "FixifyJob.h"
 
 @interface AddJobDescriptionViewController (){
     UIButton *addImage;
@@ -62,7 +63,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [addedImage addSubview:deleteButton];
     [self.imageScroll addSubview:addedImage];
     addedImage.tag = indexOfImage;
-    [imageArray addObject:image];
+    NSData *imageData = UIImageJPEGRepresentation(image,.5);
+    [imageArray addObject:imageData];
     frame.origin.x += 100;
     if (frame.origin.x >300) {
         frame.origin.y +=100;
@@ -85,12 +87,19 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 }
 
 - (IBAction)postTheJobButtonAction:(id)sender {
-    [Utilities showAlertWithTitle:@"test" message:@"success"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _job.description =self.descriptionField.text;
+    _job.owner =[FixifyUser currentUser];
+    _job.imageArray =imageArray;
+    [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [self performSegueWithIdentifier:@"MY_JOBS" sender:self];
+    }];
 }
 
 - (IBAction)addImage:(id)sender {
     indexOfImage++;
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];imagePickerController = [[UIImagePickerController alloc] init];
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController.delegate=self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:imagePickerController animated:YES completion:nil];

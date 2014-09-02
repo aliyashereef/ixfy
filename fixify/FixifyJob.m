@@ -13,7 +13,7 @@
 
 @dynamic location;
 
-@dynamic image;
+@dynamic imageArray;
 
 @dynamic createdAt;
 

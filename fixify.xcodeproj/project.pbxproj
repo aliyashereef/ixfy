@@ -62,6 +62,8 @@
 		22CFAF2A1990F4660077D9E9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CFAF291990F4660077D9E9 /* SystemConfiguration.framework */; };
 		22D1DF821999E85B007F91CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22D1DF811999E85B007F91CD /* Images.xcassets */; };
 		22DA2BFD1994A2CF00B0FBE8 /* ParseUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */; };
+		22ECD57B19B5ECBF00549327 /* MyJobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ECD57A19B5ECBF00549327 /* MyJobsViewController.m */; };
+		22ECD57E19B5FB4F00549327 /* MyJobsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ECD57D19B5FB4F00549327 /* MyJobsCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +163,10 @@
 		22D1DF811999E85B007F91CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		22DA2BFB1994A2CF00B0FBE8 /* ParseUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUtilities.h; sourceTree = "<group>"; };
 		22DA2BFC1994A2CF00B0FBE8 /* ParseUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUtilities.m; sourceTree = "<group>"; };
+		22ECD57919B5ECBF00549327 /* MyJobsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJobsViewController.h; sourceTree = "<group>"; };
+		22ECD57A19B5ECBF00549327 /* MyJobsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJobsViewController.m; sourceTree = "<group>"; };
+		22ECD57C19B5FB4F00549327 /* MyJobsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJobsCollectionViewCell.h; sourceTree = "<group>"; };
+		22ECD57D19B5FB4F00549327 /* MyJobsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJobsCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +345,8 @@
 				2227376E19B09D07007FD9A0 /* AddJobDescriptionViewController.m */,
 				22986A0719AF2F790069C8F1 /* UserJobDetailViewController.h */,
 				22986A0819AF2F790069C8F1 /* UserJobDetailViewController.m */,
+				22ECD57919B5ECBF00549327 /* MyJobsViewController.h */,
+				22ECD57A19B5ECBF00549327 /* MyJobsViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -399,6 +407,8 @@
 				22994A0719A5DE2700151CD0 /* CommentsTableViewCell.m */,
 				22994A0919A5DE7000151CD0 /* JobImageCollectionViewCell.h */,
 				22994A0A19A5DE7000151CD0 /* JobImageCollectionViewCell.m */,
+				22ECD57C19B5FB4F00549327 /* MyJobsCollectionViewCell.h */,
+				22ECD57D19B5FB4F00549327 /* MyJobsCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -506,6 +516,7 @@
 				22968E771999DA730041E145 /* VerifyNumberViewController.m in Sources */,
 				22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */,
 				222FE06119A4AC5E00FD61BA /* SMCalloutView.m in Sources */,
+				22ECD57B19B5ECBF00549327 /* MyJobsViewController.m in Sources */,
 				22994A0519A5BA1900151CD0 /* JobDetailViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
 				22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */,
@@ -517,6 +528,7 @@
 				229BF3FB19B057B700727119 /* ChooseAdressViewController.m in Sources */,
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
 				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
+				22ECD57E19B5FB4F00549327 /* MyJobsCollectionViewCell.m in Sources */,
 				2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */,
 				22974B8219A318FE00A245D1 /* OppurtunityListingViewController.m in Sources */,
 				22980B90199C8DD10088B3AB /* FixifyUser.m in Sources */,

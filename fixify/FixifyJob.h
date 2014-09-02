@@ -8,6 +8,7 @@
 
 #import <parse/parse.h>
 @class FixifyUser;
+
 @interface FixifyJob : PFObject<PFSubclassing>
 + (NSString *)parseClassName;
 
@@ -15,7 +16,7 @@
 
 @property (retain) NSString *category;
 
-@property (retain) PFFile *image;
+@property (retain) NSArray *imageArray;
 
 @property (retain) FixifyUser *owner;
 

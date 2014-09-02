@@ -9,8 +9,10 @@
 #import "AddJobViewController.h"
 #import "CategoryCell.h"
 #import "FixifyUser.h"
+#import "FixifyJob.h"
 #import <Parse/Parse.h>
 #import "EditProfileViewController.h"
+#import "ChooseAdressViewController.h"
 
 @interface AddJobViewController (){
     UIButton *menuButton;
@@ -18,6 +20,8 @@
     UIButton *notificationButton;
     UIBarButtonItem *rightButton;
     NSMutableArray *jobArray;
+    NSString *jobCategory;
+    FixifyJob *job;
 }
 
 @end
@@ -35,6 +39,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title= @"Add a Job";
+    job = [[FixifyJob alloc]init];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     self.menuView.alpha = 0.95f;
@@ -58,15 +63,25 @@
     if(cell == nil){
         cell = [[CategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCategoryCellID];
     }
-    NSDictionary  *job=[[NSDictionary alloc]init];
-    job = [jobArray objectAtIndex:indexPath.row ];
-    cell.categoryName.text =[job objectForKey:@"title"];
+    NSDictionary  *jobDictionary=[[NSDictionary alloc]init];
+    jobDictionary = [jobArray objectAtIndex:indexPath.row ];
+    cell.categoryName.text =[jobDictionary objectForKey:@"title"];
     cell.categoryName.textColor = kThemeBrown;
-    cell.categoryImage.image = [UIImage imageWithData:[job objectForKey:@"image"]];
+    cell.categoryImage.image = [UIImage imageWithData:[jobDictionary objectForKey:@"image"]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    jobCategory = [[NSString alloc]init];
+    switch (indexPath.row) {
+        case 0:jobCategory = @"WINDOW REPAIR";break;
+        case 1:jobCategory = @"ELECTRICIAN SERVICES";break;
+        case 2:jobCategory = @"LAWN MOWING";break;
+        case 3:jobCategory = @"PLUMBING SERVICES";break;
+        case 4:jobCategory = @"CLEANING SERVICES";break;
+        default:break;
+    }
+    job.category = jobCategory;
     [self performSegueWithIdentifier:@"CHOOSE_ADRESS" sender:nil];
 }
 
@@ -113,6 +128,9 @@
     if ([segue.identifier isEqualToString:@"EDIT_PROFILE"]) {
         EditProfileViewController *editProfileViewController = (EditProfileViewController *)segue.destinationViewController;
         editProfileViewController.user = [FixifyUser currentUser];
+    }else if([segue.identifier isEqualToString:@"CHOOSE_ADRESS"]){
+        ChooseAdressViewController *chooseAdressViewController = (ChooseAdressViewController *)segue.destinationViewController;
+        chooseAdressViewController.job = job;
     }
 }
 @end

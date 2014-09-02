@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FixifyUser.h"
+#import "FixifyJob.h"
+#import "MBProgressHUD.h"
 
 @interface AddJobDescriptionViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -14,6 +17,8 @@
 - (IBAction)postTheJobButtonAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
+@property (weak, nonatomic) NSString *jobObjectId;
+@property (weak, nonatomic) FixifyJob *job;
 
 - (IBAction)addImage:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScroll;
