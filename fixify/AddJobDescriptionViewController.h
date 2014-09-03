@@ -23,5 +23,6 @@
 - (IBAction)addImage:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScroll;
 
+@property (weak, nonatomic) IBOutlet UIView *messageView;
 
 @end

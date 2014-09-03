@@ -26,5 +26,6 @@
 
 - (IBAction)profileView:(id)sender;
 
+- (IBAction)myJobsButtonAction:(id)sender;
 
 @end

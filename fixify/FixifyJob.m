@@ -17,7 +17,7 @@
 
 @dynamic createdAt;
 
-@dynamic description;
+@dynamic jobDescription;
 
 @dynamic category;
 

@@ -20,7 +20,6 @@
     UIButton *notificationButton;
     UIBarButtonItem *rightButton;
     NSMutableArray *jobArray;
-    NSString *jobCategory;
     FixifyJob *job;
 }
 
@@ -45,7 +44,6 @@
     self.menuView.alpha = 0.95f;
     self.userAvatar.layer.cornerRadius = self.userAvatar.frame.size.width / 2;
     self.userAvatar.clipsToBounds = YES;
-    jobArray = [[NSMutableArray alloc]init];
     jobArray =[NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"JobList"ofType:@"plist"]];
 }
 
@@ -72,16 +70,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    jobCategory = [[NSString alloc]init];
-    switch (indexPath.row) {
-        case 0:jobCategory = @"WINDOW REPAIR";break;
-        case 1:jobCategory = @"ELECTRICIAN SERVICES";break;
-        case 2:jobCategory = @"LAWN MOWING";break;
-        case 3:jobCategory = @"PLUMBING SERVICES";break;
-        case 4:jobCategory = @"CLEANING SERVICES";break;
-        default:break;
-    }
-    job.category = jobCategory;
+    job.category = indexPath.row ;
     [self performSegueWithIdentifier:@"CHOOSE_ADRESS" sender:nil];
 }
 
@@ -122,6 +111,11 @@
 
 - (IBAction)profileView:(id)sender {
     [self performSegueWithIdentifier:@"EDIT_PROFILE" sender:nil];
+}
+
+- (IBAction)myJobsButtonAction:(id)sender {
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"MY_JOBS"];
+    [self presentViewController:controller animated:NO completion:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -34,6 +34,7 @@
     [addImage addTarget:self action:@selector(addImage:) forControlEvents:UIControlEventTouchUpInside];
     [addImage setImage:[UIImage imageNamed:@"add_image_brown"] forState:UIControlStateNormal];
     [self.imageScroll addSubview:addImage];
+    [self.imageScroll bringSubviewToFront:self.messageView];
    
 }
 
@@ -87,17 +88,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 }
 
 - (IBAction)postTheJobButtonAction:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _job.description =self.descriptionField.text;
-    _job.owner =[FixifyUser currentUser];
-    _job.imageArray =imageArray;
-    [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        [self performSegueWithIdentifier:@"MY_JOBS" sender:self];
-    }];
+    if(!imageArray || !imageArray.count){
+        [Utilities showAlertWithTitle:@"ERROR" message:@"Please attach an image to continue"];
+    }else{
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        _job.jobDescription =self.descriptionField.text;
+        _job.owner =[FixifyUser currentUser];
+        _job.imageArray =imageArray;
+        [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self performSegueWithIdentifier:@"MY_JOBS" sender:self];
+        }];
+    }
 }
 
 - (IBAction)addImage:(id)sender {
+    [self.messageView removeFromSuperview];
     indexOfImage++;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController.delegate=self;

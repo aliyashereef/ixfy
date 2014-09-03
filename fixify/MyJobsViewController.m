@@ -8,7 +8,9 @@
 
 #import "MyJobsViewController.h"
 
-@interface MyJobsViewController ()
+@interface MyJobsViewController (){
+    NSArray *jobArray;
+}
 
 @end
 
@@ -24,8 +26,12 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    [self getJobs];
+    jobArray =[NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"JobList"ofType:@"plist"]];
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+     [self getJobs];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -39,14 +45,19 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-	MyJobsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_JOBS" forIndexPath:indexPath];
+    MyJobsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_JOBS" forIndexPath:indexPath];
     if (cell==nil){
         cell=[[MyJobsCollectionViewCell alloc] init];
     }
-    FixifyJob *myJob = [_myJobArray objectAtIndex:indexPath.row];
-    cell.myJobCategoryLabel.text = myJob.category;
-    cell.myJobDescriptionLabel.text = myJob.description;
+    cell.myJobImage.layer.cornerRadius = cell.myJobImage.frame.size.width / 2;
+    cell.myJobImage.clipsToBounds = YES;
+    FixifyJob *myJob = _myJobArray[indexPath.row];
+    NSDictionary  *jobDictionary=[[NSDictionary alloc]init];
+    jobDictionary = [jobArray objectAtIndex:myJob.category];
+    cell.jobCategoryImage.image = [UIImage imageWithData:[jobDictionary objectForKey:@"image"]];
+    cell.myJobCategoryLabel.text =[jobDictionary objectForKey:@"title"];
+    cell.myJobImage.image = [UIImage imageWithData:[NSData dataWithData:[myJob.imageArray objectAtIndex:0]]];
+        cell.myJobDescriptionLabel.text = myJob.jobDescription;
 	int pages = floor(_myJobs.contentSize.width / _myJobs.frame.size.width);
     [_pageControl setNumberOfPages:pages];
 	return cell;
@@ -70,8 +81,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         _myJobArray = [objects mutableCopy];
         [self.myJobs reloadData];
-        
     }];
-    
 }
+
 @end

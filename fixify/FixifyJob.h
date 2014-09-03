@@ -12,9 +12,9 @@
 @interface FixifyJob : PFObject<PFSubclassing>
 + (NSString *)parseClassName;
 
-@property (retain) NSString *description;
+@property (retain) NSString *jobDescription;
 
-@property (retain) NSString *category;
+@property NSInteger category;
 
 @property (retain) NSArray *imageArray;
 
