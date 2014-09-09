@@ -7,6 +7,7 @@
 //
 
 #import "ChooseAdressViewController.h"
+#import "SearchAddressViewController.h"
 
 @interface ChooseAdressViewController (){
     CLLocation *pinLocation;
@@ -26,13 +27,11 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [Utilities setBorderColor:kThemeBrown forView:_addressView];
-    float spanX = 0.00725;
-    float spanY = 0.00725;
     pinLocation = [[CLLocation alloc] initWithLatitude:_mapView.userLocation.location.coordinate.latitude longitude:_mapView.userLocation.location.coordinate.latitude];
     MKCoordinateRegion region;
     region.center.latitude = pinLocation.coordinate.latitude;
     region.center.longitude = pinLocation.coordinate.longitude;
-    region.span = MKCoordinateSpanMake(spanX, spanY);
+    region.span = MKCoordinateSpanMake(kSpanX, kSpanX);
     [self.mapView setRegion:region animated:YES];
 }
 
@@ -52,7 +51,7 @@
                                longitude:mapView.centerCoordinate.longitude];
     [self performSelector:@selector(delayedReverseGeocodeLocation)
                withObject:nil
-               afterDelay:0.3];
+               afterDelay:kMapGeocodeDelay];
 }
 - (void)delayedReverseGeocodeLocation {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
@@ -88,8 +87,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"JOB_DESCRIPTION"]) {
         AddJobDescriptionViewController *addJobDescriptionView = (AddJobDescriptionViewController *)segue.destinationViewController;
-        addJobDescriptionView.jobObjectId= self.job.objectId;
         addJobDescriptionView.job = self.job;
+    }else {
+        SearchAddressViewController *searchAddressViewController = (SearchAddressViewController *)segue.destinationViewController;
+        searchAddressViewController.job = self.job;
     }
 }
 

@@ -72,4 +72,17 @@
     return [NumberPredicate evaluateWithObject:Number];
 }
 
+// Returns an array with location details.
++ (NSArray *)getArrayForLocation :(CLPlacemark *)placemark{
+    NSArray *locationArray;
+    NSDictionary *dictionary = [placemark addressDictionary];
+    NSString *addressString = [NSString stringWithFormat:@"%@, %@, %@",[dictionary valueForKey:@"Street"],
+                               [dictionary valueForKey:@"City"],
+                               [dictionary valueForKey:@"State"]];
+    NSString *locationLatitude = [NSString stringWithFormat:@"%f",placemark.location.coordinate.latitude];
+    NSString *locationLongitude = [NSString stringWithFormat:@"%f",placemark.location.coordinate.longitude];
+    locationArray = @[locationLatitude,locationLongitude,addressString];
+    return locationArray;
+}
+
 @end

@@ -26,6 +26,7 @@
 		224545A8198A6D78009A52FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 224545A6198A6D78009A52FE /* InfoPlist.strings */; };
 		224545AA198A6D78009A52FE /* fixifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224545A9198A6D78009A52FE /* fixifyTests.m */; };
 		2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2249AEBB199258760028F92E /* MBProgressHUD.m */; };
+		228FE61919B72E8D0080015E /* SearchAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228FE61819B72E8D0080015E /* SearchAddressViewController.m */; };
 		2296061A199348F4003062CA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22960619199348F4003062CA /* Utilities.m */; };
 		2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296061B19936112003062CA /* FacebookSDK.framework */; };
 		2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2296061E19939600003062CA /* TermsAndConditionsViewController.m */; };
@@ -106,6 +107,8 @@
 		224545A9198A6D78009A52FE /* fixifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fixifyTests.m; sourceTree = "<group>"; };
 		2249AEBB199258760028F92E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		2249AEBD1992587F0028F92E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		228FE61719B72E8D0080015E /* SearchAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAddressViewController.h; sourceTree = "<group>"; };
+		228FE61819B72E8D0080015E /* SearchAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAddressViewController.m; sourceTree = "<group>"; };
 		22960618199348F4003062CA /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		22960619199348F4003062CA /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		2296061B19936112003062CA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = fixify/Resources/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				22986A0819AF2F790069C8F1 /* UserJobDetailViewController.m */,
 				22ECD57919B5ECBF00549327 /* MyJobsViewController.h */,
 				22ECD57A19B5ECBF00549327 /* MyJobsViewController.m */,
+				228FE61719B72E8D0080015E /* SearchAddressViewController.h */,
+				228FE61819B72E8D0080015E /* SearchAddressViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */,
 				22994A0819A5DE2700151CD0 /* CommentsTableViewCell.m in Sources */,
 				22CFAF161990F1690077D9E9 /* RegisterViewController.m in Sources */,
+				228FE61919B72E8D0080015E /* SearchAddressViewController.m in Sources */,
 				229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */,
 				2245458B198A6D77009A52FE /* main.m in Sources */,
 				22CFAF131990F1520077D9E9 /* WelcomeScreenViewController.m in Sources */,

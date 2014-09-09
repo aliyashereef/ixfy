@@ -55,7 +55,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     frame = [addImage frame];
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     UIImageView *addedImage = [[UIImageView alloc]initWithFrame:CGRectMake(frame.origin.x,frame.origin.y,96,96)];
-    UIButton *deleteButton =[[UIButton alloc]initWithFrame:CGRectMake(80, 0, 20, 20)];
+    UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(80, 0, 20, 20)];
     [deleteButton setImage:[UIImage imageNamed:@"delete_image"] forState:UIControlStateNormal];
     [deleteButton addTarget:self action:@selector(deteteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     addedImage.image = image;
@@ -67,9 +67,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSData *imageData = UIImageJPEGRepresentation(image,.5);
     [imageArray addObject:imageData];
     frame.origin.x += 100;
-    if (frame.origin.x >300) {
-        frame.origin.y +=100;
-        frame.origin.x =12;
+    if (frame.origin.x > 300) {
+        frame.origin.y += 100;
+        frame.origin.x = 12;
     }
     [addImage setFrame:frame];
     self.imageScroll.contentSize = CGSizeMake(320, frame.origin.y+130);
@@ -92,9 +92,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
         [Utilities showAlertWithTitle:@"ERROR" message:@"Please attach an image to continue"];
     }else{
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        _job.jobDescription =self.descriptionField.text;
-        _job.owner =[FixifyUser currentUser];
-        _job.imageArray =imageArray;
+        _job.jobDescription = self.descriptionField.text;
+        _job.owner = [FixifyUser currentUser];
+        _job.imageArray = imageArray;
         [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self performSegueWithIdentifier:@"MY_JOBS" sender:self];
@@ -106,7 +106,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [self.messageView removeFromSuperview];
     indexOfImage++;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
-    imagePickerController.delegate=self;
+    imagePickerController.delegate = self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
@@ -120,11 +120,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
         if (frame.origin.x >12) {
             frame.origin.x -=100;
         }else{
-            frame.origin.y -=offsetMultiplier * 100;
+            frame.origin.y -= offsetMultiplier * 100;
             frame.origin.x = 212;
         }
     }else{
-       frame.origin.x -=100;
+       frame.origin.x -= 100;
     }
     [addImage setFrame:frame];
 }

@@ -37,7 +37,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="LOGIN WITH FACEBOOK">
                                         <attributes>
-                                            <font key="NSFont" metaFont="toolTip"/>
+                                            <font key="NSFont" metaFont="smallSystem"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
@@ -785,6 +785,16 @@
                                         <color key="textColor" red="0.54901960780000003" green="0.51372549020000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnP-wl-dOT">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="d5d-CC-KQw" kind="modal" identifier="SEARCH_ADDRESS" id="6EK-7d-BrQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -916,7 +926,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZx-Mx-ETr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="-234"/>
+            <point key="canvasLocation" x="2430" y="-234"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="j3s-Vz-yM8">
@@ -1368,7 +1378,84 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="whK-wh-HpY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1902" y="-1122"/>
+            <point key="canvasLocation" x="2662" y="-1874"/>
+        </scene>
+        <!--Search Address View Controller-->
+        <scene sceneID="0Jt-Ju-BtK">
+            <objects>
+                <viewController id="d5d-CC-KQw" customClass="SearchAddressViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wGR-5y-VVI"/>
+                        <viewControllerLayoutGuide type="bottom" id="YzR-3E-4dq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vsD-sD-twY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Srp-Oj-6U2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KJD-ak-ITf">
+                                        <rect key="frame" x="12" y="29" width="255" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="d5d-CC-KQw" id="0TI-Nj-00k"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7p-vJ-BQ4">
+                                        <rect key="frame" x="283" y="31" width="29" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="closeButtonAction:" destination="d5d-CC-KQw" eventType="touchUpInside" id="4Fa-ng-7L7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.54901960780000003" green="0.51372549020000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gPA-tw-LcA">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SEARCH_ADDRESS" textLabel="tum-2r-wKR" rowHeight="38" style="IBUITableViewCellStyleDefault" id="Qrr-2K-Y0i">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qrr-2K-Y0i" id="KRK-kM-PXo">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tum-2r-wKR">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="d5d-CC-KQw" id="Veb-Sh-GLk"/>
+                                    <outlet property="delegate" destination="d5d-CC-KQw" id="s9S-ii-Hw7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="resultsTableView" destination="gPA-tw-LcA" id="597-tu-tBn"/>
+                        <outlet property="searchField" destination="KJD-ak-ITf" id="PRP-fC-9LD"/>
+                        <segue destination="LvU-RN-jky" kind="modal" identifier="SEARCH_ADDRESS_DESCRIPTION" id="P8i-5R-LIZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HDI-ly-z4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1950" y="-50"/>
         </scene>
         <!--User Job Detail View Controller-->
         <scene sceneID="frW-4g-xqI">
@@ -1594,7 +1681,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oda-8o-JSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2918" y="-1098"/>
+            <point key="canvasLocation" x="2302" y="-1881"/>
         </scene>
         <!--My Jobs View Controller-->
         <scene sceneID="CYc-ca-Ly7">
@@ -1728,7 +1815,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZe-PD-zDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2214" y="-226"/>
+            <point key="canvasLocation" x="2790" y="-234"/>
         </scene>
         <!--Oppurtunity Listing View Controller-->
         <scene sceneID="Sy2-U8-dcn">
@@ -2662,7 +2749,7 @@
                                     <constraint firstAttribute="height" constant="64" id="OJM-bL-UXu"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kci-5Y-vye">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kci-5Y-vye">
                                 <rect key="frame" x="-272" y="0.0" width="272" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -3342,4 +3429,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="P8i-5R-LIZ"/>
+    </inferredMetricsTieBreakers>
 </document>

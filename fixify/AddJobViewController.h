@@ -14,12 +14,6 @@
 
 @property (strong, nonatomic) IBOutlet UIView *menuView;
 
-- (IBAction)menuButton:(id)sender;
-
-- (IBAction)notificationButton:(id)sender;
-
-- (IBAction)menuCloseButton:(id)sender;
-
 @property (strong, nonatomic) IBOutlet UIImageView *userAvatar;
 
 @property (strong, nonatomic) IBOutlet UILabel *userName;
@@ -27,5 +21,11 @@
 - (IBAction)profileView:(id)sender;
 
 - (IBAction)myJobsButtonAction:(id)sender;
+
+- (IBAction)menuButton:(id)sender;
+
+- (IBAction)notificationButton:(id)sender;
+
+- (IBAction)menuCloseButton:(id)sender;
 
 @end

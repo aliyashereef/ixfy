@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface Utilities : NSObject
 
@@ -33,4 +35,9 @@
 
 // Validate a numeric string.
 + (BOOL)isValidNumber:(NSString *)Number;
+
+// Returns an array with location details.
++ (NSArray *)getArrayForLocation :(CLPlacemark *)placemark;
+   
+
 @end

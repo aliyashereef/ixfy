@@ -22,6 +22,7 @@
 
 #define kCategoryCellID @"categoryCell"
 #define kJObImageCellID @"JOB_IMAGE"
+#define kSearchAddressCellID @"SEARCH_ADDRESS"
 #define kCommentListID @"COMMENTS_LIST"
 #define kJobOppurtunityCellID @"JOB_OPPURTUNITY_CELL"
 #define kCustomPinAnnotation @"CustomPinAnnotationView"
@@ -36,5 +37,48 @@
 //fonts
 
 #define kThemeFont [UIFont fontWithName:@"DINAlternate-Bold" size:12.0f]
+
+//Background images
+
+#define kThemeBackground [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]]
+
+// plist attributes
+
+#define kPlistName @"JobList"
+#define kPlistTitle @"title"
+#define kPlistImage @"image"
+
+//segue identifiers
+
+#define kChooseAdressSegue @"CHOOSE_ADRESS"
+#define kEditProfileSegue @"EDIT_PROFILE"
+#define kChooseAdressSegue @"CHOOSE_ADRESS"
+#define kChooseAdressSegue @"CHOOSE_ADRESS"
+#define kSearchAdressDescription @"SEARCH_ADDRESS_DESCRIPTION"
+
+// storyboard IDs
+
+#define kMyJobsViewControllerID @"MY_JOBS"
+
+// Animation durations
+#define kMenuViewAnimationDuration .75
+#define kMapGeocodeDelay 0.3
+
+// strings
+#define kViewTitle @"Add a Job"
+
+//map span cordinates
+#define kSpanX 0.00725
+#define kSpanY 0.00725
+
+// user default keys
+#define kSearchIndex @"SEARCH_INDEX"
+#define kRecentSearch @"RECENT_SEARCHES"
+
+// errors
+#define kError @"ERROR"
+#define kLocationDenied @"Location Services Denied by User"
+#define kNoNetwork @"No Network"
+#define kNoResultsFound @"No Result Found"
 
 #endif

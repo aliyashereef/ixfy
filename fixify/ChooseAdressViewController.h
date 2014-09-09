@@ -15,11 +15,15 @@
 @interface ChooseAdressViewController : UIViewController<MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
 @property (weak, nonatomic) IBOutlet UIView *addressView;
-@property (weak,nonatomic) FixifyJob *job;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (weak,nonatomic) FixifyJob *job;
+
 - (IBAction)closeButtonAction:(id)sender;
+
 - (IBAction)nextButtonAction:(id)sender;
 
 @end
