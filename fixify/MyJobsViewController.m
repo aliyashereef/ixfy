@@ -84,4 +84,8 @@
     }];
 }
 
+- (IBAction)addJobButtonAction:(id)sender {
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kAddJobViewControllerID];
+    [self presentViewController:controller animated:NO completion:nil];
+}
 @end

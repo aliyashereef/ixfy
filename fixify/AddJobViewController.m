@@ -71,7 +71,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     job.category = indexPath.row ;
-    [self performSegueWithIdentifier:kChooseAdressSegue sender:nil];
+    [self performSegueWithIdentifier:kChooseAddressSegue sender:nil];
 }
 
 #pragma mark - Bar Button Actions
@@ -126,7 +126,7 @@
     if ([segue.identifier isEqualToString:kEditProfileSegue]) {
         EditProfileViewController *editProfileViewController = (EditProfileViewController *)segue.destinationViewController;
         editProfileViewController.user = [FixifyUser currentUser];
-    }else if([segue.identifier isEqualToString:kChooseAdressSegue]){
+    }else if([segue.identifier isEqualToString:kChooseAddressSegue]){
         ChooseAdressViewController *chooseAdressViewController = (ChooseAdressViewController *)segue.destinationViewController;
         chooseAdressViewController.job = job;
     }

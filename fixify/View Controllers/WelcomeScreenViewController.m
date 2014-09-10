@@ -23,11 +23,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if([[NSUserDefaults standardUserDefaults]boolForKey:kLoginStatus]){
-        if ([FixifyUser currentUser].isTradesman){
-            UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"TradesmanViewController"];
+        if ([FixifyUser currentUser]&&[FixifyUser currentUser].isTradesman){
+            UINavigationController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kTradesmanViewControllerID];
             [self.navigationController presentViewController:controller animated:NO completion:nil];
         }else{
-            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"UserController"];
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kAddJobViewControllerID];
             [self.navigationController presentViewController:controller animated:NO completion:nil];
         }
     }else{

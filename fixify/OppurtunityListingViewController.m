@@ -11,6 +11,9 @@
 #import "JobOppurtunityCellTableViewCell.h"
 #import "SMCalloutView.h"
 #import "FixifyUser.h"
+#import "FixifyJob.h"
+#import "CategoryListingViewController.h"
+#import "MBProgressHUD.h"
 
 @interface CustomMapView : MKMapView
 @property (nonatomic, strong) SMCalloutView *calloutView;
@@ -21,7 +24,10 @@
     SMCalloutView *calloutView;
     MKAnnotationView *pinView;
     CLLocationCoordinate2D coordinate;
+    CategoryListingViewController * categoryListingViewController;
+    NSArray *titleArray;
 }
+
 @end
 
 @implementation OppurtunityListingViewController
@@ -36,17 +42,35 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self addSegmentedControl];
-    self.jobMapView.hidden = YES;
-    self.menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    self.menuView.alpha = 0.95f;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
-    self.navigationController.navigationBarHidden = YES;
     [self addAnnotation];
+    [self addCategoryView];
+    [self fetchAllJobsList];
+    self.jobMapView.hidden = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.view.backgroundColor = kThemeBackground;
+    self.menuView.backgroundColor = kThemeBackground;
+    self.menuView.alpha = 0.95f;
+    self.navigationController.navigationBarHidden = YES;
+    [_categoryFilterButton addTarget:self action:@selector(showCategories:) forControlEvents:UIControlEventTouchUpInside];
+    titleArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:kPlistName ofType:@"plist"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(showOrHideCategoryView:)
+                                                     name:kFilterSelectionNotification
+                                                   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(categorySelected:)
+                                                     name:kCategorySelectedNotification
+                                                   object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFilterSelectionNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kCategorySelectedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -56,7 +80,7 @@
 #pragma mark - TableView Delegates and Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return _jobArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -72,14 +96,19 @@
     headerView.backgroundColor = [UIColor clearColor];
     return headerView;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobOppurtunityCellTableViewCell *cell = (JobOppurtunityCellTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kJobOppurtunityCellID];
     if(cell == nil){
         cell = [[JobOppurtunityCellTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kJobOppurtunityCellID];
     }
-    cell.jobTitle.text = @"Window Repair";
-    cell.jobDescription.text = @"So i need some one to cook my food and help me repair my kitchen window";
-    cell.jobDistance.text = @"150 m";
+    FixifyJob *job = [_jobArray objectAtIndex:indexPath.section];
+    CLLocation *joblocation  = [[CLLocation alloc]initWithLatitude:job.location.latitude longitude:job.location.longitude];
+    CLLocationDistance meters = [joblocation distanceFromLocation:_mapKitWithSMCalloutView.userLocation.location];
+    cell.jobTitle.text = [NSString stringWithFormat:@"%@",[[titleArray objectAtIndex:job.category] valueForKey:@"title"]];
+    cell.jobImage.image = [UIImage imageWithData:[[titleArray objectAtIndex:job.category] valueForKey:@"image"]];
+    cell.jobDescription.text = job.jobDescription;
+    cell.jobDistance.text = [NSString stringWithFormat:@"%.1f m",meters];
     cell.jobEstimates.text = @"120 Estimates";
     cell.jobListedDate.text = @"Listed:12 Apr 2014";
     return cell;
@@ -90,6 +119,19 @@
 }
 
 #pragma mark - Private Methods
+- (void)fetchAllJobsList{
+    PFQuery *jobQuery = [FixifyJob query];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [jobQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            _jobArray = [objects mutableCopy];
+            [self.jobTableView reloadData];
+        }else{
+            [Utilities showAlertWithTitle:kError message:error.description];
+        }
+    }];
+}
 
 - (void)addSegmentedControl{
     segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"List",@"Map"]];
@@ -180,7 +222,7 @@
         subTitleLabel.font = kThemeFont;
         subTitleLabel.numberOfLines = 2;
         subTitleLabel.textColor = kThemeBrown;
-        titleLabel.textColor =kThemeBrown;
+        titleLabel.textColor = kThemeBrown;
         calloutView.backgroundView = [[SMCalloutBackgroundView alloc]initWithFrame:CGRectMake(0, 0, 250, 70)];
         calloutView.contentView = [[SMCalloutView alloc]initWithFrame:CGRectMake(0, 0, 225,35)];
         calloutView.backgroundView.backgroundColor =kThemeBrown;
@@ -240,9 +282,50 @@
     [UIView commitAnimations];
 }
 - (IBAction)profileViewButtonAction:(id)sender {
-    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileView"];
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kEditProfileViewControllerID];
     [self.navigationController presentViewController:controller animated:NO completion:nil];
 }
+
+- (void)addCategoryView{
+    categoryListingViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kCategoryListingViewControllerID];
+    categoryListingViewController.view.frame = self.view.bounds;
+    [self addChildViewController:categoryListingViewController];
+    [self.view addSubview:categoryListingViewController.view];
+    categoryListingViewController.view.hidden = YES;
+}
+
+- (void)showCategories:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kFilterSelectionNotification object:nil];
+}
+
+- (void)showOrHideCategoryView:(NSNotification *)notification {
+    categoryListingViewController.view.hidden = !categoryListingViewController.view.hidden;
+}
+
+//  Invoked on selecting an item from category list.
+- (void)categorySelected:(NSNotification *)notification {
+    categoryListingViewController.view.hidden = YES;
+    self.category = notification.object;
+    [self fetchCategoryJobs];
+}
+
+- (void) fetchCategoryJobs{
+    PFGeoPoint *userLocation = [PFGeoPoint geoPointWithLocation:_mapKitWithSMCalloutView.userLocation.location];
+    PFQuery *jobQuery = [FixifyJob query];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [jobQuery whereKey:@"category" equalTo:_category];
+    [jobQuery whereKey:@"location" nearGeoPoint:userLocation];
+    [jobQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            _jobArray = [objects mutableCopy];
+            [self.jobTableView reloadData];
+        }else{
+            [Utilities showAlertWithTitle:kError message:error.description];
+        }
+    }];
+}
+
 @end
 
 #pragma mark - Custom class Implementation

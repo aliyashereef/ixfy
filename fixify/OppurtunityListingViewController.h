@@ -19,10 +19,15 @@
 @property (weak, nonatomic) IBOutlet UIView *jobMapView;
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
-
+@property (weak, nonatomic) IBOutlet UIButton *categoryFilterButton;
+@property (weak, nonatomic) IBOutlet UITableView *jobTableView;
+@property (strong, nonatomic) NSNumber *category;
+@property (strong, nonatomic) NSArray *jobArray;
 - (IBAction)menuButtonAction:(id)sender;
 - (IBAction)signOutButtonAction:(id)sender;
 - (IBAction)menuCloseButtonAction:(id)sender;
 - (IBAction)profileViewButtonAction:(id)sender;
+
+
 
 @end

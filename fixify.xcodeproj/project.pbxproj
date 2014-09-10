@@ -11,6 +11,7 @@
 		2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2200F30A1998A3E500729065 /* AddJobViewController.m */; };
 		2208A88F19A373F700D125ED /* JobOppurtunityCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2208A88E19A373F700D125ED /* JobOppurtunityCellTableViewCell.m */; };
 		2208A89119A37EC400D125ED /* window.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2208A89019A37EC400D125ED /* window.jpg */; };
+		220C866C19BF279900CF4497 /* CategoryListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 220C866B19BF279900CF4497 /* CategoryListingViewController.m */; };
 		2227376F19B09D07007FD9A0 /* AddJobDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2227376E19B09D07007FD9A0 /* AddJobDescriptionViewController.m */; };
 		222FE06119A4AC5E00FD61BA /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 222FE06019A4AC5E00FD61BA /* SMCalloutView.m */; };
 		2245457F198A6D77009A52FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2245457E198A6D77009A52FE /* Foundation.framework */; };
@@ -19,7 +20,6 @@
 		22454589198A6D77009A52FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22454587198A6D77009A52FE /* InfoPlist.strings */; };
 		2245458B198A6D77009A52FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2245458A198A6D77009A52FE /* main.m */; };
 		2245458F198A6D77009A52FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2245458E198A6D77009A52FE /* AppDelegate.m */; };
-		22454592198A6D77009A52FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22454590198A6D77009A52FE /* Main.storyboard */; };
 		2245459E198A6D78009A52FE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2245459D198A6D78009A52FE /* XCTest.framework */; };
 		2245459F198A6D78009A52FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2245457E198A6D77009A52FE /* Foundation.framework */; };
 		224545A0198A6D78009A52FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22454582198A6D77009A52FE /* UIKit.framework */; };
@@ -36,6 +36,7 @@
 		22974B8219A318FE00A245D1 /* OppurtunityListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B8119A318FE00A245D1 /* OppurtunityListingViewController.m */; };
 		22974B8619A3405B00A245D1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22974B8519A3405B00A245D1 /* MapKit.framework */; };
 		22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 22974B8C19A35F5900A245D1 /* HMSegmentedControl.m */; };
+		2297FBCB19BFFF1C003E9936 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22454590198A6D77009A52FE /* Main.storyboard */; };
 		22980B90199C8DD10088B3AB /* FixifyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B8F199C8DD10088B3AB /* FixifyUser.m */; };
 		22980B93199CAA6A0088B3AB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22980B92199CAA6A0088B3AB /* EditProfileViewController.m */; };
 		22986A0919AF2F790069C8F1 /* UserJobDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22986A0819AF2F790069C8F1 /* UserJobDetailViewController.m */; };
@@ -85,6 +86,8 @@
 		2208A88D19A373F700D125ED /* JobOppurtunityCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobOppurtunityCellTableViewCell.h; sourceTree = "<group>"; };
 		2208A88E19A373F700D125ED /* JobOppurtunityCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobOppurtunityCellTableViewCell.m; sourceTree = "<group>"; };
 		2208A89019A37EC400D125ED /* window.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = window.jpg; sourceTree = "<group>"; };
+		220C866A19BF279900CF4497 /* CategoryListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListingViewController.h; sourceTree = "<group>"; };
+		220C866B19BF279900CF4497 /* CategoryListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListingViewController.m; sourceTree = "<group>"; };
 		2227376D19B09D07007FD9A0 /* AddJobDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddJobDescriptionViewController.h; sourceTree = "<group>"; };
 		2227376E19B09D07007FD9A0 /* AddJobDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddJobDescriptionViewController.m; sourceTree = "<group>"; };
 		222FE05F19A4AC4D00FD61BA /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMCalloutView.h; path = HMCallOutViews/SMCalloutView.h; sourceTree = SOURCE_ROOT; };
@@ -313,6 +316,8 @@
 				22994A0419A5BA1900151CD0 /* JobDetailViewController.m */,
 				2296F03C19AC5B9C004364CA /* SubmitQuoteViewController.h */,
 				2296F03D19AC5B9C004364CA /* SubmitQuoteViewController.m */,
+				220C866A19BF279900CF4497 /* CategoryListingViewController.h */,
+				220C866B19BF279900CF4497 /* CategoryListingViewController.m */,
 			);
 			name = Tradesman;
 			sourceTree = "<group>";
@@ -494,11 +499,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2297FBCB19BFFF1C003E9936 /* Main.storyboard in Resources */,
 				22D1DF821999E85B007F91CD /* Images.xcassets in Resources */,
 				2208A89119A37EC400D125ED /* window.jpg in Resources */,
 				22454589198A6D77009A52FE /* InfoPlist.strings in Resources */,
 				229BF3AA19B040A400727119 /* JobList.plist in Resources */,
-				22454592198A6D77009A52FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +529,7 @@
 				22ECD57B19B5ECBF00549327 /* MyJobsViewController.m in Sources */,
 				22994A0519A5BA1900151CD0 /* JobDetailViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
+				220C866C19BF279900CF4497 /* CategoryListingViewController.m in Sources */,
 				22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */,
 				22986A0919AF2F790069C8F1 /* UserJobDetailViewController.m in Sources */,
 				22994A0B19A5DE7000151CD0 /* JobImageCollectionViewCell.m in Sources */,

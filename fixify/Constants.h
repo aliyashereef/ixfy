@@ -50,15 +50,17 @@
 
 //segue identifiers
 
-#define kChooseAdressSegue @"CHOOSE_ADRESS"
+#define kChooseAddressSegue @"CHOOSE_ADDRESS"
 #define kEditProfileSegue @"EDIT_PROFILE"
-#define kChooseAdressSegue @"CHOOSE_ADRESS"
-#define kChooseAdressSegue @"CHOOSE_ADRESS"
-#define kSearchAdressDescription @"SEARCH_ADDRESS_DESCRIPTION"
+#define kSearchAddressDescription @"SEARCH_ADDRESS_DESCRIPTION"
 
 // storyboard IDs
 
 #define kMyJobsViewControllerID @"MY_JOBS"
+#define kCategoryListingViewControllerID @"CategoryListingViewControllerStoryBoardID"
+#define kEditProfileViewControllerID @"EditProfileViewStoryBoardID"
+#define kAddJobViewControllerID @"AddJobViewControllerStoryBoardID"
+#define kTradesmanViewControllerID @"TradesmanViewControllerID"
 
 // Animation durations
 #define kMenuViewAnimationDuration .75
@@ -81,4 +83,7 @@
 #define kNoNetwork @"No Network"
 #define kNoResultsFound @"No Result Found"
 
+//notification names
+#define kFilterSelectionNotification @"FILTER SELECTION NOTIFICATION"
+#define kCategorySelectedNotification @"SubCategoryItemSelected"
 #endif
