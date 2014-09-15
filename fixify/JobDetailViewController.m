@@ -26,14 +26,16 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.jobDetailLabel.text = _job.jobDescription;
     self.tradesmanImage.layer.cornerRadius = self.tradesmanImage.frame.size.width / 2;
     self.tradesmanImage.clipsToBounds = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    CGSize requiredSize =[Utilities getRequiredSizeForText:_descriptionLabel.text
+    CGSize requiredSize = [Utilities getRequiredSizeForText:_descriptionLabel.text
                                                                  font:kThemeFont
                                                              maxWidth:_descriptionLabel.frame.size.width];
     _descriptionLabelHeight.constant = requiredSize.height +1;
-    PFFile *imageFile=[FixifyUser currentUser].image;
+    self.tradesmanName.text = [FixifyUser currentUser].fullName;
+    PFFile *imageFile = [FixifyUser currentUser].image;
     [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
         if (!error){
             self.tradesmanImage.image = [UIImage imageWithData:result];
@@ -62,15 +64,15 @@
 #pragma mark - Collection View Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 4;
+    return _job.imageArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JobImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kJObImageCellID forIndexPath:indexPath];
-    if (cell==nil){
-        cell=[[JobImageCollectionViewCell alloc] init];
+    if (cell == nil){
+        cell = [[JobImageCollectionViewCell alloc] init];
     }
-    cell.jobImage.image = [UIImage imageNamed:@"window.jpg"];
+    cell.jobImage.image = [UIImage imageWithData:[_job.imageArray objectAtIndex:indexPath.row]];
     int pages = floor(_jobImageCollectionView.contentSize.width / _jobImageCollectionView.frame.size.width);
     [_pageControl setNumberOfPages:pages];
 	return cell;
@@ -116,8 +118,7 @@
 }
 
 - (void)showOrHideJobCompletedView{
-    int r = arc4random() % 10;
-    if (r%2 ==0) {
+    if ([FixifyUser currentUser].isTradesman) {
         _jobCompletedViewHeight.constant = 0;
     }else{
         _jobProgressViewHeight.constant = 0;
@@ -126,5 +127,12 @@
 
 - (IBAction)backButtonAction:(id)sender {
      [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString: kSubmitQuoteSegue]) {
+        SubmitQuoteViewController *viewController = (SubmitQuoteViewController *)segue.destinationViewController;
+         viewController.activeJob = _job;
+    }
 }
 @end

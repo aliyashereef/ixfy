@@ -7,10 +7,11 @@
 //
 
 #import "SubmitQuoteViewController.h"
+#import "FixifyJobEstimates.h"
 
-@interface SubmitQuoteViewController ()
-
-
+@interface SubmitQuoteViewController (){
+    NSDate *selectedDate;
+}
 @end
 
 @implementation SubmitQuoteViewController
@@ -27,24 +28,16 @@
     self.date.text = [self formatDate:[NSDate date]];
     [self addPickerView];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    UIBarButtonItem *backButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"previous_white"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(backButtonAction)];
-    self.navigationItem.title= @"Submit Estimate";
-    UIBarButtonItem *addButton =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_accept"] style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(submitEstimateButtonAction:)];
-    backButton.tintColor= kThemeBrown;
-    addButton.tintColor = kThemeBrown;
-    self.navigationItem.leftBarButtonItem = backButton;
-    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.estimateErrorImage.hidden = YES;
     self.descriptionErrorImage.hidden = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -87,16 +80,19 @@
     [datePicker setDate:[NSDate date]];
     [self.date setInputView:datePicker];
     [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    selectedDate =[[NSDate alloc]init];
+    selectedDate = datePicker.date;
 }
 
 -(void)updateTextField:(id)sender{
     UIDatePicker *picker = (UIDatePicker*)self.date.inputView;
     self.date.text = [self formatDate:picker.date];
+    selectedDate = picker.date;
 }
 
 - (BOOL)validAllFields {
     BOOL isValid = YES;
-    if (![Utilities isValidNumber:self.estimate.text]) {
+    if (![Utilities isValidNumber:self.estimate.text]||[Utilities cleanString:self.estimate.text].length == 0) {
         isValid = NO;
         self.estimateErrorImage.hidden = NO;
         [Utilities setBorderColor:[UIColor redColor] forView:_estimateView];
@@ -117,12 +113,21 @@
 
 - (IBAction)submitEstimateButtonAction:(id)sender {
     if ([self validAllFields]) {
-        [Utilities showAlertWithTitle:@"Success" message:@"Submitted Estimate"];
+        FixifyJobEstimates *jobEstimate = [FixifyJobEstimates object];
+        jobEstimate.owner = [FixifyUser currentUser];
+        jobEstimate.amount =[NSNumber numberWithFloat:[self.estimate.text floatValue]];
+        jobEstimate.jobDescription = self.description.text;
+        jobEstimate.estimateTime = selectedDate;
+        jobEstimate.job = _activeJob;
+        [jobEstimate saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [Utilities showAlertWithTitle:@"Success" message:@"Submitted Estimate"];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     }
 }
 
-- (void)backButtonAction{
-    [self.navigationController popToRootViewControllerAnimated:NO];
+- (IBAction)backButtonAction:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "SMCalloutView.h"
+#import "FXAnnotation.h"
 
 @class CustomMapView;
 
 @interface OppurtunityListingViewController : UIViewController<MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate,SMCalloutViewDelegate>
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *listView;
 @property (weak, nonatomic) IBOutlet UIView *jobMapView;
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *jobTableView;
 @property (strong, nonatomic) NSNumber *category;
 @property (strong, nonatomic) NSArray *jobArray;
+
 - (IBAction)menuButtonAction:(id)sender;
 - (IBAction)signOutButtonAction:(id)sender;
 - (IBAction)menuCloseButtonAction:(id)sender;

@@ -53,7 +53,8 @@
 #define kChooseAddressSegue @"CHOOSE_ADDRESS"
 #define kEditProfileSegue @"EDIT_PROFILE"
 #define kSearchAddressDescription @"SEARCH_ADDRESS_DESCRIPTION"
-
+#define kJobDetailViewSegue @"JOB_DETAIL"
+#define kSubmitQuoteSegue @"SUBMIT_QUOTE"
 // storyboard IDs
 
 #define kMyJobsViewControllerID @"MY_JOBS"

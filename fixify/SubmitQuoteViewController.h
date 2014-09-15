@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FixifyUser.h"
+#import "FixifyJob.h"
 
 @interface SubmitQuoteViewController : UIViewController<UITextFieldDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -26,5 +28,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *estimateErrorImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *descriptionErrorImage;
+
+- (IBAction)backButtonAction:(id)sender;
+
+@property (weak, nonatomic) FixifyJob *activeJob;
 
 @end

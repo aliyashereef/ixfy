@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import "FixifyJob.h"
+#import "FixifyJobEstimates.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    [FixifyJobEstimates registerSubclass];
     [FixifyUser registerSubclass];
     [FixifyJob registerSubclass];
     [Parse setApplicationId:ParseApplicationID

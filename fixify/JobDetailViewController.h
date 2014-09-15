@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FixifyJob.h"
+#import "SubmitQuoteViewController.h"
 
 @interface JobDetailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -37,6 +39,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobProgressViewHeight;
 - (IBAction)backButtonAction:(id)sender;
+@property (weak, nonatomic) FixifyJob *job;
+@property (weak, nonatomic) IBOutlet UILabel *jobDetailLabel;
+
 
 
 @end
