@@ -19,7 +19,8 @@
 #define FACEBOOK_APP_ID @"627081887405413"
 
 //constants
-
+#define kCommentListCellID @"COMMENTS_LIST"
+#define kEstimateCellID @"ESTIMATE_CELL"
 #define kCategoryCellID @"categoryCell"
 #define kJObImageCellID @"JOB_IMAGE"
 #define kSearchAddressCellID @"SEARCH_ADDRESS"
@@ -50,14 +51,16 @@
 
 //segue identifiers
 
-#define kChooseAddressSegue @"CHOOSE_ADDRESS"
-#define kEditProfileSegue @"EDIT_PROFILE"
-#define kSearchAddressDescription @"SEARCH_ADDRESS_DESCRIPTION"
+#define kChooseAddressViewSegue @"CHOOSE_ADDRESS"
+#define kEditProfileViewSegue @"EDIT_PROFILE"
+#define kSearchAddressDescriptionViewSegue @"SEARCH_ADDRESS_DESCRIPTION"
 #define kJobDetailViewSegue @"JOB_DETAIL"
-#define kSubmitQuoteSegue @"SUBMIT_QUOTE"
+#define kSubmitQuoteViewSegue @"SUBMIT_QUOTE"
+#define kMyJobDetailViewSegue @"MY_JOB_DETAIL_VIEW"
+#define kMyJobsViewSegue @"MY_JOBS"
 // storyboard IDs
 
-#define kMyJobsViewControllerID @"MY_JOBS"
+#define kMyJobsViewControllerID @"MY_JOBS_STORYBOARD_ID"
 #define kCategoryListingViewControllerID @"CategoryListingViewControllerStoryBoardID"
 #define kEditProfileViewControllerID @"EditProfileViewStoryBoardID"
 #define kAddJobViewControllerID @"AddJobViewControllerStoryBoardID"

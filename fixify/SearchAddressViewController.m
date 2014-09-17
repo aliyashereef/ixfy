@@ -105,7 +105,7 @@
     PFGeoPoint *point = [PFGeoPoint geoPointWithLocation:location];
     self.job.location = point;
     [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [self performSegueWithIdentifier:kSearchAddressDescription sender:self];
+        [self performSegueWithIdentifier:kSearchAddressDescriptionViewSegue sender:self];
     }];
  
 }

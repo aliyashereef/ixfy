@@ -18,8 +18,8 @@
     return @"title";
 }
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D) c{
-    coordinate=c;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)cordinate{
+    coordinate = cordinate;
     return self;
 }
  

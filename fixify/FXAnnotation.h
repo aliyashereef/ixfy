@@ -10,21 +10,6 @@
 #import <MapKit/MapKit.h>
 #import "FixifyJob.h"
 
-//@interface FXAnnotation : NSObject <MKAnnotation> {
-//    CLLocationCoordinate2D coordinate;
-//}
-//
-//
-//@property (nonatomic, strong) NSString *imageName;
-//@property (nonatomic, copy) NSString *title;
-//@property (nonatomic, copy) NSString *subtitle;
-//@property (nonatomic, strong) FixifyJob *job;
-//@property (nonatomic, strong) UIImage *jobImage;
-//@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-//
-//- (id)initWithCordinate:(CLLocationCoordinate2D)cordinate;
-//
-//@end
 @interface FXAnnotation : NSObject <MKAnnotation> {
     CLLocationCoordinate2D coordinate;
     NSString *jobName;

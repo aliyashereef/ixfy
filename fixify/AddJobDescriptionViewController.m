@@ -11,7 +11,7 @@
 
 @interface AddJobDescriptionViewController (){
     UIButton *addImage;
-    CGRect frame;
+    CGRect imageFrame;
     NSMutableArray *imageArray;
     int indexOfImage;
 }
@@ -52,9 +52,9 @@
 //if pick a image ,view dismissed and assigned to a image view
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    frame = [addImage frame];
+    imageFrame = [addImage frame];
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    UIImageView *addedImage = [[UIImageView alloc]initWithFrame:CGRectMake(frame.origin.x,frame.origin.y,96,96)];
+    UIImageView *addedImage = [[UIImageView alloc]initWithFrame:CGRectMake(imageFrame.origin.x,imageFrame.origin.y,96,96)];
     UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(80, 0, 20, 20)];
     [deleteButton setImage:[UIImage imageNamed:@"delete_image"] forState:UIControlStateNormal];
     [deleteButton addTarget:self action:@selector(deteteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -66,13 +66,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     addedImage.tag = indexOfImage;
     NSData *imageData = UIImageJPEGRepresentation(image,.5);
     [imageArray addObject:imageData];
-    frame.origin.x += 100;
-    if (frame.origin.x > 300) {
-        frame.origin.y += 100;
-        frame.origin.x = 12;
+    imageFrame.origin.x += 100;
+    if (imageFrame.origin.x > 300) {
+        imageFrame.origin.y += 100;
+        imageFrame.origin.x = 12;
     }
-    [addImage setFrame:frame];
-    self.imageScroll.contentSize = CGSizeMake(320, frame.origin.y+130);
+    [addImage setFrame:imageFrame];
+    self.imageScroll.contentSize = CGSizeMake(320, imageFrame.origin.y+130);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -97,7 +97,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
         _job.imageArray = imageArray;
         [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [self performSegueWithIdentifier:@"MY_JOBS" sender:self];
+            [self performSegueWithIdentifier:kMyJobsViewSegue sender:self];
         }];
     }
 }
@@ -115,18 +115,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImageView *tappedImage = (UIImageView *)[sender superview];
     [imageArray removeObjectAtIndex:(tappedImage.tag-1)];
     [tappedImage removeFromSuperview];
-    int offsetMultiplier = frame.origin.y/100;
+    int offsetMultiplier = imageFrame.origin.y/100;
     if (offsetMultiplier >0) {
-        if (frame.origin.x >12) {
-            frame.origin.x -=100;
+        if (imageFrame.origin.x >12) {
+            imageFrame.origin.x -=100;
         }else{
-            frame.origin.y -= offsetMultiplier * 100;
-            frame.origin.x = 212;
+            imageFrame.origin.y -= offsetMultiplier * 100;
+            imageFrame.origin.x = 212;
         }
     }else{
-       frame.origin.x -= 100;
+       imageFrame.origin.x -= 100;
     }
-    [addImage setFrame:frame];
+    [addImage setFrame:imageFrame];
 }
 
 @end

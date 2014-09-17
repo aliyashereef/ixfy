@@ -85,4 +85,14 @@
     return locationArray;
 }
 
+//returns a string for a date
++ (NSString *)formatDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@" dd MMM yyyy" ];
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    return formattedDate;
+}
+
+
 @end

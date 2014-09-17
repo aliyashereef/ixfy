@@ -7,9 +7,11 @@
 //
 
 #import "MyJobsViewController.h"
+#import "UserJobDetailViewController.h"
 
 @interface MyJobsViewController (){
     NSArray *jobArray;
+    FixifyJob *activeJob;
 }
 
 @end
@@ -25,6 +27,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    activeJob = [[FixifyJob alloc]init];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background_blurred"]];
     jobArray = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"JobList"ofType:@"plist"]];
 }
@@ -45,7 +48,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    MyJobsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_JOBS" forIndexPath:indexPath];
+    MyJobsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_JOBS_COLLECTIONVIEWCELL_ID" forIndexPath:indexPath];
     if (cell == nil){
         cell = [[MyJobsCollectionViewCell alloc] init];
     }
@@ -63,6 +66,14 @@
 	return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    activeJob = _myJobArray[indexPath.row];
+    [self performSegueWithIdentifier:@"MY_JOB_DETAIL_VIEW" sender:self];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 #pragma mark - UIScrollVewDelegate for UIPageControl
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -87,5 +98,12 @@
 - (IBAction)addJobButtonAction:(id)sender {
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kAddJobViewControllerID];
     [self presentViewController:controller animated:NO completion:nil];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"MY_JOB_DETAIL_VIEW"]) {
+        UserJobDetailViewController *viewController = [segue destinationViewController];
+        viewController.myJob = activeJob;
+    }
 }
 @end

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (strong, nonatomic) NSMutableArray *myJobArray;
+
 - (IBAction)addJobButtonAction:(id)sender;
 
 @end

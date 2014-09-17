@@ -71,7 +71,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     job.category = indexPath.row ;
-    [self performSegueWithIdentifier:kChooseAddressSegue sender:nil];
+    [self performSegueWithIdentifier:kChooseAddressViewSegue sender:nil];
 }
 
 #pragma mark - Bar Button Actions
@@ -80,7 +80,7 @@
     float offset = self.menuView.frame.size.width;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:kMenuViewAnimationDuration];
-    [UIView  setAnimationDelegate:self];
+    [UIView setAnimationDelegate:self];
     CGRect newFrame = self.menuView.frame;
     newFrame.origin.x = newFrame.origin.x + offset;
     self.menuView.frame = newFrame;
@@ -112,7 +112,7 @@
 }
 
 - (IBAction)profileView:(id)sender {
-    [self performSegueWithIdentifier:kEditProfileSegue sender:nil];
+    [self performSegueWithIdentifier:kEditProfileViewSegue sender:nil];
 }
 
 - (IBAction)myJobsButtonAction:(id)sender {
@@ -123,10 +123,10 @@
 #pragma mark - Navigation Methods
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:kEditProfileSegue]) {
+    if ([segue.identifier isEqualToString:kEditProfileViewSegue]) {
         EditProfileViewController *editProfileViewController = (EditProfileViewController *)segue.destinationViewController;
         editProfileViewController.user = [FixifyUser currentUser];
-    }else if([segue.identifier isEqualToString:kChooseAddressSegue]){
+    }else if([segue.identifier isEqualToString:kChooseAddressViewSegue]){
         ChooseAdressViewController *chooseAdressViewController = (ChooseAdressViewController *)segue.destinationViewController;
         chooseAdressViewController.job = job;
     }

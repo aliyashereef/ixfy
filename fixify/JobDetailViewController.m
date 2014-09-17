@@ -130,7 +130,7 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString: kSubmitQuoteSegue]) {
+    if ([segue.identifier isEqualToString: kSubmitQuoteViewSegue]) {
         SubmitQuoteViewController *viewController = (SubmitQuoteViewController *)segue.destinationViewController;
          viewController.activeJob = _job;
     }

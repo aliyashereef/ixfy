@@ -38,6 +38,7 @@
 
 // Returns an array with location details.
 + (NSArray *)getArrayForLocation :(CLPlacemark *)placemark;
-   
 
+//returns a date string for date
++ (NSString *)formatDate:(NSDate *)date;
 @end
