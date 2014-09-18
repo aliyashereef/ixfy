@@ -27,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobDescriptionLabelHeight;
 
+@property (weak, nonatomic) IBOutlet UIButton *estimateFilterButton;
 
 
 @property (strong, nonatomic) NSArray *estimatesArray;

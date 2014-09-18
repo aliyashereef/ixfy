@@ -12,6 +12,7 @@
 		2208A88F19A373F700D125ED /* JobOppurtunityCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2208A88E19A373F700D125ED /* JobOppurtunityCellTableViewCell.m */; };
 		2208A89119A37EC400D125ED /* window.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2208A89019A37EC400D125ED /* window.jpg */; };
 		220C866C19BF279900CF4497 /* CategoryListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 220C866B19BF279900CF4497 /* CategoryListingViewController.m */; };
+		2218B01919CB0287002468B6 /* TradesmanProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218B01819CB0287002468B6 /* TradesmanProfileViewController.m */; };
 		221B9EB319C3498D0073DE05 /* FixifyJobEstimates.m in Sources */ = {isa = PBXBuildFile; fileRef = 221B9EB219C3498D0073DE05 /* FixifyJobEstimates.m */; };
 		2227376F19B09D07007FD9A0 /* AddJobDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2227376E19B09D07007FD9A0 /* AddJobDescriptionViewController.m */; };
 		222FE06119A4AC5E00FD61BA /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 222FE06019A4AC5E00FD61BA /* SMCalloutView.m */; };
@@ -50,6 +51,7 @@
 		229BF3AA19B040A400727119 /* JobList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229BF3A919B040A400727119 /* JobList.plist */; };
 		229BF3F819B054BE00727119 /* FixifyJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 229BF3F719B054BE00727119 /* FixifyJob.m */; };
 		229BF3FB19B057B700727119 /* ChooseAdressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229BF3FA19B057B700727119 /* ChooseAdressViewController.m */; };
+		229DF77019CAD83C00C32A49 /* EstimateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229DF76F19CAD83C00C32A49 /* EstimateDetailViewController.m */; };
 		229EF15B19A1CF56008B5CCF /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */; };
 		22CFAF0D1990F12A0077D9E9 /* AppTourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0C1990F12A0077D9E9 /* AppTourCell.m */; };
 		22CFAF101990F13F0077D9E9 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CFAF0F1990F13F0077D9E9 /* SignInViewController.m */; };
@@ -91,6 +93,8 @@
 		2208A89019A37EC400D125ED /* window.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = window.jpg; sourceTree = "<group>"; };
 		220C866A19BF279900CF4497 /* CategoryListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListingViewController.h; sourceTree = "<group>"; };
 		220C866B19BF279900CF4497 /* CategoryListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListingViewController.m; sourceTree = "<group>"; };
+		2218B01719CB0287002468B6 /* TradesmanProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradesmanProfileViewController.h; sourceTree = "<group>"; };
+		2218B01819CB0287002468B6 /* TradesmanProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradesmanProfileViewController.m; sourceTree = "<group>"; };
 		221B9EB119C3498D0073DE05 /* FixifyJobEstimates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixifyJobEstimates.h; sourceTree = "<group>"; };
 		221B9EB219C3498D0073DE05 /* FixifyJobEstimates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixifyJobEstimates.m; sourceTree = "<group>"; };
 		2227376D19B09D07007FD9A0 /* AddJobDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddJobDescriptionViewController.h; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 		229BF3F719B054BE00727119 /* FixifyJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixifyJob.m; sourceTree = "<group>"; };
 		229BF3F919B057B700727119 /* ChooseAdressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAdressViewController.h; sourceTree = "<group>"; };
 		229BF3FA19B057B700727119 /* ChooseAdressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAdressViewController.m; sourceTree = "<group>"; };
+		229DF76E19CAD83C00C32A49 /* EstimateDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EstimateDetailViewController.h; sourceTree = "<group>"; };
+		229DF76F19CAD83C00C32A49 /* EstimateDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EstimateDetailViewController.m; sourceTree = "<group>"; };
 		229EF15919A1CF56008B5CCF /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
 		229EF15A19A1CF56008B5CCF /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		22CFAF0B1990F11E0077D9E9 /* AppTourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppTourCell.h; path = "View Controllers/AppTourCell.h"; sourceTree = "<group>"; };
@@ -366,10 +372,14 @@
 				2227376E19B09D07007FD9A0 /* AddJobDescriptionViewController.m */,
 				22986A0719AF2F790069C8F1 /* UserJobDetailViewController.h */,
 				22986A0819AF2F790069C8F1 /* UserJobDetailViewController.m */,
+				229DF76E19CAD83C00C32A49 /* EstimateDetailViewController.h */,
+				229DF76F19CAD83C00C32A49 /* EstimateDetailViewController.m */,
 				22ECD57919B5ECBF00549327 /* MyJobsViewController.h */,
 				22ECD57A19B5ECBF00549327 /* MyJobsViewController.m */,
 				228FE61719B72E8D0080015E /* SearchAddressViewController.h */,
 				228FE61819B72E8D0080015E /* SearchAddressViewController.m */,
+				2218B01719CB0287002468B6 /* TradesmanProfileViewController.h */,
+				2218B01819CB0287002468B6 /* TradesmanProfileViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -548,10 +558,12 @@
 				22ECD57B19B5ECBF00549327 /* MyJobsViewController.m in Sources */,
 				22994A0519A5BA1900151CD0 /* JobDetailViewController.m in Sources */,
 				2245458F198A6D77009A52FE /* AppDelegate.m in Sources */,
+				229DF77019CAD83C00C32A49 /* EstimateDetailViewController.m in Sources */,
 				220C866C19BF279900CF4497 /* CategoryListingViewController.m in Sources */,
 				22974B8D19A35F5900A245D1 /* HMSegmentedControl.m in Sources */,
 				22986A0919AF2F790069C8F1 /* UserJobDetailViewController.m in Sources */,
 				22994A0B19A5DE7000151CD0 /* JobImageCollectionViewCell.m in Sources */,
+				2218B01919CB0287002468B6 /* TradesmanProfileViewController.m in Sources */,
 				22974B7F19A318DA00A245D1 /* JobListingViewController.m in Sources */,
 				2200F30B1998A3E500729065 /* AddJobViewController.m in Sources */,
 				2296F03E19AC5B9C004364CA /* SubmitQuoteViewController.m in Sources */,

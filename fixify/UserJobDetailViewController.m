@@ -11,9 +11,11 @@
 #import "FixifyJobEstimates.h"
 #import "CommentsTableViewCell.h"
 #import "EstimatesTableViewCell.h"
+#import "EstimateDetailViewController.h"
 
 @interface UserJobDetailViewController (){
     NSInteger tableViewRowCount;
+    FixifyJobEstimates *selectedEstimate;
 }
 
 @end
@@ -30,6 +32,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self updateView];
+    selectedEstimate = [[FixifyJobEstimates alloc]init];
     [_estimatesOrCommentsSegmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -147,4 +150,15 @@
     estimateCell.estimateAmount.text = [NSString stringWithFormat:@"%@", estimate.amount] ;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    selectedEstimate = [_estimatesArray objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:kEstimateDetailViewSegue sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:kEstimateDetailViewSegue]) {
+        EstimateDetailViewController *viewController = segue.destinationViewController;
+        viewController.estimate = selectedEstimate;
+    }
+}
 @end

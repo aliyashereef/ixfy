@@ -41,4 +41,8 @@
 
 //returns a date string for date
 + (NSString *)formatDate:(NSDate *)date;
+
+//returns a date string for date
++ (NSString *)formatDateForEstimate:(NSDate *)date;
+
 @end

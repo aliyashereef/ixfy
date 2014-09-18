@@ -94,5 +94,13 @@
     return formattedDate;
 }
 
++ (NSString *)formatDateForEstimate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"mm hh a, dd MMM yyyy " ];
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    return formattedDate;
+}
+
 
 @end

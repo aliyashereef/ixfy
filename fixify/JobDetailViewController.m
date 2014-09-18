@@ -10,6 +10,7 @@
 #import "JobImageCollectionViewCell.h"
 #import "CommentsTableViewCell.h"
 #import "FixifyUser.h"
+#import "FixifyJobEstimates.h"
 
 @interface JobDetailViewController ()
 
@@ -44,7 +45,7 @@
 }
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self showOrHideJobCompletedView];
+    [self getAllEstimatesForJob];
     _detailViewHeight.constant = 445 + _jobProgressViewHeight.constant+ _jobCompletedViewHeight.constant +_descriptionLabelHeight.constant;
 }
 
@@ -116,12 +117,29 @@
     cell.commentLabelHeight.constant = requiredSize.height +1;
     return cell;
 }
-
+- (void)getAllEstimatesForJob {
+    PFQuery *estimatesQuery = [FixifyJobEstimates query];
+    [estimatesQuery whereKey:@"job" equalTo: _job];
+    [estimatesQuery includeKey:@"owner"];
+    [estimatesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            _estimatesForJob = [objects mutableCopy];
+            [self showOrHideJobCompletedView];
+        }
+        
+    }];
+}
 - (void)showOrHideJobCompletedView{
-    if ([FixifyUser currentUser].isTradesman) {
-        _jobCompletedViewHeight.constant = 0;
-    }else{
+    BOOL isEstimateSubmitted = NO;
+    for (FixifyJobEstimates *estimate in _estimatesForJob) {
+        if ([estimate.owner.fullName isEqual:[FixifyUser currentUser].fullName]) {
+            isEstimateSubmitted = YES;
+        }
+    }
+    if (isEstimateSubmitted == YES ) {
         _jobProgressViewHeight.constant = 0;
+    }else{
+        _jobCompletedViewHeight.constant = 0;
     }
 }
 

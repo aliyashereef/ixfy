@@ -50,7 +50,7 @@
 #define kPlistImage @"image"
 
 //segue identifiers
-
+#define kEstimateDetailViewSegue @"ESTIMATE_DETAIL"
 #define kChooseAddressViewSegue @"CHOOSE_ADDRESS"
 #define kEditProfileViewSegue @"EDIT_PROFILE"
 #define kSearchAddressDescriptionViewSegue @"SEARCH_ADDRESS_DESCRIPTION"
