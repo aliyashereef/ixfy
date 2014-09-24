@@ -24,6 +24,8 @@
 
 @dynamic jobDescription;
 
+@dynamic isAccepted;
+
 + (NSString *)parseClassName
 {
     return @"Estimates";

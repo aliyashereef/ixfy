@@ -94,6 +94,7 @@
     return formattedDate;
 }
 
+//returns a string with time for a date
 + (NSString *)formatDateForEstimate:(NSDate *)date{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -102,5 +103,27 @@
     return formattedDate;
 }
 
+//show animation for menu view
++ (void)showAnimationForView:(UIView *)view{
+    float offset = view.frame.size.width;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView  setAnimationDelegate:self];
+    CGRect newFrame = view.frame;
+    newFrame.origin.x = newFrame.origin.x + offset;
+    view.frame = newFrame;
+    [UIView commitAnimations];
+}
 
+//hide animation for menu view
++ (void)hideAnimationForView:(UIView *)view{
+    float offset = -view.frame.size.width;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView  setAnimationDelegate:self];
+    CGRect newFrame = view.frame;
+    newFrame.origin.x = newFrame.origin.x + offset;
+    view.frame = newFrame;
+    [UIView commitAnimations];
+}
 @end

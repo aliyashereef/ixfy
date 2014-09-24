@@ -80,10 +80,9 @@
 - (IBAction)nextButtonAction:(id)sender {
     PFGeoPoint *point = [PFGeoPoint geoPointWithLocation:pinLocation];
     self.job.location = point;
-    [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-     [self performSegueWithIdentifier:@"JOB_DESCRIPTION" sender:self];
-    }];
+    [self performSegueWithIdentifier:@"JOB_DESCRIPTION" sender:self];
 }
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"JOB_DESCRIPTION"]) {
         AddJobDescriptionViewController *addJobDescriptionView = (AddJobDescriptionViewController *)segue.destinationViewController;

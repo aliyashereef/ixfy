@@ -45,4 +45,9 @@
 //returns a date string for date
 + (NSString *)formatDateForEstimate:(NSDate *)date;
 
+//show animation for menu view
++ (void)showAnimationForView:(UIView *)view;
+
+//hide animation for menu view
++ (void)hideAnimationForView:(UIView *)view;
 @end

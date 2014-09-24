@@ -11,13 +11,19 @@
 #import "FixifyUser.h"
 
 @interface EstimateDetailViewController : UIViewController
+
 - (IBAction)backButtonAction:(id)sender;
 - (IBAction)profileViewButtonAction:(id)sender;
+- (IBAction)acceptEstimateButtonAction:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *tradesmanName;
-@property (weak, nonatomic) IBOutlet UIImageView *tradesmanImage;
 @property (weak, nonatomic) IBOutlet UILabel *estimateAmount;
 @property (weak, nonatomic) IBOutlet UILabel *dateAndTime;
 @property (weak, nonatomic) IBOutlet UILabel *estimateDescription;
-- (IBAction)acceptEstimateButtonAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIImageView *tradesmanImage;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *estimateDescriptionLabelHeight;
 @property (weak, nonatomic) FixifyJobEstimates *estimate;
+
 @end

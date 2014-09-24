@@ -14,9 +14,15 @@
 + (NSString *)parseClassName;
 
 @property (retain) NSNumber *amount;
+
 @property (retain) FixifyJob *job;
+
 @property (retain) FixifyUser *owner;
+
 @property (retain) NSString *jobDescription;
+
 @property (retain) NSDate *estimateTime;
+
+@property BOOL isAccepted ;
 
 @end

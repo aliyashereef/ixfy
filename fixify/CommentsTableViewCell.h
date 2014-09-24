@@ -8,10 +8,29 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentsTableViewCell : UITableViewCell
+@protocol SwipeableCellDelegate <NSObject>
+- (void)deleteButtonAction;
+- (void)replyButtonAction;
+- (void)flagButtonAction;
+- (void)cellDidOpen:(UITableViewCell *)cell;
+- (void)cellDidClose:(UITableViewCell *)cell;
+@end
+
+@interface CommentsTableViewCell : UITableViewCell <UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *cellContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarView;
 @property (weak, nonatomic) IBOutlet UILabel *fullName;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentLabelHeight;
+@property (nonatomic, weak) IBOutlet UIButton *deleteButton;
+@property (nonatomic, weak) IBOutlet UIButton *replyButton;
+@property (nonatomic, weak) IBOutlet UIButton *flagButton;
+@property (nonatomic, weak) id <SwipeableCellDelegate> delegate;
 
+@property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+@property (nonatomic, assign) CGPoint panStartPoint;
+@property (nonatomic, assign) CGFloat startingRightLayoutConstraintConstant;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewRightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewLeftConstraint;
+- (void)openCell;
 @end

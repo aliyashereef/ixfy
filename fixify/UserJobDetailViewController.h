@@ -16,20 +16,25 @@
 - (IBAction)backButtonAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *countOfEstimates;
 @property (weak, nonatomic) IBOutlet UILabel *jobCreatedAt;
+@property (weak, nonatomic) IBOutlet UILabel *jobDescription;
+@property (weak, nonatomic) IBOutlet UILabel *jobStatusLabel;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *jobImageCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControlForCollectionView;
-@property (weak, nonatomic) IBOutlet UILabel *jobDescription;
-
 @property (weak, nonatomic) IBOutlet UISegmentedControl *estimatesOrCommentsSegmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *estimatesOrCommentsTableView;
-@property (weak, nonatomic) FixifyJob *myJob;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobDescriptionLabelHeight;
-
 @property (weak, nonatomic) IBOutlet UIButton *estimateFilterButton;
+@property (weak, nonatomic) IBOutlet UIImageView *jobStatusImage;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewContentSize;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobStatusViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobDescriptionLabelHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *estimatesOrCommentsViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tradesmanProfileViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *makePaymentViewHeight;
 
+@property (weak, nonatomic) FixifyJob *myJob;
 @property (strong, nonatomic) NSArray *estimatesArray;
 
 @end

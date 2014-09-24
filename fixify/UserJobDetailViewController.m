@@ -40,6 +40,18 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Private Methods
+
+- (void) prepareJobStatusAnimation :(NSArray *)imageArray{
+    NSMutableArray *images = [[NSMutableArray alloc]init];
+    for (NSString *imageName in imageArray ) {
+        [images addObject:[UIImage imageNamed:imageName]];
+    }
+    _jobStatusImage.animationImages = images;
+    _jobStatusImage.animationDuration = 0.5;
+    [_jobStatusImage startAnimating];
+}
+
 - (void)segmentedControlChangedValue:(UISegmentedControl *)sender{
     if(_estimatesOrCommentsSegmentedControl.selectedSegmentIndex == 0){
       tableViewRowCount = _estimatesArray.count;
@@ -54,7 +66,50 @@
 }
 
 - (void)updateView{
+    [self fetchEstimates];
+    if ([_myJob.status isEqualToString: kInProgressJob ]) {
+        [self prepareJobStatusAnimation :kJobProgressImageArray];
+        self.jobStatusLabel.text = kInProgressJob ;
+        self.estimatesOrCommentsViewHeight.constant = 0;
+        self.makePaymentViewHeight.constant = 0;
+    }else if([_myJob.status isEqualToString:kPaymentRequired]){
+        [self prepareJobStatusAnimation :kJobPaymentRequiredImageArray];
+        self.jobStatusLabel.text = kPaymentRequired ;
+        self.estimatesOrCommentsViewHeight.constant = 0;
+    }else if([_myJob.status isEqualToString:kNewJob]){
+        self.jobStatusViewHeight.constant = 0;
+        self.makePaymentViewHeight.constant = 0;
+        self.tradesmanProfileViewHeight.constant = 0;
+    }else if([_myJob.status isEqualToString:kEstimatedJob]){
+        self.jobStatusViewHeight.constant = 0;
+        self.tradesmanProfileViewHeight.constant = 0;
+        self.makePaymentViewHeight.constant = 0;
+    }else if([_myJob.status isEqualToString:kJobCompleted]){
+        self.jobStatusViewHeight.constant = 0;
+        self.estimatesOrCommentsViewHeight.constant = 0;
+        self.makePaymentViewHeight.constant = 0;
+    }
+    self.jobDescription.text = _myJob.jobDescription ;
+    CGSize requiredSize = [Utilities getRequiredSizeForText:self.jobDescription.text
+                                                       font:kThemeFont
+                                                   maxWidth:self.jobDescription.frame.size.width];
+    self.jobDescriptionLabelHeight.constant = requiredSize.height + 1 ;
+    _contentViewHeight.constant = 300 + self.jobDescriptionLabelHeight.constant ;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        if (screenSize.height == 480) {
+            _contentViewHeight.constant = _contentViewHeight.constant - 90.0f;
+        }
+    }
+    self.scrollViewContentSize.constant = _contentViewHeight.constant + _jobStatusViewHeight.constant + _estimatesOrCommentsViewHeight.constant + _tradesmanProfileViewHeight.constant + _makePaymentViewHeight.constant + _jobStatusViewHeight.constant ;
+    self.jobCreatedAt.text =[NSString stringWithFormat:@"Listed : %@",[Utilities formatDate: _myJob.createdAt]];
+    [_estimatesOrCommentsSegmentedControl setTitle:[NSString stringWithFormat:@"Comments "] forSegmentAtIndex:1];
+}
+
+- (void)fetchEstimates {
     PFQuery *estimatesQuery = [FixifyJobEstimates query];
+    [estimatesQuery whereKey:@"status" equalTo:kNewJob ];
+    [estimatesQuery whereKey:@"status" equalTo:kEstimatedJob];
     [estimatesQuery whereKey:@"job" equalTo:_myJob];
     [estimatesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -65,21 +120,6 @@
             [self.estimatesOrCommentsTableView reloadData];
         }
     }];
-    self.jobDescription.text = _myJob.jobDescription ;
-    CGSize requiredSize = [Utilities getRequiredSizeForText:self.jobDescription.text
-                                                       font:kThemeFont
-                                                   maxWidth:self.jobDescription.frame.size.width];
-    self.jobDescriptionLabelHeight.constant = requiredSize.height + 1 ;
-    _contentViewHeight.constant = _contentViewHeight.constant + self.jobDescriptionLabelHeight.constant ;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        if (screenSize.height == 480) {
-            _contentViewHeight.constant = _contentViewHeight.constant - 90.0f;
-        }
-    }
-
-    self.jobCreatedAt.text =[NSString stringWithFormat:@"Listed : %@",[Utilities formatDate: _myJob.createdAt]];
-    [_estimatesOrCommentsSegmentedControl setTitle:[NSString stringWithFormat:@"Comments "] forSegmentAtIndex:1];
 }
 
 #pragma mark - Collection View Methods
@@ -161,4 +201,5 @@
         viewController.estimate = selectedEstimate;
     }
 }
+
 @end

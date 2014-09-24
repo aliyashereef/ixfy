@@ -95,6 +95,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
         _job.jobDescription = self.descriptionField.text;
         _job.owner = [FixifyUser currentUser];
         _job.imageArray = imageArray;
+        _job.status = kNewJob ;
         [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self performSegueWithIdentifier:kMyJobsViewSegue sender:self];

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "FixifyJob.h"
 #import "SubmitQuoteViewController.h"
+#import "CommentsTableViewCell.h"
 
-@interface JobDetailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface JobDetailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,SwipeableCellDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
@@ -41,7 +42,10 @@
 - (IBAction)backButtonAction:(id)sender;
 @property (weak, nonatomic) FixifyJob *job;
 @property (strong, nonatomic) NSArray *estimatesForJob;
+@property (strong, nonatomic) NSArray *commentsForJob;
 @property (weak, nonatomic) IBOutlet UILabel *jobDetailLabel;
+- (IBAction)postCommentButtonAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 
 
 

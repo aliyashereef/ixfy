@@ -20,8 +20,12 @@
 
 @property (retain) FixifyUser *owner;
 
+@property (retain) FixifyUser *tradesman;
+
 @property (retain) PFGeoPoint *location;
 
 @property (retain) NSArray *estimates;
+
+@property (retain) NSString *status;
 
 @end

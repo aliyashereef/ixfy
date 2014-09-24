@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSNumber *category;
 @property (strong, nonatomic) NSArray *jobArray;
 
+- (IBAction)myJobsButtonAction:(id)sender;
 - (IBAction)menuButtonAction:(id)sender;
 - (IBAction)signOutButtonAction:(id)sender;
 - (IBAction)menuCloseButtonAction:(id)sender;

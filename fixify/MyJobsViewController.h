@@ -15,7 +15,6 @@
 @interface MyJobsViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *myJobs;
-
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (strong, nonatomic) NSMutableArray *myJobArray;

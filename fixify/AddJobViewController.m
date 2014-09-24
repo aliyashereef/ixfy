@@ -77,14 +77,7 @@
 #pragma mark - Bar Button Actions
 
 - (IBAction)menuButton:(id)sender {
-    float offset = self.menuView.frame.size.width;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:kMenuViewAnimationDuration];
-    [UIView setAnimationDelegate:self];
-    CGRect newFrame = self.menuView.frame;
-    newFrame.origin.x = newFrame.origin.x + offset;
-    self.menuView.frame = newFrame;
-    [UIView commitAnimations];
+    [Utilities showAnimationForView:self.menuView];
 }
 
 - (IBAction)notificationButton:(id)sender {
@@ -101,14 +94,7 @@
 }
 
 - (IBAction)menuCloseButton:(id)sender {
-    float offset = -self.menuView.frame.size.width;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:kMenuViewAnimationDuration];
-    [UIView  setAnimationDelegate:self];
-    CGRect newFrame = self.menuView.frame;
-    newFrame.origin.x = newFrame.origin.x + offset;
-    self.menuView.frame = newFrame;
-    [UIView commitAnimations];
+    [Utilities hideAnimationForView:self.menuView];
 }
 
 - (IBAction)profileView:(id)sender {

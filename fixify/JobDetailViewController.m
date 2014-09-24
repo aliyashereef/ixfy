@@ -8,9 +8,9 @@
 
 #import "JobDetailViewController.h"
 #import "JobImageCollectionViewCell.h"
-#import "CommentsTableViewCell.h"
 #import "FixifyUser.h"
 #import "FixifyJobEstimates.h"
+#import "AddCommentViewController.h"
 
 @interface JobDetailViewController ()
 
@@ -46,6 +46,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self getAllEstimatesForJob];
+    [self getAllCommentsForJob];
     _detailViewHeight.constant = 445 + _jobProgressViewHeight.constant+ _jobCompletedViewHeight.constant +_descriptionLabelHeight.constant;
 }
 
@@ -98,23 +99,31 @@
 #pragma mark - Table View Delagate and datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return _commentsForJob.count;
 }
-
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentsTableViewCell *cell = (CommentsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kCommentListID];
     if(cell == nil){
         cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCommentListID];
     }
+    FixifyComment *comment = [_commentsForJob objectAtIndex:indexPath.row];
     cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width / 2;
     cell.avatarView.clipsToBounds = YES;
-    cell.avatarView.image = [UIImage imageNamed:@"window.jpg"];
-    cell.fullName.text = @"Andrew Simons";
-    cell.commentLabel.text = @"Does the window have double glazing and is it porecelain glass?";
+    cell.fullName.text = comment.author.fullName ;
+    cell.commentLabel.text = comment.commentString ;
+    PFFile *imageFile = comment.author.image ;
+    [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+        if (!error){
+             cell.avatarView.image = [UIImage imageWithData:result];
+        }
+    }];
     CGSize requiredSize = [Utilities getRequiredSizeForText:cell.commentLabel.text
                                                         font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
                                                     maxWidth:cell.commentLabel.frame.size.width];
-    cell.commentLabelHeight.constant = requiredSize.height +1;
+    cell.commentLabelHeight.constant = requiredSize.height + 1;
     return cell;
 }
 - (void)getAllEstimatesForJob {
@@ -126,9 +135,20 @@
             _estimatesForJob = [objects mutableCopy];
             [self showOrHideJobCompletedView];
         }
-        
     }];
 }
+- (void)getAllCommentsForJob {
+    PFQuery *commentsQuery = [FixifyComment query];
+    [commentsQuery whereKey:@"job" equalTo:_job];
+    [commentsQuery includeKey:@"author"];
+    [commentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            _commentsForJob = [objects mutableCopy];
+            [self.commentsTableView reloadData];
+        }
+    }];
+}
+
 - (void)showOrHideJobCompletedView{
     BOOL isEstimateSubmitted = NO;
     for (FixifyJobEstimates *estimate in _estimatesForJob) {
@@ -144,13 +164,39 @@
 }
 
 - (IBAction)backButtonAction:(id)sender {
-     [self.navigationController popToRootViewControllerAnimated:YES];
+     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString: kSubmitQuoteViewSegue]) {
         SubmitQuoteViewController *viewController = (SubmitQuoteViewController *)segue.destinationViewController;
          viewController.activeJob = _job;
+    }else if([segue.identifier isEqualToString:@"POST_COMMENT"]){
+        AddCommentViewController *viewController = [segue destinationViewController];
+        viewController.job = _job;
+        viewController.comments = _commentsForJob;
     }
+}
+
+- (IBAction)postCommentButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"POST_COMMENT" sender:self];
+}
+
+#pragma mark - swipable cell delegate
+
+- (void)deleteButtonAction{
+    
+}
+- (void)replyButtonAction{
+    
+}
+- (void)flagButtonAction{
+    
+}
+- (void)cellDidClose:(UITableViewCell *)cell{
+    
+}
+- (void)cellDidOpen:(UITableViewCell *)cell{
+    
 }
 @end

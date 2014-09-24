@@ -188,16 +188,13 @@
     [self performSegueWithIdentifier:kJobDetailViewSegue sender:self];
 }
 
+- (IBAction)myJobsButtonAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)menuButtonAction:(id)sender {
     [self.view sendSubviewToBack:segmentedControl];
-    float offset = self.menuView.frame.size.width;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.75];
-    [UIView  setAnimationDelegate:self];
-    CGRect newFrame = self.menuView.frame;
-    newFrame.origin.x = newFrame.origin.x + offset;
-    self.menuView.frame = newFrame;
-    [UIView commitAnimations];
+    [Utilities showAnimationForView:self.menuView];
 }
 
 #pragma mark - Private Methods
@@ -275,15 +272,9 @@
 }
 
 - (IBAction)menuCloseButtonAction:(id)sender {
-    float offset = -self.menuView.frame.size.width;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.75];
-    [UIView  setAnimationDelegate:self];
-    CGRect newFrame = self.menuView.frame;
-    newFrame.origin.x = newFrame.origin.x + offset;
-    self.menuView.frame = newFrame;
-    [UIView commitAnimations];
+    [Utilities hideAnimationForView:self.menuView];
 }
+
 - (IBAction)profileViewButtonAction:(id)sender {
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kEditProfileViewControllerID];
     [self.navigationController presentViewController:controller animated:NO completion:nil];

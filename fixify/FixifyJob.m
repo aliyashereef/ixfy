@@ -27,6 +27,10 @@
 
 @dynamic estimates;
 
+@dynamic status;
+
+@dynamic tradesman;
+
 + (NSString *)parseClassName
 {
     return @"Job";

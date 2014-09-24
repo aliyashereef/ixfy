@@ -66,14 +66,15 @@
 	return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    activeJob = _myJobArray[indexPath.row];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    activeJob = [_myJobArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"MY_JOB_DETAIL_VIEW" sender:self];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
+
 #pragma mark - UIScrollVewDelegate for UIPageControl
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -85,6 +86,8 @@
         _pageControl.currentPage = currentPage;
     }
 }
+
+#pragma mark - Private Methods
 
 - (void)getJobs{
     PFQuery *query = [FixifyJob query];
@@ -102,7 +105,7 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"MY_JOB_DETAIL_VIEW"]) {
-        UserJobDetailViewController *viewController = [segue destinationViewController];
+        UserJobDetailViewController *viewController = (UserJobDetailViewController *)segue.destinationViewController;;
         viewController.myJob = activeJob;
     }
 }
