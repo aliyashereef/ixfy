@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
-@property (weak,nonatomic) FixifyJob *job;
+@property (strong,nonatomic) FixifyJob *job;
 
 - (IBAction)closeButtonAction:(id)sender;
 

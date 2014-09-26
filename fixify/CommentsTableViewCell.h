@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @protocol SwipeableCellDelegate <NSObject>
-- (void)deleteButtonAction;
-- (void)replyButtonAction;
-- (void)flagButtonAction;
+@optional
+- (void)deleteButtonActionForCell:(UITableViewCell *)cell;
+- (void)replyButtonActionForCell:(UITableViewCell *)cell;
+- (void)flagButtonActionForCell:(UITableViewCell *)cell;
 - (void)cellDidOpen:(UITableViewCell *)cell;
 - (void)cellDidClose:(UITableViewCell *)cell;
 @end
@@ -22,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *fullName;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentLabelHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *replyButtonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *flagButtonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *deleteButtonWidth;
 @property (nonatomic, weak) IBOutlet UIButton *deleteButton;
 @property (nonatomic, weak) IBOutlet UIButton *replyButton;
 @property (nonatomic, weak) IBOutlet UIButton *flagButton;

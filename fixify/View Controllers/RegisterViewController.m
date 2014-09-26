@@ -112,11 +112,11 @@
 #pragma mark - Done Button action
 
 - (IBAction)signUpWithFacebook:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities progressAnimeAddedTo:self.view show:YES];
     NSArray *permissionsArray = @[@"email"];
     // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [Utilities progressAnimeAddedTo:self.view show:NO];
         if (!user){
             if (!error){
                 [Utilities showAlertWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login."];

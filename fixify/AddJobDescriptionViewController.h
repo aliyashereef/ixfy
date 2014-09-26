@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) NSString *jobObjectId;
-@property (weak, nonatomic) FixifyJob *job;
+@property (strong, nonatomic) FixifyJob *job;
 
 - (IBAction)addImage:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScroll;

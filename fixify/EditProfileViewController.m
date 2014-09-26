@@ -77,13 +77,8 @@
         NSData *imageData = UIImageJPEGRepresentation(self.avatarView.image,0);
         PFFile *imageFile = [PFFile fileWithName:@"image" data:imageData];
         _user.image = imageFile;
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeIndeterminate;
-        hud.labelText = @"Uploading";
-        [hud show:YES];
-        [_user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        [hud hide:YES];
-            if (!error){
+        [Utilities progressAnimeAddedTo:self.view show:YES];        [_user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+            [Utilities progressAnimeAddedTo:self.view show:NO];            if (!error){
                 [Utilities showAlertWithTitle:@"SUCCESS" message:@"Updated the profile"];
             }else{
                  NSString *errorString = [[error userInfo] objectForKey:@"error"];

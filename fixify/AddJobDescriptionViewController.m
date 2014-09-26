@@ -91,13 +91,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     if(!imageArray || !imageArray.count){
         [Utilities showAlertWithTitle:@"ERROR" message:@"Please attach an image to continue"];
     }else{
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [Utilities progressAnimeAddedTo:self.view show:YES];
         _job.jobDescription = self.descriptionField.text;
         _job.owner = [FixifyUser currentUser];
         _job.imageArray = imageArray;
         _job.status = kNewJob ;
         [_job saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [Utilities progressAnimeAddedTo:self.view show:NO];
             [self performSegueWithIdentifier:kMyJobsViewSegue sender:self];
         }];
     }

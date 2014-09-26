@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    _comment = [[FixifyComment alloc]init];
     self.jobDetailLabel.text = _job.jobDescription;
     self.tradesmanImage.layer.cornerRadius = self.tradesmanImage.frame.size.width / 2;
     self.tradesmanImage.clipsToBounds = YES;
@@ -47,20 +48,10 @@
     [super viewWillAppear:animated];
     [self getAllEstimatesForJob];
     [self getAllCommentsForJob];
-    _detailViewHeight.constant = 445 + _jobProgressViewHeight.constant+ _jobCompletedViewHeight.constant +_descriptionLabelHeight.constant;
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-}
-
-- (IBAction)cancelWorkingButtonAction:(id)sender {
-}
-
-- (IBAction)jobCompletedButtonAction:(id)sender {
-}
-
-- (IBAction)submitEstimateButtonAction:(id)sender {
 }
 
 #pragma mark - Collection View Methods
@@ -109,7 +100,16 @@
     if(cell == nil){
         cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCommentListID];
     }
+    cell.delegate = self;
     FixifyComment *comment = [_commentsForJob objectAtIndex:indexPath.row];
+    if (comment.author == [FixifyUser currentUser]) {
+        cell.replyButtonWidth.constant = 0;
+        cell.deleteButtonWidth.constant = 0;
+    }else{
+        cell.replyButtonWidth.constant = 0;
+        cell.flagButtonWidth.constant = 0;
+    }
+    [cell updateConstraintsIfNeeded];
     cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width / 2;
     cell.avatarView.clipsToBounds = YES;
     cell.fullName.text = comment.author.fullName ;
@@ -126,6 +126,7 @@
     cell.commentLabelHeight.constant = requiredSize.height + 1;
     return cell;
 }
+
 - (void)getAllEstimatesForJob {
     PFQuery *estimatesQuery = [FixifyJobEstimates query];
     [estimatesQuery whereKey:@"job" equalTo: _job];
@@ -150,21 +151,61 @@
 }
 
 - (void)showOrHideJobCompletedView{
-    BOOL isEstimateSubmitted = NO;
-    for (FixifyJobEstimates *estimate in _estimatesForJob) {
-        if ([estimate.owner.fullName isEqual:[FixifyUser currentUser].fullName]) {
-            isEstimateSubmitted = YES;
-        }
-    }
-    if (isEstimateSubmitted == YES ) {
-        _jobProgressViewHeight.constant = 0;
-    }else{
+    if([_job.status isEqualToString: kNewJob]){
         _jobCompletedViewHeight.constant = 0;
+        _jobStatusViewHeight.constant = 0;
+    }else if([_job.status isEqualToString: kEstimatedJob]){
+        _jobCompletedViewHeight.constant = 0;
+        _jobProgressViewHeight.constant = 0;
+        _jobStatusViewHeight.constant = 0;
+    }else if([_job.status isEqualToString: kInProgressJob]){
+        _jobProgressViewHeight.constant = 0;
+        [self prepareJobStatusAnimation:kJobProgressImageArray];
+        _jobStatusLabel.text = kInProgressJob;
+    }else if([_job.status isEqualToString: kPaymentRequired]){
+        _jobCompletedViewHeight.constant = 0;
+        _jobProgressViewHeight.constant = 0;
+        [self prepareJobStatusAnimation:kJobPaymentRequiredImageArray];
+        _jobStatusLabel.text = kPaymentRequired;
+    }else if([_job.status isEqualToString: kJobCompleted]){
+        _jobCompletedViewHeight.constant = 0;
+        _jobProgressViewHeight.constant = 0;
+        _jobStatusViewHeight.constant = 0;
+        UIImageView *jobStatusImage = [[UIImageView alloc]initWithFrame:CGRectMake(245, 50, 80, 80)];
+        jobStatusImage.image = [UIImage imageNamed:@"job_complete"];
+        [self.detailView addSubview:jobStatusImage];
     }
+     _detailViewHeight.constant = 450 + _jobProgressViewHeight.constant+ _jobCompletedViewHeight.constant +_descriptionLabelHeight.constant;
+}
+
+- (IBAction)postCommentButtonAction:(id)sender {
+    _comment = [FixifyComment object];
+    _comment.job = _job;
+    [_comment saveInBackground];
+    [self performSegueWithIdentifier:@"POST_COMMENT" sender:self];
 }
 
 - (IBAction)backButtonAction:(id)sender {
      [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)cancelWorkingButtonAction:(id)sender {
+}
+
+- (IBAction)jobCompletedButtonAction:(id)sender {
+}
+
+- (IBAction)submitEstimateButtonAction:(id)sender {
+}
+
+- (void) prepareJobStatusAnimation :(NSArray *)imageArray{
+    NSMutableArray *images = [[NSMutableArray alloc]init];
+    for (NSString *imageName in imageArray ) {
+        [images addObject:[UIImage imageNamed:imageName]];
+    }
+    _jobStatusImage.animationImages = images;
+    _jobStatusImage.animationDuration = 0.5;
+    [_jobStatusImage startAnimating];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -174,23 +215,29 @@
     }else if([segue.identifier isEqualToString:@"POST_COMMENT"]){
         AddCommentViewController *viewController = [segue destinationViewController];
         viewController.job = _job;
+        viewController.comment = _comment;
         viewController.comments = _commentsForJob;
     }
 }
 
-- (IBAction)postCommentButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"POST_COMMENT" sender:self];
-}
 
 #pragma mark - swipable cell delegate
 
-- (void)deleteButtonAction{
-    
+- (void)deleteButtonActionForCell:(UITableViewCell *)cell{
+    NSIndexPath *indexPath = [self.commentsTableView indexPathForCell:cell];
+    FixifyComment *comment = [_commentsForJob objectAtIndex:indexPath.row];
+    [comment deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self getAllCommentsForJob];
+    }];
 }
-- (void)replyButtonAction{
-    
+- (void)replyButtonActionForCell:(UITableViewCell *)cell{
+    NSIndexPath *indexPath = [self.commentsTableView indexPathForCell:cell];
+    FixifyComment *comment = [_commentsForJob objectAtIndex:indexPath.row];
+    FixifyComment *reply = [FixifyComment object];
+    reply.parentComment = comment;
+
 }
-- (void)flagButtonAction{
+- (void)flagButtonActionForCell:(UITableViewCell *)cell{
     
 }
 - (void)cellDidClose:(UITableViewCell *)cell{
@@ -199,4 +246,5 @@
 - (void)cellDidOpen:(UITableViewCell *)cell{
     
 }
+
 @end

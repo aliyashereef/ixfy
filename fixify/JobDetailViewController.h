@@ -10,6 +10,7 @@
 #import "FixifyJob.h"
 #import "SubmitQuoteViewController.h"
 #import "CommentsTableViewCell.h"
+#import "FixifyComment.h"
 
 @interface JobDetailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,SwipeableCellDelegate>
 
@@ -36,11 +37,15 @@
 - (IBAction)submitEstimateButtonAction:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobCompletedViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *descriptionLabelHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobStatusViewHeight;
+@property (weak, nonatomic) IBOutlet UIImageView *jobStatusImage;
+@property (weak, nonatomic) IBOutlet UILabel *jobStatusLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobProgressViewHeight;
 - (IBAction)backButtonAction:(id)sender;
 @property (weak, nonatomic) FixifyJob *job;
+@property (strong, nonatomic) FixifyComment *comment;
 @property (strong, nonatomic) NSArray *estimatesForJob;
 @property (strong, nonatomic) NSArray *commentsForJob;
 @property (weak, nonatomic) IBOutlet UILabel *jobDetailLabel;

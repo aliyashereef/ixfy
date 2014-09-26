@@ -80,13 +80,12 @@
 }
 
 - (void)getJobs{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities progressAnimeAddedTo:self.view show:YES];
     PFQuery *query = [FixifyJob query];
     [query whereKey:@"tradesman" equalTo:[FixifyUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            _jobArray = [objects mutableCopy];
+            [Utilities progressAnimeAddedTo:self.view show:NO];            _jobArray = [objects mutableCopy];
             for (FixifyJob *job in _jobArray) {
                 if([job.status isEqualToString:kInProgressJob]){
                     [inProgressJobArray addObject:job];

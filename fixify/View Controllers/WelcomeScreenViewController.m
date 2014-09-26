@@ -37,9 +37,9 @@
                 _animeViewVerticalConstraint.constant = _animeViewVerticalConstraint.constant - 45.0f;
             }
         }
-        [self setUpView];
         [self animateView];
     }
+    [self setUpView];
 }
 
 - (void)didReceiveMemoryWarning{

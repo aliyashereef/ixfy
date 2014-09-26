@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CommentReplyTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (weak, nonatomic) IBOutlet UILabel *userFullName;
+@property (weak, nonatomic) IBOutlet UILabel *userReplyText;
 
 @end

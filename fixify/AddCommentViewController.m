@@ -8,6 +8,7 @@
 
 #import "AddCommentViewController.h"
 #import "CommentsTableViewCell.h"
+#import "CommentReplyTableViewCell.h"
 
 @interface AddCommentViewController (){
     CGRect commentViewFrame;
@@ -69,7 +70,7 @@
 #pragma mark - Private Methods
 
 - (IBAction)backButtonAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -77,47 +78,54 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CommentsTableViewCell *cell = (CommentsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"COMMENT_CELL"];
-    if(cell == nil){
-        cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"COMMENT_CELL"];
-    }
     FixifyComment *comment = [_comments objectAtIndex:indexPath.row];
-    cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width / 2;
-    cell.avatarView.clipsToBounds = YES;
-    cell.fullName.text = comment.author.fullName ;
-    cell.commentLabel.text = comment.commentString ;
-    PFFile *imageFile = comment.author.image ;
-    [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
-        if (!error){
-            cell.avatarView.image = [UIImage imageWithData:result];
+    if (comment.parentComment) {
+        CommentReplyTableViewCell *cell = (CommentReplyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"COMMENT_REPLY_CELL"];
+        if(cell == nil){
+            cell = [[CommentReplyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"COMMENT_REPLY_CELL"];
         }
-    }];
-    CGSize requiredSize = [Utilities getRequiredSizeForText:cell.commentLabel.text
-                                                       font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
-                                                   maxWidth:cell.commentLabel.frame.size.width];
-    cell.commentLabelHeight.constant = requiredSize.height +1;
-    return cell;
-
-}
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
-- (void)  tableView:(UITableView *)tableView
- commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-  forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+        cell.userFullName.text = comment.author.fullName ;
+        cell.userReplyText.text = comment.commentString ;
+        PFFile *imageFile = comment.author.image;
+        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+            if (!error){
+                cell.userImage.image = [UIImage imageWithData:result];
+            }
+        }];
+        return cell;
+    }else{
+        CommentsTableViewCell *cell = (CommentsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"COMMENT_CELL"];
+        if(cell == nil){
+            cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"COMMENT_CELL"];
+        }
+        cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width / 2;
+        cell.avatarView.clipsToBounds = YES;
+        cell.fullName.text = comment.author.fullName ;
+        cell.commentLabel.text = comment.commentString ;
+        PFFile *imageFile = comment.author.image ;
+        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+            if (!error){
+                cell.avatarView.image = [UIImage imageWithData:result];
+            }
+        }];
+        CGSize requiredSize = [Utilities getRequiredSizeForText:cell.commentLabel.text
+                                                           font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
+                                                       maxWidth:cell.commentLabel.frame.size.width];
+        cell.commentLabelHeight.constant = requiredSize.height +1;
+        return cell;
+    }
 }
 
 - (IBAction)postCommentButtonAction:(id)sender {
     [self.commentText resignFirstResponder];
     BOOL isPrivateComment = [sender tag];
-    FixifyComment *comment = [FixifyComment object];
-    comment.commentString = self.commentText.text ;
-    comment.author = [FixifyUser currentUser];
-    comment.isPrivate = isPrivateComment;
-    comment.job = _job;
-    [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    _comment.commentString = self.commentText.text ;
+    _comment.author = [FixifyUser currentUser];
+    _comment.isPrivate = isPrivateComment;
+    [Utilities progressAnimeAddedTo:self.view show:YES];
+    [_comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
+            [Utilities progressAnimeAddedTo:self.view show:NO];
             self.commentText.text = @"";
             [self getAllCommentsForJob];
         }

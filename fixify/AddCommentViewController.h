@@ -18,7 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *postCommentButton;
 @property (weak, nonatomic) IBOutlet UITextView *commentText;
 @property (weak, nonatomic) IBOutlet UIView *postCommentView;
-@property (weak, nonatomic) FixifyJob *job;
+@property (strong, nonatomic) FixifyJob *job;
+@property (weak, nonatomic) FixifyComment *comment;
 - (IBAction)postCommentButtonAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *commentTableView;
 @property (strong, nonatomic) NSArray *comments;

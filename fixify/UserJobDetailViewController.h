@@ -10,8 +10,10 @@
 #import <Parse/Parse.h>
 #import "FixifyJob.h"
 #import "FixifyUser.h"
+#import "FixifyComment.h"
+#import "CommentsTableViewCell.h"
 
-@interface UserJobDetailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDataSource,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface UserJobDetailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDataSource,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,SwipeableCellDelegate>
 
 - (IBAction)backButtonAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *countOfEstimates;
@@ -34,7 +36,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tradesmanProfileViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *makePaymentViewHeight;
 
-@property (weak, nonatomic) FixifyJob *myJob;
+@property (strong, nonatomic) FixifyJob *myJob;
 @property (strong, nonatomic) NSArray *estimatesArray;
+@property (strong, nonatomic) NSArray *commentsArray;
 
 @end

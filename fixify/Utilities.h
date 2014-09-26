@@ -50,4 +50,8 @@
 
 //hide animation for menu view
 + (void)hideAnimationForView:(UIView *)view;
+
+//show progress animation
++ (void)progressAnimeAddedTo:(UIView *)view show:(BOOL)show;
+
 @end

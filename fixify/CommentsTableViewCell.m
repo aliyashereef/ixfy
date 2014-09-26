@@ -30,11 +30,11 @@
 
 - (IBAction)buttonClicked:(id)sender {
     if (sender == self.replyButton) {
-        [self.delegate replyButtonAction];
+        [self.delegate replyButtonActionForCell:self];
     } else if (sender == self.flagButton) {
-        [self.delegate flagButtonAction];
+        [self.delegate flagButtonActionForCell:self];
     } else if (sender == self.deleteButton){
-        [self.delegate deleteButtonAction];
+        [self.delegate deleteButtonActionForCell:self];
     }
 }
 
@@ -48,7 +48,7 @@
 }
 
 - (CGFloat)buttonTotalWidth{
-    return CGRectGetWidth(self.frame) - CGRectGetMinX(self.flagButton.frame);
+    return CGRectGetWidth(self.frame) - CGRectGetMinX(self.replyButton.frame);
 }
 
 - (void)panThisCell:(UIPanGestureRecognizer *)recognizer{
@@ -110,7 +110,7 @@
                     [self resetConstraintContstantsToZero:YES notifyDelegateDidClose:YES];
                 }
             } else {
-                CGFloat buttonOnePlusHalfOfButton2 = CGRectGetWidth(self.deleteButton.frame) + (CGRectGetWidth(self.flagButton.frame) / 2);
+                CGFloat buttonOnePlusHalfOfButton2 = CGRectGetWidth(self.deleteButton.frame) + (CGRectGetWidth(self.replyButton.frame) / 2);
                 if (self.contentViewRightConstraint.constant >= buttonOnePlusHalfOfButton2) {
                     [self setConstraintsToShowAllButtons:YES notifyDelegateDidOpen:YES];
                 } else {

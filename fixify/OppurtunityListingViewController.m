@@ -202,11 +202,11 @@
 - (void)fetchAllJobsList{
     PFGeoPoint *userLocation = [PFGeoPoint geoPointWithLocation:_mapKitWithSMCalloutView.userLocation.location];
     PFQuery *jobQuery = [FixifyJob query];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities progressAnimeAddedTo:self.view show:YES];
     [jobQuery whereKey:@"location" nearGeoPoint:userLocation];
     [jobQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [Utilities progressAnimeAddedTo:self.view show:NO];
             _jobArray = [objects mutableCopy];
             [self addAnnotation];
             [self.jobTableView reloadData];
@@ -295,12 +295,12 @@
 - (void) fetchCategoryJobs{
     PFGeoPoint *userLocation = [PFGeoPoint geoPointWithLocation:_mapKitWithSMCalloutView.userLocation.location];
     PFQuery *jobQuery = [FixifyJob query];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities progressAnimeAddedTo:self.view show:YES];
     [jobQuery whereKey: @"category" equalTo:_category];
     [jobQuery whereKey: @"location" nearGeoPoint:userLocation];
     [jobQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+            [Utilities progressAnimeAddedTo:self.view show:NO];
             _jobArray = [objects mutableCopy];
             [self addAnnotation];
             [self.jobTableView reloadData];

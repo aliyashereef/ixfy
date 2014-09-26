@@ -7,6 +7,7 @@
 //
 
 #import "Utilities.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation Utilities
 
@@ -126,4 +127,32 @@
     view.frame = newFrame;
     [UIView commitAnimations];
 }
+
++ (void)progressAnimeAddedTo:(UIView *)view show:(BOOL)show{
+    UIImageView *animeView;
+    
+    if (show) {
+        animeView = [[UIImageView alloc]initWithFrame:CGRectMake(120,264, 80, 80)];
+        animeView.backgroundColor = [UIColor blackColor];
+        animeView.alpha = .8;
+        animeView.tag = 5;
+        animeView.layer.cornerRadius = 10;
+        animeView.clipsToBounds = YES;
+        [view addSubview:animeView];
+        [view setUserInteractionEnabled:NO];
+                NSMutableArray *images = [[NSMutableArray alloc]init];
+        for (NSString *imageName in kJobProgressImageArray ) {
+            [images addObject:[UIImage imageNamed:imageName]];
+        }
+        animeView.animationImages = images;
+        animeView.animationDuration = 0.5;
+        [animeView startAnimating];
+    }else{
+        [view setUserInteractionEnabled:YES];
+        UIView *imageView = [view viewWithTag:5];
+        [imageView removeFromSuperview];
+    }
+}
+
+
 @end
