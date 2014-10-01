@@ -11,8 +11,11 @@
 #import "FixifyUser.h"
 #import "FixifyJobEstimates.h"
 #import "AddCommentViewController.h"
+#import "ImageBrowserViewController.h"
 
-@interface JobDetailViewController ()
+@interface JobDetailViewController (){
+    UIImage *activeImage;
+}
 
 @end
 
@@ -27,7 +30,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    _comment = [[FixifyComment alloc]init];
+    activeImage = [[UIImage alloc]init];
     self.jobDetailLabel.text = _job.jobDescription;
     self.tradesmanImage.layer.cornerRadius = self.tradesmanImage.frame.size.width / 2;
     self.tradesmanImage.clipsToBounds = YES;
@@ -74,6 +77,15 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 12;
 }
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    activeImage = [UIImage imageWithData:[_job.imageArray objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"TradesmanFullScreenImageView" sender:self];}
+
 
 #pragma mark - UIScrollVewDelegate for UIPageControl
 
@@ -179,9 +191,6 @@
 }
 
 - (IBAction)postCommentButtonAction:(id)sender {
-    _comment = [FixifyComment object];
-    _comment.job = _job;
-    [_comment saveInBackground];
     [self performSegueWithIdentifier:@"POST_COMMENT" sender:self];
 }
 
@@ -215,9 +224,12 @@
     }else if([segue.identifier isEqualToString:@"POST_COMMENT"]){
         AddCommentViewController *viewController = [segue destinationViewController];
         viewController.job = _job;
-        viewController.comment = _comment;
         viewController.comments = _commentsForJob;
+    }else if ([segue.identifier isEqualToString:@"TradesmanFullScreenImageView"]) {
+        ImageBrowserViewController *viewController = [segue destinationViewController];
+        viewController.image = activeImage;
     }
+
 }
 
 
@@ -230,21 +242,17 @@
         [self getAllCommentsForJob];
     }];
 }
-- (void)replyButtonActionForCell:(UITableViewCell *)cell{
-    NSIndexPath *indexPath = [self.commentsTableView indexPathForCell:cell];
-    FixifyComment *comment = [_commentsForJob objectAtIndex:indexPath.row];
-    FixifyComment *reply = [FixifyComment object];
-    reply.parentComment = comment;
 
+- (void)replyButtonActionForCell:(UITableViewCell *)cell{
 }
+
 - (void)flagButtonActionForCell:(UITableViewCell *)cell{
-    
 }
+
 - (void)cellDidClose:(UITableViewCell *)cell{
-    
 }
+
 - (void)cellDidOpen:(UITableViewCell *)cell{
-    
 }
 
 @end

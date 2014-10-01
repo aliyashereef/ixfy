@@ -22,6 +22,8 @@
 
 @property (retain) FixifyComment *parentComment;
 
+@property (retain) PFRelation *replies;
+
 @property BOOL isPrivate ;
 
 @end

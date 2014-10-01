@@ -69,6 +69,7 @@
 		224D34D119CC01480071F7CF /* coin_rotate_0019@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 224D34BC19CC01480071F7CF /* coin_rotate_0019@2x.png */; };
 		224D34D219CC01480071F7CF /* coin_rotate_0020@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 224D34BD19CC01480071F7CF /* coin_rotate_0020@2x.png */; };
 		228FE61919B72E8D0080015E /* SearchAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228FE61819B72E8D0080015E /* SearchAddressViewController.m */; };
+		229402A819DBC5C1005DD8A3 /* ImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229402A719DBC5C1005DD8A3 /* ImageBrowserViewController.m */; };
 		2296061A199348F4003062CA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 22960619199348F4003062CA /* Utilities.m */; };
 		2296061C19936113003062CA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296061B19936112003062CA /* FacebookSDK.framework */; };
 		2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2296061E19939600003062CA /* TermsAndConditionsViewController.m */; };
@@ -204,6 +205,8 @@
 		224D34BD19CC01480071F7CF /* coin_rotate_0020@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coin_rotate_0020@2x.png"; sourceTree = "<group>"; };
 		228FE61719B72E8D0080015E /* SearchAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAddressViewController.h; sourceTree = "<group>"; };
 		228FE61819B72E8D0080015E /* SearchAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAddressViewController.m; sourceTree = "<group>"; };
+		229402A619DBC5C1005DD8A3 /* ImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowserViewController.h; sourceTree = "<group>"; };
+		229402A719DBC5C1005DD8A3 /* ImageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowserViewController.m; sourceTree = "<group>"; };
 		22960618199348F4003062CA /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		22960619199348F4003062CA /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		2296061B19936112003062CA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = fixify/Resources/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 				220C866B19BF279900CF4497 /* CategoryListingViewController.m */,
 				22FC6F9F19D1472500DFD94D /* AddCommentViewController.h */,
 				22FC6FA019D1472500DFD94D /* AddCommentViewController.m */,
+				229402A619DBC5C1005DD8A3 /* ImageBrowserViewController.h */,
+				229402A719DBC5C1005DD8A3 /* ImageBrowserViewController.m */,
 				22978D8619D2B5B400839235 /* TradesmanJobsViewController.h */,
 				22978D8719D2B5B400839235 /* TradesmanJobsViewController.m */,
 			);
@@ -764,6 +769,7 @@
 				2296061A199348F4003062CA /* Utilities.m in Sources */,
 				2249AEBC199258760028F92E /* MBProgressHUD.m in Sources */,
 				22ECD57E19B5FB4F00549327 /* MyJobsCollectionViewCell.m in Sources */,
+				229402A819DBC5C1005DD8A3 /* ImageBrowserViewController.m in Sources */,
 				2296061F19939600003062CA /* TermsAndConditionsViewController.m in Sources */,
 				22974B8219A318FE00A245D1 /* OppurtunityListingViewController.m in Sources */,
 				22980B90199C8DD10088B3AB /* FixifyUser.m in Sources */,

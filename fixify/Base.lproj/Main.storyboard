@@ -768,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ww6-VX-AKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4055" y="-410"/>
+            <point key="canvasLocation" x="3383" y="-402"/>
         </scene>
         <!--Choose Adress View Controller-->
         <scene sceneID="P1h-ps-M0R">
@@ -884,7 +884,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDB-UE-p4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="-394"/>
+            <point key="canvasLocation" x="446" y="-434"/>
         </scene>
         <!--Add Comment View Controller-->
         <scene sceneID="o8t-XQ-fWR">
@@ -1092,6 +1092,67 @@
             </objects>
             <point key="canvasLocation" x="1558" y="-1834"/>
         </scene>
+        <!--Image Browser View Controller-->
+        <scene sceneID="WRc-cy-PJl">
+            <objects>
+                <viewController id="zTr-5S-hlG" customClass="ImageBrowserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1cl-fo-f2e"/>
+                        <viewControllerLayoutGuide type="bottom" id="N2Y-WF-sng"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bQX-S7-c1A">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="VKT-mv-k1q">
+                                <rect key="frame" x="0.0" y="71" width="320" height="489"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QZw-10-CZH">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="489"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="489" id="3rW-uF-PzU"/>
+                                            <constraint firstAttribute="width" constant="320" id="ygN-E6-T7f"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QZw-10-CZH" firstAttribute="leading" secondItem="VKT-mv-k1q" secondAttribute="leading" id="S0Z-ar-8ve"/>
+                                    <constraint firstAttribute="trailing" secondItem="QZw-10-CZH" secondAttribute="trailing" id="Sse-jw-rJ1"/>
+                                    <constraint firstAttribute="height" constant="489" id="cOO-KB-rEs"/>
+                                    <constraint firstAttribute="bottom" secondItem="QZw-10-CZH" secondAttribute="bottom" id="l7o-h7-dWp"/>
+                                    <constraint firstItem="QZw-10-CZH" firstAttribute="top" secondItem="VKT-mv-k1q" secondAttribute="top" id="yir-gk-odb"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="zTr-5S-hlG" id="733-ym-5Q4"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6w-uo-7fa">
+                                <rect key="frame" x="263" y="33" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButton:" destination="zTr-5S-hlG" eventType="touchUpInside" id="OTA-82-5be"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="VKT-mv-k1q" secondAttribute="width" id="3k6-Jv-8ll"/>
+                            <constraint firstItem="VKT-mv-k1q" firstAttribute="leading" secondItem="bQX-S7-c1A" secondAttribute="leading" id="JhA-8g-sKp"/>
+                            <constraint firstItem="N2Y-WF-sng" firstAttribute="top" secondItem="VKT-mv-k1q" secondAttribute="bottom" constant="8" id="Na6-s0-EQq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fullScreenImageView" destination="QZw-10-CZH" id="tMt-bb-iPy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xUj-0e-cTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1550" y="-1161"/>
+        </scene>
         <!--Add Job Description View Controller-->
         <scene sceneID="bE4-cj-ipA">
             <objects>
@@ -1201,7 +1262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZx-Mx-ETr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2118" y="-402"/>
+            <point key="canvasLocation" x="1558" y="-386"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="j3s-Vz-yM8">
@@ -1950,7 +2011,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HDI-ly-z4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1558" y="-50"/>
+            <point key="canvasLocation" x="1014" y="22"/>
         </scene>
         <!--User Job Detail View Controller-->
         <scene sceneID="frW-4g-xqI">
@@ -2523,11 +2584,12 @@
                         <outlet property="scrollViewContentSize" destination="8ql-VL-nuU" id="BUZ-uJ-9mw"/>
                         <outlet property="tradesmanProfileViewHeight" destination="kC7-iZ-9hb" id="o41-WK-qRe"/>
                         <segue destination="ogE-XH-CZy" kind="modal" identifier="ESTIMATE_DETAIL" id="c6b-Te-C2k"/>
+                        <segue destination="zTr-5S-hlG" kind="modal" identifier="fullScreenImageView" id="XOr-AE-Oo7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oda-8o-JSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2881" y="-402"/>
+            <point key="canvasLocation" x="2281" y="-386"/>
         </scene>
         <!--Estimate Detail View Controller-->
         <scene sceneID="oB1-KO-C88">
@@ -2739,7 +2801,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ra-ia-saP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3278" y="-410"/>
+            <point key="canvasLocation" x="2638" y="-394"/>
         </scene>
         <!--Tradesman Profile View Controller-->
         <scene sceneID="93e-9v-pxy">
@@ -2910,7 +2972,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpU-ED-lBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3679" y="-410"/>
+            <point key="canvasLocation" x="3015" y="-394"/>
         </scene>
         <!--My Jobs View Controller-->
         <scene sceneID="CYc-ca-Ly7">
@@ -3108,7 +3170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZe-PD-zDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="-402"/>
+            <point key="canvasLocation" x="1910" y="-386"/>
         </scene>
         <!--Oppurtunity Listing View Controller-->
         <scene sceneID="Sy2-U8-dcn">
@@ -3981,6 +4043,7 @@
                         <outlet property="tradesmanImage" destination="CdZ-Yt-73j" id="Yjp-Bl-Rkw"/>
                         <outlet property="tradesmanName" destination="u8m-0k-Ou6" id="iID-mw-NUs"/>
                         <segue destination="Mh3-NM-485" kind="modal" identifier="POST_COMMENT" id="co5-uU-Xzk"/>
+                        <segue destination="zTr-5S-hlG" kind="modal" identifier="TradesmanFullScreenImageView" id="7dD-pI-4ZJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xhf-Mb-D3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4586,7 +4649,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMU-nD-m30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="406" y="-898"/>
+            <point key="canvasLocation" x="-82" y="-922"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="ODK-8a-bUk">
@@ -4795,7 +4858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCa-Md-BSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="-1050"/>
+            <point key="canvasLocation" x="446" y="-1202"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="mRF-6I-B8t">
@@ -4913,7 +4976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJP-nC-pa1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1378" y="-1050"/>
+            <point key="canvasLocation" x="794" y="-1202"/>
         </scene>
         <!--Terms And Conditions View Controller-->
         <scene sceneID="QA3-M2-4UZ">
@@ -5088,7 +5151,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="olq-cl-gkc"/>
+        <segue reference="svd-Xe-bj0"/>
         <segue reference="P8i-5R-LIZ"/>
+        <segue reference="XOr-AE-Oo7"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -25,6 +25,8 @@
 
 @dynamic isPrivate;
 
+@dynamic replies;
+
 + (NSString *)parseClassName
 {
     return @"comment";

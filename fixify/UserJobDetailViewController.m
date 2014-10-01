@@ -13,11 +13,13 @@
 #import "EstimatesTableViewCell.h"
 #import "EstimateDetailViewController.h"
 #import "AddCommentViewController.h"
+#import "ImageBrowserViewController.h"
 
 @interface UserJobDetailViewController (){
     NSInteger tableViewRowCount;
     FixifyJobEstimates *selectedEstimate;
     FixifyComment *reply;
+    UIImage *activeImage;
 }
 
 @end
@@ -34,6 +36,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self updateView];
+    activeImage = [[UIImage alloc]init];
     selectedEstimate = [[FixifyJobEstimates alloc]init];
     [_estimatesOrCommentsSegmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
 }
@@ -156,6 +159,14 @@
 	return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    activeImage = [UIImage imageWithData:[_myJob.imageArray objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"fullScreenImageView" sender:self];}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
 #pragma mark - UIScrollVewDelegate for UIPageControl
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -241,7 +252,11 @@
     if ([segue.identifier isEqualToString:kEstimateDetailViewSegue]) {
         EstimateDetailViewController *viewController = segue.destinationViewController;
         viewController.estimate = selectedEstimate;
+    }else if ([segue.identifier isEqualToString:@"fullScreenImageView"]) {
+         ImageBrowserViewController *viewController = [segue destinationViewController];
+        viewController.image = activeImage;
     }
+
 }
 
 #pragma mark - swipable cell delegate
@@ -256,15 +271,10 @@
 - (void)replyButtonActionForCell:(UITableViewCell *)cell{
     NSIndexPath *indexPath = [self.estimatesOrCommentsTableView indexPathForCell:cell];
     FixifyComment *comment = [_commentsArray objectAtIndex:indexPath.row];
-    reply = [[FixifyComment alloc]init];
-    reply = [FixifyComment object];
-    reply.job = _myJob;
-    reply.parentComment = comment;
-    [reply saveInBackground];
+    NSArray *singleComment = [[NSArray alloc]initWithObjects:comment, nil];
     AddCommentViewController *viewController =[self.storyboard instantiateViewControllerWithIdentifier:@"ADD_COMMENT_VIEW_CONTROLLER_ID"];
     viewController.job = _myJob;
-    viewController.comments = _commentsArray;
-    viewController.comment = reply ;
+    viewController.comments = singleComment;
     [self presentViewController:viewController animated:NO completion:nil];
     
 }

@@ -45,7 +45,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *jobProgressViewHeight;
 - (IBAction)backButtonAction:(id)sender;
 @property (weak, nonatomic) FixifyJob *job;
-@property (strong, nonatomic) FixifyComment *comment;
 @property (strong, nonatomic) NSArray *estimatesForJob;
 @property (strong, nonatomic) NSArray *commentsForJob;
 @property (weak, nonatomic) IBOutlet UILabel *jobDetailLabel;

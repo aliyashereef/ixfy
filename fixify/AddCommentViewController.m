@@ -84,6 +84,8 @@
         if(cell == nil){
             cell = [[CommentReplyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"COMMENT_REPLY_CELL"];
         }
+        cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width / 2;
+        cell.userImage.clipsToBounds = YES;
         cell.userFullName.text = comment.author.fullName ;
         cell.userReplyText.text = comment.commentString ;
         PFFile *imageFile = comment.author.image;
@@ -119,6 +121,14 @@
 - (IBAction)postCommentButtonAction:(id)sender {
     [self.commentText resignFirstResponder];
     BOOL isPrivateComment = [sender tag];
+    _comment = [FixifyComment object];
+    if (_comments.count == 1) {
+        _comment.parentComment = [_comments firstObject];
+        FixifyComment *rootComment = _comment.parentComment;
+        [rootComment.replies addObject:[_comments firstObject]];
+        [rootComment saveInBackground];
+    }
+    _comment.job = _job;
     _comment.commentString = self.commentText.text ;
     _comment.author = [FixifyUser currentUser];
     _comment.isPrivate = isPrivateComment;
@@ -137,6 +147,7 @@
     [commentsQuery whereKey:@"job" equalTo:_job];
     [commentsQuery whereKey:@"isPrivate" equalTo:[NSNumber numberWithBool:NO]];
     [commentsQuery includeKey:@"author"];
+    [commentsQuery includeKey:@"parentComment"];
     [commentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             _comments = [objects mutableCopy];
