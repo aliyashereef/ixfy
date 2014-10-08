@@ -46,7 +46,7 @@
 - (IBAction)backButtonAction:(id)sender;
 @property (weak, nonatomic) FixifyJob *job;
 @property (strong, nonatomic) NSArray *estimatesForJob;
-@property (strong, nonatomic) NSArray *commentsForJob;
+@property (strong, nonatomic) NSMutableArray *commentsForJob;
 @property (weak, nonatomic) IBOutlet UILabel *jobDetailLabel;
 - (IBAction)postCommentButtonAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;

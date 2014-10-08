@@ -22,7 +22,7 @@
 
 @property (retain) FixifyComment *parentComment;
 
-@property (retain) PFRelation *replies;
+@property (readonly) PFRelation *replies;
 
 @property BOOL isPrivate ;
 

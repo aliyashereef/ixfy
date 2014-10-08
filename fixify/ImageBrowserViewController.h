@@ -10,8 +10,11 @@
 
 @interface ImageBrowserViewController : UIViewController<UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *fullScreenImageView;
-@property (strong, nonatomic)  UIImage *image;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) NSArray *pageImages;
+@property (nonatomic, strong) NSMutableArray *pageViews;
+@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 
 - (IBAction)doneButton:(id)sender;
+
 @end

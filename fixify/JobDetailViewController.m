@@ -12,9 +12,11 @@
 #import "FixifyJobEstimates.h"
 #import "AddCommentViewController.h"
 #import "ImageBrowserViewController.h"
+#import "CommentReplyTableViewCell.h"
 
 @interface JobDetailViewController (){
     UIImage *activeImage;
+    NSInteger parentCommentID;
 }
 
 @end
@@ -104,39 +106,66 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _commentsForJob.count;
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FixifyComment *comment = [_commentsForJob objectAtIndex:indexPath.row];
+    if (comment.parentComment) {
+        return 65;
+    } else {
+        return 85;
+    }
+}
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return NO;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CommentsTableViewCell *cell = (CommentsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kCommentListID];
-    if(cell == nil){
-        cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCommentListID];
-    }
-    cell.delegate = self;
     FixifyComment *comment = [_commentsForJob objectAtIndex:indexPath.row];
-    if (comment.author == [FixifyUser currentUser]) {
-        cell.replyButtonWidth.constant = 0;
-        cell.deleteButtonWidth.constant = 0;
-    }else{
-        cell.replyButtonWidth.constant = 0;
-        cell.flagButtonWidth.constant = 0;
-    }
-    [cell updateConstraintsIfNeeded];
-    cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width / 2;
-    cell.avatarView.clipsToBounds = YES;
-    cell.fullName.text = comment.author.fullName ;
-    cell.commentLabel.text = comment.commentString ;
-    PFFile *imageFile = comment.author.image ;
-    [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
-        if (!error){
-             cell.avatarView.image = [UIImage imageWithData:result];
+    if (comment.parentComment) {
+        CommentReplyTableViewCell *cell = (CommentReplyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"COMMENTS_REPLY"];
+        if(cell == nil){
+            cell = [[CommentReplyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"COMMENTS_REPLY"];
         }
-    }];
-    CGSize requiredSize = [Utilities getRequiredSizeForText:cell.commentLabel.text
-                                                        font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
-                                                    maxWidth:cell.commentLabel.frame.size.width];
-    cell.commentLabelHeight.constant = requiredSize.height + 1;
-    return cell;
+        cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width / 2;
+        cell.userImage.clipsToBounds = YES;
+        cell.userFullName.text = comment.author.fullName ;
+        cell.userReplyText.text = comment.commentString ;
+        PFFile *imageFile = comment.author.image;
+        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+            if (!error){
+                cell.userImage.image = [UIImage imageWithData:result];
+            }
+        }];
+        return cell;
+    }else{
+        CommentsTableViewCell *cell = (CommentsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kCommentListID];
+        if(cell == nil){
+            cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCommentListID];
+        }
+        cell.delegate = self;
+        cell.replyButtonWidth.constant = 0;
+        if (comment.author == [FixifyUser currentUser]) {
+            cell.deleteButtonWidth.constant = 0;
+        }else{
+            cell.flagButtonWidth.constant = 0;
+        }
+        [cell layoutIfNeeded];
+        cell.avatarView.layer.cornerRadius = cell.avatarView.frame.size.width / 2;
+        cell.avatarView.clipsToBounds = YES;
+        cell.fullName.text = comment.author.fullName ;
+        cell.commentLabel.text = comment.commentString ;
+        PFFile *imageFile = comment.author.image ;
+        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+            if (!error){
+                cell.avatarView.image = [UIImage imageWithData:result];
+            }
+        }];
+        CGSize requiredSize = [Utilities getRequiredSizeForText:cell.commentLabel.text
+                                                           font:[UIFont fontWithName:@"DINAlternate-Bold" size:12]
+                                                       maxWidth:cell.commentLabel.frame.size.width];
+        cell.commentLabelHeight.constant = requiredSize.height +1;
+        return cell;
+    }
 }
 
 - (void)getAllEstimatesForJob {
@@ -191,6 +220,7 @@
 }
 
 - (IBAction)postCommentButtonAction:(id)sender {
+    parentCommentID = 0;
     [self performSegueWithIdentifier:@"POST_COMMENT" sender:self];
 }
 
@@ -224,12 +254,12 @@
     }else if([segue.identifier isEqualToString:@"POST_COMMENT"]){
         AddCommentViewController *viewController = [segue destinationViewController];
         viewController.job = _job;
+        viewController.parentCommentID = [NSNumber numberWithInteger:parentCommentID];
         viewController.comments = _commentsForJob;
     }else if ([segue.identifier isEqualToString:@"TradesmanFullScreenImageView"]) {
         ImageBrowserViewController *viewController = [segue destinationViewController];
-        viewController.image = activeImage;
+        viewController.pageImages = _job.imageArray;
     }
-
 }
 
 

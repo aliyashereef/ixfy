@@ -10,8 +10,9 @@
 #import "FixifyUser.h"
 #import "FixifyJob.h"
 #import "FixifyJobEstimates.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface JobListingViewController : UIViewController
+@interface JobListingViewController : UIViewController<MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 

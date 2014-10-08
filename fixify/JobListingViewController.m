@@ -9,6 +9,7 @@
 #import "JobListingViewController.h"
 #import "TradesmanJobsViewController.h"
 #import "MBProgressHUD.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
 @interface JobListingViewController (){
     NSMutableArray *estimatedJobArray;
@@ -61,9 +62,27 @@
 }
 
 - (IBAction)feedbackButtonAction:(id)sender {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+        [mailComposer setMailComposeDelegate:self];
+        [mailComposer setSubject:@"FEED_BACK"];
+        NSArray *toRecipients = [NSArray arrayWithObject:kFeedBackEmailID];
+        [mailComposer setToRecipients:toRecipients];
+        [self presentViewController:mailComposer animated:YES completion:nil];
+    } else {
+        [Utilities showAlertWithTitle:@"MAIL"message:@"NO_EMAIL_ACC"];
+    }
+
 }
 
 - (IBAction)shareAppButtonAction:(id)sender {
+    NSString *shareText =@"CHECK_OUT_APP";
+    NSURL *shareUrl = [NSURL URLWithString:@"https://www.google.com"];
+    NSArray * activityItems = @[shareText, shareUrl];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:@[]];
+    NSArray *excludeActivities = @[UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePostToWeibo, UIActivityTypePrint, UIActivityTypeMessage, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+    activityController.excludedActivityTypes = excludeActivities;
+    [self.navigationController presentViewController:activityController animated:YES completion:nil];
 }
 
 - (IBAction)signOutButtonAction:(id)sender {
@@ -138,6 +157,17 @@
            TradesmanJobsViewController *viewController = [segue destinationViewController];
            viewController.myJobArray = categoryJobArray;
     }
+}
+
+#pragma mark - MFMailComposerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    if(result == MFMailComposeResultSent) {
+        [Utilities showAlertWithTitle:@"SUCCESS" message:@"FEEDBACK_SENT"];
+    } else {
+        [Utilities showAlertWithTitle:@"FAILED" message:error.localizedDescription];
+    }
+	[controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

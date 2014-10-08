@@ -32,6 +32,8 @@
 #define kLoggedInWithFacebook @"IS_FACEBOOK_LOGIN"
 #define kPinLength 4
 #define kBounceValue 20.0
+#define kReplyCellRowHeight 60
+#define kCommentCellRowHeight 85
 //colors
 
 #define kThemeBrown   [UIColor colorWithRed:(float)140/255 green:(float)131/255 blue:(float)123/255 alpha:1]      
@@ -60,6 +62,11 @@
 #define kMyJobDetailViewSegue @"MY_JOB_DETAIL_VIEW"
 #define kMyJobsViewSegue @"MY_JOBS"
 #define kTradesmanProfileView @"TRADESMAN_PROFILE_VIEW"
+#define kFullScreenImageView @"fullScreenImageView"
+#define kUserJobDetailViewReplyCellID @"USER_COMMENT_REPLY_CELL"
+#define kUserJobDetailViewCommentCellID @"USER_COMMENTS_LIST"
+#define kAddCommentViewReplyCellID @"COMMENT_REPLY_CELL"
+#define kAddCommentViewCommentCellID @"COMMENT_CELL"
 // storyboard IDs
 
 #define kMyJobsViewControllerID @"MY_JOBS_STORYBOARD_ID"
@@ -67,13 +74,14 @@
 #define kEditProfileViewControllerID @"EditProfileViewStoryBoardID"
 #define kAddJobViewControllerID @"AddJobViewControllerStoryBoardID"
 #define kTradesmanViewControllerID @"TradesmanViewControllerID"
-
+#define kAddCommentViewControllerStoryBoardID @"ADD_COMMENT_VIEW_CONTROLLER_ID"
 // Animation durations
 #define kMenuViewAnimationDuration .75
 #define kMapGeocodeDelay 0.3
 
 // strings
 #define kViewTitle @"Add a Job"
+#define kFeedBackEmailID @"aliya@qburst.com"
 
 //map span cordinates
 #define kSpanX 0.00725

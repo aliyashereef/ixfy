@@ -38,6 +38,6 @@
 
 @property (strong, nonatomic) FixifyJob *myJob;
 @property (strong, nonatomic) NSArray *estimatesArray;
-@property (strong, nonatomic) NSArray *commentsArray;
+@property (strong, nonatomic) NSMutableArray *commentsArray;
 
 @end

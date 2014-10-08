@@ -14,12 +14,12 @@
 #import "EstimateDetailViewController.h"
 #import "AddCommentViewController.h"
 #import "ImageBrowserViewController.h"
+#import "CommentReplyTableViewCell.h"
 
 @interface UserJobDetailViewController (){
-    NSInteger tableViewRowCount;
     FixifyJobEstimates *selectedEstimate;
-    FixifyComment *reply;
-    UIImage *activeImage;
+    NSInteger parentCommentID;
+    NSMutableArray *replyArray;
 }
 
 @end
@@ -36,7 +36,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self updateView];
-    activeImage = [[UIImage alloc]init];
+    replyArray = [[NSMutableArray alloc]init];
     selectedEstimate = [[FixifyJobEstimates alloc]init];
     [_estimatesOrCommentsSegmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
 }
@@ -58,11 +58,6 @@
 }
 
 - (void)segmentedControlChangedValue:(UISegmentedControl *)sender{
-    if(_estimatesOrCommentsSegmentedControl.selectedSegmentIndex == 0){
-      tableViewRowCount = _estimatesArray.count;
-    }else{
-      tableViewRowCount = 2;
-    }
     [self.estimatesOrCommentsTableView reloadData];
 }
 
@@ -131,6 +126,7 @@
 - (void)fetchComments {
     PFQuery *commentQuery = [FixifyComment query];
     [commentQuery whereKey:@"job" equalTo: _myJob];
+    [commentQuery whereKey:@"parentComment" equalTo:[NSNull null]];
     [commentQuery includeKey:@"author"];
     [commentQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -138,14 +134,41 @@
             [_estimatesOrCommentsSegmentedControl setTitle:[NSString stringWithFormat:@"Comments [%d]",_commentsArray.count]
                                          forSegmentAtIndex:1 ];
             [self.estimatesOrCommentsTableView reloadData];
+            [self addReplyForComments];
         }
     }];
+}
+
+- (void) addReplyForComments  {
+    for (FixifyComment *comment in _commentsArray) {
+        if (!comment.parentComment) {
+            PFRelation *reply = comment.replies;
+            [[reply query] includeKey:@"author"];
+            [[reply query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    replyArray = [objects mutableCopy];
+                    NSInteger index = [_commentsArray indexOfObject: comment];
+                    NSRange range = NSMakeRange(index+1,[replyArray count]);
+                    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+                    [_commentsArray insertObjects:replyArray atIndexes:indexSet];
+                    }
+            }];
+        }
+    }
+    [self.estimatesOrCommentsTableView reloadData];
 }
 
 #pragma mark - Collection View Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _myJob.imageArray.count;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:kFullScreenImageView sender:self];}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -157,14 +180,6 @@
     int pages = floor(_jobImageCollectionView.contentSize.width / _jobImageCollectionView.frame.size.width);
     [_pageControlForCollectionView setNumberOfPages:pages];
 	return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    activeImage = [UIImage imageWithData:[_myJob.imageArray objectAtIndex:indexPath.row]];
-    [self performSegueWithIdentifier:@"fullScreenImageView" sender:self];}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
 }
 
 #pragma mark - UIScrollVewDelegate for UIPageControl
@@ -189,6 +204,26 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FixifyComment *comment = [_commentsArray objectAtIndex:indexPath.row];
+    if (comment.parentComment) {
+        return kReplyCellRowHeight;
+    } else {
+        return kCommentCellRowHeight;
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (_estimatesOrCommentsSegmentedControl.selectedSegmentIndex == 0) {
+        selectedEstimate = [_estimatesArray objectAtIndex:indexPath.row];
+        [self performSegueWithIdentifier:kEstimateDetailViewSegue sender:self];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
     if (_estimatesOrCommentsSegmentedControl.selectedSegmentIndex == 0) {
@@ -198,11 +233,20 @@
         }
         [self configureEstimateCell:cell forRowAtIndexPath:indexPath];
     }else{
-        cell = (CommentsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"USER_COMMENTS_LIST"];
-        if(cell == nil){
-            cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"USER_COMMENTS_LIST"];
+        FixifyComment *comment = [_commentsArray objectAtIndex:indexPath.row];
+        if (comment.parentComment) {
+            cell = (CommentReplyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kUserJobDetailViewReplyCellID];
+            if(cell == nil){
+                cell = [[CommentReplyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kUserJobDetailViewReplyCellID];
+            }
+            [self configureReplyCell:cell forRowAtIndexPath:indexPath];
+        }else{
+            cell = (CommentsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kUserJobDetailViewCommentCellID];
+            if(cell == nil){
+                cell = [[CommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kUserJobDetailViewCommentCellID];
+            }
+            [self configureCommentCell:cell forRowAtIndexPath:indexPath];
         }
-        [self configureCommentCell:cell forRowAtIndexPath:indexPath];
     }
     return cell;
 }
@@ -228,33 +272,43 @@
     FixifyComment *commentInCell = [_commentsArray objectAtIndex:indexPath.row];
     commentCell.avatarView.layer.cornerRadius =  commentCell.avatarView.frame.size.width / 2;
     commentCell.avatarView.clipsToBounds = YES;
-    commentCell.fullName.text = commentInCell.author.fullName ;
-    [commentInCell.author.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+    [commentInCell.author fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        commentCell.fullName.text = commentInCell.author.fullName ;
+        [commentInCell.author.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
             if (!error) {
                 commentCell.avatarView.image = [UIImage imageWithData:imageData];
             }
+        }];
     }];
     commentCell.commentLabel.text = [NSString stringWithFormat:@"%@", commentInCell.commentString] ;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return NO;
+- (void)configureReplyCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    CommentReplyTableViewCell *commentCell = (CommentReplyTableViewCell *)cell;
+    FixifyComment *commentInCell = [_commentsArray objectAtIndex:indexPath.row];
+    commentCell.userImage.layer.cornerRadius =  commentCell.userImage.frame.size.width / 2;
+    commentCell.userImage.clipsToBounds = YES;
+    [commentInCell.author fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        commentCell.userFullName.text = commentInCell.author.fullName ;
+        [commentInCell.author.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                commentCell.userImage.image = [UIImage imageWithData:imageData];
+            }
+        }];
+    }];
+    commentCell.userReplyText.text = [NSString stringWithFormat:@"%@", commentInCell.commentString] ;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_estimatesOrCommentsSegmentedControl.selectedSegmentIndex == 0) {
-        selectedEstimate = [_estimatesArray objectAtIndex:indexPath.row];
-        [self performSegueWithIdentifier:kEstimateDetailViewSegue sender:self];
-    }
-}
+
+#pragma mark - Navigation Methods
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:kEstimateDetailViewSegue]) {
         EstimateDetailViewController *viewController = segue.destinationViewController;
         viewController.estimate = selectedEstimate;
-    }else if ([segue.identifier isEqualToString:@"fullScreenImageView"]) {
-         ImageBrowserViewController *viewController = [segue destinationViewController];
-        viewController.image = activeImage;
+    }else if ([segue.identifier isEqualToString:kFullScreenImageView]) {
+        ImageBrowserViewController *viewController = [segue destinationViewController];
+        viewController.pageImages = _myJob.imageArray;
     }
 
 }
@@ -269,22 +323,15 @@
     }];
 }
 - (void)replyButtonActionForCell:(UITableViewCell *)cell{
+    parentCommentID = 1;
     NSIndexPath *indexPath = [self.estimatesOrCommentsTableView indexPathForCell:cell];
     FixifyComment *comment = [_commentsArray objectAtIndex:indexPath.row];
-    NSArray *singleComment = [[NSArray alloc]initWithObjects:comment, nil];
-    AddCommentViewController *viewController =[self.storyboard instantiateViewControllerWithIdentifier:@"ADD_COMMENT_VIEW_CONTROLLER_ID"];
+    NSMutableArray *singleComment = [[NSMutableArray alloc]initWithObjects:comment, nil];
+    AddCommentViewController *viewController =[self.storyboard instantiateViewControllerWithIdentifier:kAddCommentViewControllerStoryBoardID];
     viewController.job = _myJob;
     viewController.comments = singleComment;
+    viewController.parentCommentID = [NSNumber numberWithInteger:parentCommentID];
     [self presentViewController:viewController animated:NO completion:nil];
-    
-}
-- (void)flagButtonActionForCell:(UITableViewCell *)cell{
-    
-}
-- (void)cellDidClose:(UITableViewCell *)cell{
-    
-}
-- (void)cellDidOpen:(UITableViewCell *)cell{
     
 }
 
